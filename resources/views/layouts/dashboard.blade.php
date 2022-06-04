@@ -10,7 +10,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 
     <title>{{ $title }}</title>
-    
+
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -328,6 +328,8 @@
 
             <!-- Page Content -->
             <div class="grow flex flex-col bg-body xl:ml-72">
+
+                <x-includes 
 
                 <main class="grow pb-12">
                     {{ $slot }}

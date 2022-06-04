@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Dashboard extends Component
+class App extends Component
 {
     /**
      * The page title
@@ -30,6 +30,6 @@ class Dashboard extends Component
      */
     public function render()
     {
-        return view('layouts.dashboard');
+        return view('layouts.app');
     }
 }

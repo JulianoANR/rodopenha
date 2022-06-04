@@ -1,4 +1,4 @@
-<x-dashboard title="Dashboard">
+<x-app title="Dashboard">
 
     <!-- Header page -->
     <div class="my-6 px-4 md:px-6">
@@ -103,6 +103,6 @@
         </div>
     </div>
 
-</x-dashboard>
+</x-app>
 
 
