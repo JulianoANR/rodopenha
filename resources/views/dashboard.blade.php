@@ -3,13 +3,31 @@
     <!-- Header page -->
     <div class="my-6 px-4 md:px-6">
         <div class="flex flex-wrap gap-2 justify-between items-center">
+            <div class="w-full md:w-max">
+                <h1 class="w-full truncate text-2xl mb-1 font-bold text-gray-400 md:text-3xl dark:text-white">
+                    Hello {{ Auth::user()->name }}
+                </h1>
+
+                <x-breadcrumb :path="['Dashboard' => route('dashboard')]" />
+            </div>
+
+            <button class="button button-primary hidden md:flex">
+                New document <i class="fa-solid fa-file-arrow-down"></i>
+            </button>
+        </div>
+    </div>
+
+    {{-- <div class="my-6 px-4 md:px-6">
+        <div class="flex flex-wrap gap-2 justify-between items-center">
             <h1 class="text-xl font-semibold text-gray-400 dark:text-white">
                 Dashboard
             </h1>
 
             <x-breadcrumb :path="['Dashboard' => route('dashboard')]" />
         </div>
-    </div>
+    </div> --}}
+
+
 
     <!-- Grid Cards -->
     <div class="px-4 md:px-6">

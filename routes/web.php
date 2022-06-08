@@ -25,4 +25,20 @@ Route::get('/components', function () {
     return view('componentsCSS');
 })->name('components');
 
+// Melhorar rotas
+Route::prefix('settings')->group(function () {
+
+    Route::get('/account', function () {
+        return view('settings.account');
+    })->middleware(['auth'])->name('settings.account_data');
+
+    Route::get('/preferences', function () {
+        return view('settings.preferences');
+    })->middleware(['auth'])->name('settings.preferences');
+
+    Route::get('/company', function () {
+        return view('settings.company');
+    })->middleware(['auth'])->name('settings.company_data');
+});
+
 require __DIR__.'/auth.php';

@@ -24,6 +24,10 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     @stack('styles')
 
+    <!-- Ion-icon -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 
     <!-- Init preferences -->
     <script>
@@ -45,11 +49,9 @@
             <header class="sticky top-0 z-20 h-16 w-full flex items-center bg-theme shadow-[0_2px_4px_rgba(0,0,0,0.5)] dark:shadow-none">
 
                 <div class="h-16 flex items-center pl-4 md:pl-6 xl:w-72">
-
                     <div class="flex items-center">
-
                         <label class="p-2 -translate-x-2 text-white rounded-full cursor-pointer hover:transition hover:ease-out hover:bg-white/10 focus:outline-none focus:ring focus:ring-white/20 focus:bg-white/10 xl:hidden" for="checkbox-navigation" tabindex="1">
-                            <x-icon type="hamburger" class="w-6 h-6" />
+                            <svg class="w-6 h-6 stroke-current" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
                             <input id="checkbox-navigation" type="checkbox" class="hidden">
                         </label>
 
@@ -68,12 +70,31 @@
                     <!-- Left -->
                     <div class="flex items-center gap-2">
 
-                        <form class="hidden lg:block relative" method="GET" action="#">
+                        {{--<form class="hidden lg:block relative" method="GET" action="#">
                             <input class="w-72 xl:w-96 bg-white/5 pl-12 text-sm text-gray-100 rounded border-0 focus:ring-0 placeholder-gray-200"
                                    placeholder="{{  __('Search for anything ...') }}" id="search_desktop" name="search" value="{{ request('search') }}" autocomplete="off" spellcheck="false" type="text">
 
                             <div class="absolute left-3.5 top-1/2 -translate-y-1/2 text-white pointer-events-none">
                                 <x-icon type="search" class="w-5 h-5" />
+                            </div>
+                        </form> --}}
+
+                        <form class="hidden lg:block relative" method="GET" action="#">
+
+                            <div>
+                                <input class="bg-white/5 w-80 py-2.5 px-12 text-sm text-gray-100 rounded border-0 focus:ring-0 placeholder-gray-200 xl:w-[26rem]" placeholder="{{  __('Search') }}"  type="text">
+
+                                <div class="absolute left-3.5 top-1/2 -translate-y-1/2 text-white pointer-events-none">
+                                    <x-icon class="w-5 h-5 text-xl" name="search-outline" library="ion-icon"></x-icon>
+                                </div>
+
+                                <button class="absolute right-2 top-1/2 -translate-y-1/2 text-white transition p-1.5 rounded-full hover:bg-white/10" type="button">
+                                    <x-icon class="w-5 h-5 text-xl" name="options" library="ion-icon"></x-icon>
+                                </button>
+                            </div>
+
+                            <div class="hidden animate-fade-up">
+                                <!-- Auto complete -->
                             </div>
                         </form>
                     </div>
@@ -81,7 +102,7 @@
                     <!-- Right -->
                     <div class="flex items-center gap-2">
                         <button class="hidden lg:block p-2 text-white rounded-full relative transition ease-out hover:bg-white/10 focus:outline-none focus:ring focus:ring-white/20 focus:bg-white/10">
-                            <x-icon type="expand" width="24" height="24" />
+                            <x-icon name="expand" library="ion-icon"></x-icon>
                         </button>
                         <!---->
                         <!---->
@@ -89,7 +110,7 @@
                             <button class="flex gap-2 p-2 text-white rounded-full relative transition ease-out hover:bg-white/10 focus:outline-none focus:ring focus:ring-white/20 focus:bg-white/10"
                                     data-trigger="dropdown" data-dropdown-sensible aria-expanded="false">
 
-                                <x-icon type="search" width="24" height="24" />
+                                <x-icon name="search-outline" library="ion-icon"></x-icon>
                             </button>
 
                             <div class="hidden animate-fade-up absolute right-2 top-[4.75rem] w-[calc(100%-1rem)] rounded shadow bg-white p-2 border border-slate-200 sm:w-[350px] sm:right-0 sm:top-16
@@ -110,7 +131,7 @@
 
                         <div class="hidden sm:block sm:relative">
                             <button class="p-2 text-white rounded-full relative transition ease-out hover:bg-white/10 focus:outline-none focus:ring focus:ring-white/20 focus:bg-white/10">
-                                <x-icon type="mail" width="24" height="24" />
+                                <x-icon name="mail" library="ion-icon"></x-icon>
 
                                 <!-- Counter -->
                                 @if(false)
@@ -125,7 +146,7 @@
                             <button class="p-2 text-white rounded-full relative transition ease-out hover:bg-white/10 focus:outline-none focus:ring focus:ring-white/20 focus:bg-white/10"
                                     data-trigger="dropdown" data-dropdown-sensible aria-expanded="false">
 
-                                <x-icon type="bell" width="24" height="24" />
+                                <x-icon name="notifications" library="ion-icon"></x-icon>
 
                                 <!-- Counter -->
                                 @if(true)
@@ -178,7 +199,7 @@
                                     {{ Auth::user()->name }}
                                 </span>
 
-                                <x-icon type="chevron-down" width="18" height="18" />
+                                <x-icon name="chevron-down" class="w-5 h-5 text-xl" library="ion-icon" />
                             </button>
 
                             <div class="hidden animate-fade-up absolute right-0 top-14 rounded shadow bg-white py-2 min-w-[200px] border border-slate-200
@@ -194,7 +215,7 @@
                                 <!---->
                                 <!---->
                                 <a class="flex items-center space-x-4 w-full px-4 py-2 text-gray-700 cursor-pointer transition hover:bg-gray-100 focus:bg-gray-200
-                                          dark:text-gray-100 dark:hover:bg-white/5 dark:focus:bg-white/10" href="#">
+                                          dark:text-gray-100 dark:hover:bg-white/5 dark:focus:bg-white/10" href="{{ route('settings.account_data') }}">
 
                                     <i class="fa-solid fa-gear"></i>
                                     <span>Settings</span>
@@ -228,11 +249,11 @@
                         </a>
 
                         <label class="cursor-pointer p-2 text-white rounded-full transition hover:bg-white/10 focus:outline-none focus:ring focus:ring-white/20 focus:bg-white/10" for="checkbox-navigation" tabindex="1">
-                            <x-icon type="close" width="22" height="22" />
+                            <x-icon name="close" library="ion-icon"></x-icon>
                         </label>
                     </div>
 
-                    <div class="h-[calc(100%-4rem)] overflow-y-auto flex flex-col pt-2 px-3 space-y-4 text-white xl:h-full xl:pt-6 xl:text-gray-700 dark:text-white capitalize">
+                    <div class="h-[calc(100%-4rem)] overflow-y-auto flex flex-col pt-2 px-3 pb-4 space-y-4 text-white xl:h-full xl:pt-6 xl:text-gray-700 dark:text-gray-400 capitalize">
                         <!-- Active classes: bg-white/5 xl:text-primary xl:bg-gray-50 dark:bg-white/5 -->
 
                         <!-- Dashboard -->
@@ -241,59 +262,91 @@
                                 {{ __('home') }}
                             </h2>
 
-                            <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded transition hover:bg-white/10 hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
+                            <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
                                       dark:hover:bg-white/10 dark:focus:bg-white/20
 
-                                      bg-white/5 xl:text-primary xl:bg-gray-50 dark:bg-white/5 dark:text-white" href="#">
+                                      bg-white/5 xl:text-primary xl:bg-gray-50 dark:bg-white/5 dark:text-white" href="{{ route('dashboard') }}">
 
-                                <x-icon type="pie-chart" class="w-6 h-6" />
+                                <x-icon name="pie-chart" library="ion-icon"></x-icon>
                                 {{ __('dashboard') }}
                             </a>
 
                             <!---->
                             <!---->
                             <div>
-                                <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 capitalize
+                                <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 capitalize
                                                dark:hover:bg-white/10 dark:focus:bg-white/20" data-trigger="collapse">
 
-                                    <x-icon type="grid" class="w-6 h-6" />
+                                    <x-icon name="mail-open" library="ion-icon"></x-icon>
 
                                     <span class="grow flex justify-between items-center">
                                         {{ __('service orders') }}
-                                        <x-icon type="chevron-down" class="w-5 h-5" />
+                                        <x-icon class="h-5 w-5 text-xl" name="chevron-down" library="ion-icon"></x-icon>
                                     </span>
                                 </button>
 
-                                <div class="is-collapsed collapsible mt-2 capitalize">
+                                <div class="is-collapsed collapsible mt-2 capitalize space-y-1">
                                     <!---->
                                     <!---->
-                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
                                               before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2"  href="#">
                                         {{ __('new order') }}
                                     </a>
                                     <!---->
                                     <!---->
-                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
                                               before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="#">
                                         {{ __('all orders') }}
                                     </a>
                                     <!---->
                                     <!---->
-                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
                                               before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2"  href="#">
                                         {{ __('archived orders') }}
                                     </a>
                                 </div>
                             </div>
-
                             <!---->
                             <!---->
-                            <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
+                            <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
                                       dark:hover:bg-white/10 dark:focus:bg-white/20" href="#">
 
-                                <x-icon type="mail-open" class="w-6 h-6" />
+                                <x-icon name="person" library="ion-icon"></x-icon>
                                 {{ __('users') }}
                             </a>
+                            <!---->
+                            <!---->
+                            <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
+                                         dark:hover:bg-white/10 dark:focus:bg-white/20" data-trigger="collapse">
+
+                                <x-icon name="settings-sharp" library="ion-icon"></x-icon>
+
+                                <span class="grow flex justify-between items-center">
+                                    Settings
+                                    <x-icon class="h-5 w-5 text-xl" name="chevron-down" library="ion-icon"></x-icon>
+                                </span>
+                            </button>
+
+                            <div class="is-collapsed collapsible mt-2 space-y-1">
+                                <!---->
+                                <!---->
+                                <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                            before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('settings.account_data') }}">
+                                    Account data
+                                </a>
+                                <!---->
+                                <!---->
+                                <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                            before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('settings.preferences') }}">
+                                    Preferences
+                                </a>
+                                <!---->
+                                <!---->
+                                <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                            before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('settings.company_data') }}">
+                                    Company data
+                                </a>
+                            </div>
                         </div>
 
                         <!-- Finance Elements -->
@@ -307,87 +360,87 @@
 
                                 <!---->
                                 <!---->
-                                <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
+                                <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
                                     dark:hover:bg-white/10 dark:focus:bg-white/20" href="#">
 
-                                    <x-icon type="mail-open" class="w-6 h-6" />
+                                    <x-icon name="mail-open" library="ion-icon"></x-icon>
                                     {{ __('financial panel') }}
                                 </a>
 
                                 {{-- Incomes --}}
-                                <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 capitalize
+                                <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 capitalize
                                                dark:hover:bg-white/10 dark:focus:bg-white/20" data-trigger="collapse">
 
-                                    <x-icon type="grid" class="w-6 h-6" />
+                                    <x-icon name="mail-open" library="ion-icon"></x-icon>
 
                                     <span class="grow flex justify-between items-center">
                                         {{ __('incomes') }}
-                                        <x-icon type="chevron-down" class="w-5 h-5" />
+                                        <x-icon class="h-5 w-5 text-xl" name="chevron-down" library="ion-icon"></x-icon>
                                     </span>
                                 </button>
 
-                                <div class="is-collapsed collapsible mt-2 capitalize">
+                                <div class="is-collapsed collapsible mt-2 capitalize space-y-1">
                                     <!---->
                                     <!---->
-                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
                                               before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="#">
                                         Introduction
                                     </a>
                                     <!---->
                                     <!---->
-                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
                                               before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2"  href="#">
                                         Icons
                                     </a>
                                     <!---->
                                     <!---->
-                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
                                               before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="#">
                                         DataTable
                                     </a>
                                 </div>
 
                                 {{-- Expenses --}}
-                                <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 capitalize
+                                <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 capitalize
                                     dark:hover:bg-white/10 dark:focus:bg-white/20" data-trigger="collapse">
 
-                                    <x-icon type="grid" class="w-6 h-6" />
+                                    <x-icon name="mail-open" library="ion-icon"></x-icon>
 
                                     <span class="grow flex justify-between items-center">
                                         {{ __('expenses') }}
-                                        <x-icon type="chevron-down" class="w-5 h-5" />
+                                        <x-icon class="h-5 w-5 text-xl" name="chevron-down" library="ion-icon"></x-icon>
                                     </span>
                                 </button>
 
-                                <div class="is-collapsed collapsible mt-2 capitalize">
+                                <div class="is-collapsed collapsible mt-2 capitalize space-y-1">
                                     <!---->
                                     <!---->
-                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
                                             before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="#">
                                         Introduction
                                     </a>
                                     <!---->
                                     <!---->
-                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
                                             before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2"  href="#">
                                         Icons
                                     </a>
                                     <!---->
                                     <!---->
-                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
                                             before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="#">
                                         DataTable
                                     </a>
                                 </div>
 
-                                 <!---->
-                                    <!---->
-                                <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
+                                <!---->
+                                <!---->
+                                <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
                                     dark:hover:bg-white/10 dark:focus:bg-white/20" href="#">
 
-                                <x-icon type="mail-open" class="w-6 h-6" />
-                                {{ __('inventory') }}
-                            </a>
+                                    <x-icon name="mail-open" library="ion-icon"></x-icon>
+                                    {{ __('inventory') }}
+                                </a>
                             </div>
                         </div>
 
