@@ -232,13 +232,13 @@
                         </label>
                     </div>
 
-                    <div class="h-[calc(100%-4rem)] overflow-y-auto flex flex-col pt-2 px-3 space-y-4 text-white xl:h-full xl:pt-6 xl:text-gray-700 dark:text-white">
+                    <div class="h-[calc(100%-4rem)] overflow-y-auto flex flex-col pt-2 px-3 space-y-4 text-white xl:h-full xl:pt-6 xl:text-gray-700 dark:text-white capitalize">
                         <!-- Active classes: bg-white/5 xl:text-primary xl:bg-gray-50 dark:bg-white/5 -->
 
                         <!-- Dashboard -->
                         <div class="space-y-2">
                             <h2 class="font-semibold text-gray-200 ml-2 xl:text-gray-500 dark:text-gray-200">
-                                {{ 'Dashboard' }}
+                                {{ __('home') }}
                             </h2>
 
                             <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded transition hover:bg-white/10 hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
@@ -247,38 +247,86 @@
                                       bg-white/5 xl:text-primary xl:bg-gray-50 dark:bg-white/5 dark:text-white" href="#">
 
                                 <x-icon type="pie-chart" class="w-6 h-6" />
-                                Home
+                                {{ __('dashboard') }}
                             </a>
+
+                            <!---->
+                            <!---->
+                            <div>
+                                <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 capitalize
+                                               dark:hover:bg-white/10 dark:focus:bg-white/20" data-trigger="collapse">
+
+                                    <x-icon type="grid" class="w-6 h-6" />
+
+                                    <span class="grow flex justify-between items-center">
+                                        {{ __('service orders') }}
+                                        <x-icon type="chevron-down" class="w-5 h-5" />
+                                    </span>
+                                </button>
+
+                                <div class="is-collapsed collapsible mt-2 capitalize">
+                                    <!---->
+                                    <!---->
+                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2"  href="#">
+                                        {{ __('new order') }}
+                                    </a>
+                                    <!---->
+                                    <!---->
+                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="#">
+                                        {{ __('all orders') }}
+                                    </a>
+                                    <!---->
+                                    <!---->
+                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2"  href="#">
+                                        {{ __('archived orders') }}
+                                    </a>
+                                </div>
+                            </div>
+
                             <!---->
                             <!---->
                             <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
                                       dark:hover:bg-white/10 dark:focus:bg-white/20" href="#">
 
                                 <x-icon type="mail-open" class="w-6 h-6" />
-                                Inbox
+                                {{ __('users') }}
                             </a>
                         </div>
 
-                        <!-- Ui Elements -->
+                        <!-- Finance Elements -->
                         <div class="space-y-2">
                             <h2 class="font-semibold text-gray-200 ml-2 xl:text-gray-500 dark:text-gray-200">
-                                {{ 'Ui Elements' }}
+                                {{ 'finances' }}
                             </h2>
                             <!---->
                             <!---->
                             <div>
-                                <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
+
+                                <!---->
+                                <!---->
+                                <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
+                                    dark:hover:bg-white/10 dark:focus:bg-white/20" href="#">
+
+                                    <x-icon type="mail-open" class="w-6 h-6" />
+                                    {{ __('financial panel') }}
+                                </a>
+
+                                {{-- Incomes --}}
+                                <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 capitalize
                                                dark:hover:bg-white/10 dark:focus:bg-white/20" data-trigger="collapse">
 
                                     <x-icon type="grid" class="w-6 h-6" />
 
                                     <span class="grow flex justify-between items-center">
-                                        Components
+                                        {{ __('incomes') }}
                                         <x-icon type="chevron-down" class="w-5 h-5" />
                                     </span>
                                 </button>
 
-                                <div class="is-collapsed collapsible mt-2">
+                                <div class="is-collapsed collapsible mt-2 capitalize">
                                     <!---->
                                     <!---->
                                     <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
@@ -297,17 +345,53 @@
                                               before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="#">
                                         DataTable
                                     </a>
+                                </div>
+
+                                {{-- Expenses --}}
+                                <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 capitalize
+                                    dark:hover:bg-white/10 dark:focus:bg-white/20" data-trigger="collapse">
+
+                                    <x-icon type="grid" class="w-6 h-6" />
+
+                                    <span class="grow flex justify-between items-center">
+                                        {{ __('expenses') }}
+                                        <x-icon type="chevron-down" class="w-5 h-5" />
+                                    </span>
+                                </button>
+
+                                <div class="is-collapsed collapsible mt-2 capitalize">
                                     <!---->
                                     <!---->
                                     <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="#">
-                                        Charts
+                                            before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="#">
+                                        Introduction
+                                    </a>
+                                    <!---->
+                                    <!---->
+                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                            before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2"  href="#">
+                                        Icons
+                                    </a>
+                                    <!---->
+                                    <!---->
+                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                            before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="#">
+                                        DataTable
                                     </a>
                                 </div>
+
+                                 <!---->
+                                    <!---->
+                                <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
+                                    dark:hover:bg-white/10 dark:focus:bg-white/20" href="#">
+
+                                <x-icon type="mail-open" class="w-6 h-6" />
+                                {{ __('inventory') }}
+                            </a>
                             </div>
                         </div>
 
-                        <div class="p-3 flex flex-col gap-y-4 bg-white/10 rounded xl:bg-gray-100 dark:bg-white/5">
+                        <div class="p-3 flex flex-col gap-y-4 bg-white/10 rounded xl:bg-gray-100 dark:bg-white/5 normal-case">
 
                             <div class="flex justify-center text-3xl">
                                 <i class="fa-solid fa-gift"></i>
