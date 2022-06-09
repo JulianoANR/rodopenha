@@ -99,7 +99,11 @@
                 </div>
             </div>
         </div>
+        {{-- End cards --}}
 
+        {{-- Table activity --}}
+            
+        {{-- End table activity --}}
     </div>
 
 </x-app>
