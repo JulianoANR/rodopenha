@@ -35,6 +35,7 @@
     }
 
     .dark {
+        color-scheme: dark;
         --bg-theme: 33 33 33;
         --bg-header: var(--bg-theme);
         --bg-body: 24 24 24;
@@ -42,7 +43,7 @@
     }
 
     body {
-        @apply text-gray-600 dark:text-gray-300
+        @apply text-gray-600 dark:text-gray-400;
     }
 }
 
@@ -220,7 +221,7 @@
     }
 
     .card {
-        @apply flex flex-col bg-white shadow rounded dark:bg-aside;
+        @apply flex flex-col bg-white shadow rounded-sm dark:bg-aside;
     }
 
     .card-header {
@@ -282,11 +283,11 @@
     }
 
     .animate-up {
-        @apply hover:-translate-y-2 hover:shadow-lg transition ease-in-out duration-500;
+        @apply hover:-translate-y-1.5 hover:shadow-lg transition ease-in-out duration-500;
     }
 
     .animate-down {
-        @apply hover:translate-y-2 transition ease-in-out duration-500;
+        @apply hover:translate-y-1.5 transition ease-in-out duration-500;
     }
 
     .before-marker {
