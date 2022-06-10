@@ -11,10 +11,9 @@
                 <x-breadcrumb :path="['Users' => route('users.index')]" />
             </div>
 
-            <a href="{{ route('dashboard') }}" class="button button-primary hidden md:flex">
-                Return
-                <i class="fa-solid fa-arrow-left"></i>
-            </a>
+            <button class="button button-primary hidden md:flex">
+                Create New User <i class="fa-solid fa-plus fa-lg"></i>
+            </button>
         </div>
     </div>
 
@@ -33,28 +32,13 @@
                     <table id="table_recent_activities" class="stripe hover display">
                         <thead>
                             <tr>
-                                <th>Usuario</th>
-                                <th class="text-center">Status</th>
-                                <th>Service Order</th>
-                                <th>Date</th>
+                                <th>User</th>
+                                <th>Permissions</th>
+                                <th>Email</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <div class="relative flex">
-                                        <x-avatar-user :user="Auth::user()" />
-                                        <span class="ml-5">Alberto Luiz</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <span class="px-3 py-1 text-sm rounded-full bg-sky-200 text-sky-600">
-                                        Picked Up
-                                    </span>
-                                </td>
-                                <td><a class="hover:underline underline-offset-2" href="#">ORDER #14325</a></td>
-                                <td>{{ now() }}</td>
-                            </tr>
                             <tr>
                                 <td>
                                     <div class="relative flex">
@@ -63,27 +47,44 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <span class="px-3 py-1 text-sm rounded-full bg-green-200 text-green-600">
-                                        Delivered
-                                    </span>
+                                    Onwer
                                 </td>
-                                <td><a class="hover:underline underline-offset-2" href="#">ORDER #45324</a></td>
-                                <td>{{ now() }}</td>
+                                <td>example@gmail.com</td>
+                                <td>
+                                    <button class="button button-secondary"><i class="py-3 fa-solid fa-gear fa-xl"></i></button>
+                                </td>
                             </tr>
                             <tr>
                                 <td>
                                     <div class="relative flex">
                                         <x-avatar-user :user="Auth::user()" />
-                                        <span class="ml-5">Matheus Henrique</span>
+                                        <span class="ml-5">Alberto Luiz</span>
                                     </div>
                                 </td>
                                 <td>
-                                    <span class="px-3 py-1 text-sm rounded-full bg-green-200 text-green-600">
-                                        Delivered
-                                    </span>
+                                    Driver
                                 </td>
-                                <td><a class="hover:underline underline-offset-2" href="#">ORDER #23421</a></td>
-                                <td>{{ now() }}</td>
+                                <td>example3@gmail.com</td>
+                                <td>
+                                    <button class="button button-secondary"><i class="py-3 fa-solid fa-gear fa-xl"></i></button>
+                                    <button class="ml-2 button button-info"><i class="py-3 fa-solid fa-truck-front fa-xl"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="relative flex">
+                                        <x-avatar-user :user="Auth::user()" />
+                                        <span class="ml-5">Roberto</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    Supervisor / Driver
+                                </td>
+                                <td>example2@gmail.com</td>
+                                <td>
+                                    <button class="button button-secondary"><i class="py-3 fa-solid fa-gear fa-xl"></i></button>
+                                    <button class="ml-2 button button-info"><i class="py-3 fa-solid fa-truck-front fa-xl"></i></button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

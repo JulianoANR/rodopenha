@@ -11,9 +11,7 @@
                 <x-breadcrumb :path="['Dashboard' => route('dashboard')]" />
             </div>
 
-            <button class="button button-primary hidden md:flex">
-                New document <i class="fa-solid fa-file-arrow-down"></i>
-            </button>
+
         </div>
     </div>
 

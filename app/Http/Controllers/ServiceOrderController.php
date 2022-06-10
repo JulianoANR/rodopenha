@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ServiceOrder;
+use App\Models\{ServiceOrder};
 use App\Http\Requests\StoreServiceOrderRequest;
 use App\Http\Requests\UpdateServiceOrderRequest;
 
@@ -15,7 +15,9 @@ class ServiceOrderController extends Controller
      */
     public function index()
     {
-        //
+        // $orders = ServiceOrder::all();
+        $orders = [];
+        return view('serviceOrders.index', compact(['orders']));
     }
 
     /**
@@ -25,7 +27,7 @@ class ServiceOrderController extends Controller
      */
     public function create()
     {
-        //
+        return view('serviceOrders.create');
     }
 
     /**

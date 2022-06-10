@@ -288,13 +288,13 @@
                                     <!---->
                                     <!---->
                                     <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2"  href="#">
+                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2"  href="{{ route('service-orders.create') }}">
                                         {{ __('new order') }}
                                     </a>
                                     <!---->
                                     <!---->
                                     <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="#">
+                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('service-orders.index') }}">
                                         {{ __('all orders') }}
                                     </a>
                                     <!---->
