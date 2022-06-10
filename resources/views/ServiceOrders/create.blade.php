@@ -73,8 +73,9 @@
             </div>
 
             <div class="card">
-                <div class="card-header capitalize">
+                <div class="card-header flex content-between capitalize">
                     {{ __('Vehicles') }}
+                    <button class="button button-primary">Inspection Type<i class="fa-solid fa-file"></i></button>
                 </div>
 
                 <div class="card-body">
