@@ -28,7 +28,6 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-
     <!-- Init preferences -->
     <script>
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -48,7 +47,7 @@
             <!-- Header -->
             <header class="sticky top-0 z-20 h-16 w-full flex items-center bg-theme shadow-[0_2px_4px_rgba(0,0,0,0.5)] dark:shadow-none">
 
-                <div class="h-16 flex items-center pl-4 md:pl-6 xl:w-72">
+                <div class="h-16 flex items-center pl-2 md:pl-3 xl:w-72">
                     <div class="flex items-center">
                         <label class="p-2 -translate-x-2 text-white rounded-full cursor-pointer hover:transition hover:ease-out hover:bg-white/10 focus:outline-none focus:ring focus:ring-white/20 focus:bg-white/10 xl:hidden" for="checkbox-navigation" tabindex="1">
                             <svg class="w-6 h-6 stroke-current" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
@@ -58,7 +57,7 @@
                         <div>
                             <!-- Brand -->
                             <a href="{{ route('index') }}">
-                                <x-application-logo type="full" class="min-w-8 h-8 fill-cur
+                                <x-application-logo type="full" class="min-w-16 h-10 fill-cur
                                 rent text-white" />
                             </a>
                         </div>
@@ -309,7 +308,7 @@
                             <!---->
                             <!---->
                             <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
-                                      dark:hover:bg-white/10 dark:focus:bg-white/20" href="#">
+                                      dark:hover:bg-white/10 dark:focus:bg-white/20" href="{{ route('users.index') }}">
 
                                 <x-icon name="person" library="ion-icon"></x-icon>
                                 {{ __('users') }}
@@ -363,7 +362,7 @@
                                 <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
                                     dark:hover:bg-white/10 dark:focus:bg-white/20" href="#">
 
-                                    <x-icon name="mail-open" library="ion-icon"></x-icon>
+                                    <x-icon name="money-bill-trend-up fa-xl" library="fontawesome"></x-icon>
                                     {{ __('financial panel') }}
                                 </a>
 
@@ -371,7 +370,7 @@
                                 <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 capitalize
                                                dark:hover:bg-white/10 dark:focus:bg-white/20" data-trigger="collapse">
 
-                                    <x-icon name="mail-open" library="ion-icon"></x-icon>
+                                    <x-icon name="arrow-left fa-xl" library="fontawesome"></x-icon>
 
                                     <span class="grow flex justify-between items-center">
                                         {{ __('incomes') }}
@@ -404,7 +403,7 @@
                                 <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 capitalize
                                     dark:hover:bg-white/10 dark:focus:bg-white/20" data-trigger="collapse">
 
-                                    <x-icon name="mail-open" library="ion-icon"></x-icon>
+                                    <x-icon name="arrow-right fa-xl" library="fontawesome"></x-icon>
 
                                     <span class="grow flex justify-between items-center">
                                         {{ __('expenses') }}
@@ -438,7 +437,8 @@
                                 <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
                                     dark:hover:bg-white/10 dark:focus:bg-white/20" href="#">
 
-                                    <x-icon name="mail-open" library="ion-icon"></x-icon>
+                                    <x-icon name="box-open fa-lg" library="fontawesome"></x-icon>
+
                                     {{ __('inventory') }}
                                 </a>
                             </div>
@@ -484,14 +484,14 @@
         </div>
     </div>
 
-    {{-- Jquery --}}
-    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
-
     {{-- FlowBite --}}
     <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
 
     {{-- App --}}
     <script src="{{ asset('js/app.js') }}"></script>
+
+    {{-- Jquery --}}
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
 
     @stack('scripts')
 </body>
