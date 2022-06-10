@@ -143,6 +143,96 @@
             </div>
 
             <div class="card">
+                <div class="card-header">
+                    {{ __('Pickup') }}
+                </div>
+
+                <div class="card-body pb-5">
+                    <div class="inline-flex shadow-sm">
+                        <button class="button button-primary-outline button-sm rounded-r-none rounded-l-md">Personal Contact</button>
+                        <button class="button button-primary-outline button-sm rounded-r-md rounded-l-none">Business Contact</button>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-4 mt-5">
+                        <div class="w-full">
+                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Name</label>
+                            <input class="input" name="vin" type="text" id="vin">
+                        </div>
+                        <div class="w-full">
+                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Email</label>
+                            <input class="input" name="vin" type="text" id="vin">
+                        </div>
+                        <div class="w-full">
+                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Phone</label>
+                            <input class="input" name="vin" type="text" id="vin" placeholder="(__)_____-____">
+                        </div>
+                    </div>
+                    <div class="flex gap-4 mt-5">
+                        <div class="w-2/5">
+                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Address</label>
+                            <input class="input" name="vin" type="text" id="vin">
+                        </div>
+                        <div class="w-2/5">
+                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Notes</label>
+                            <input class="input" name="vin" type="text" id="vin">
+                        </div>
+                        <div class="w-1/5">
+                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Zip</label>
+                            <input class="input" name="vin" type="text" id="vin">
+                        </div>
+                    </div>
+                    <div class="w-full mt-5">
+                        <label class="text-sm font-semibold pl-1 mb-2" for="example04">Date Delivery</label>
+                        <input class="input" type="date" id="example04">
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    {{ __('Delivery') }}
+                </div>
+
+                <div class="card-body pb-5">
+                    <div class="inline-flex shadow-sm">
+                        <button class="button button-primary-outline button-sm rounded-r-none rounded-l-md">Personal Contact</button>
+                        <button class="button button-primary-outline button-sm rounded-r-md rounded-l-none">Business Contact</button>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-4 mt-5">
+                        <div class="w-full">
+                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Name</label>
+                            <input class="input" name="vin" type="text" id="vin">
+                        </div>
+                        <div class="w-full">
+                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Email</label>
+                            <input class="input" name="vin" type="text" id="vin">
+                        </div>
+                        <div class="w-full">
+                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Phone</label>
+                            <input class="input" name="vin" type="text" id="vin" placeholder="(__)_____-____">
+                        </div>
+                    </div>
+                    <div class="flex gap-4 mt-5">
+                        <div class="w-2/5">
+                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Address</label>
+                            <input class="input" name="vin" type="text" id="vin">
+                        </div>
+                        <div class="w-2/5">
+                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Notes</label>
+                            <input class="input" name="vin" type="text" id="vin">
+                        </div>
+                        <div class="w-1/5">
+                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Zip</label>
+                            <input class="input" name="vin" type="text" id="vin">
+                        </div>
+                    </div>
+                    <div class="w-full mt-5">
+                        <label class="text-sm font-semibold pl-1 mb-2" for="example04">Date Delivery</label>
+                        <input class="input" type="date" id="example04">
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
                 <div class="card-header capitalize">
                     {{ __('Payment') }}
                 </div>
@@ -171,6 +261,53 @@
                             dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder=""></textarea>
                     </div>
                 </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header capitalize">
+                    {{ __('Shipper') }}
+                </div>
+
+                <div class="card-body">
+                    <div class="inline-flex shadow-sm">
+                        <button class="button button-primary-outline button-sm rounded-r-none rounded-l-md">Personal Contact</button>
+                        <button class="button button-primary-outline button-sm rounded-r-md rounded-l-none">Business Contact</button>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-4 mt-5">
+                        <div class="w-full">
+                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Name</label>
+                            <input class="input" name="vin" type="text" id="vin">
+                        </div>
+                        <div class="w-full">
+                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Email</label>
+                            <input class="input" name="vin" type="text" id="vin">
+                        </div>
+                        <div class="w-full">
+                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Phone</label>
+                            <input class="input" name="vin" type="text" id="vin" placeholder="(__)_____-____">
+                        </div>
+                    </div>
+                    <div class="flex gap-4 mt-5">
+                        <div class="w-2/5">
+                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Address</label>
+                            <input class="input" name="vin" type="text" id="vin">
+                        </div>
+                        <div class="w-2/5">
+                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Notes</label>
+                            <input class="input" name="vin" type="text" id="vin">
+                        </div>
+                        <div class="w-1/5">
+                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Zip</label>
+                            <input class="input" name="vin" type="text" id="vin">
+                        </div>
+                    </div>
+
+
+                    <div class="flex justify-end mb-5 mt-10">
+                        <button class="button button-primary">Save Service Order <i class="fa-solid fa-box-archive"></i></button>
+                    </div>
+                </div>
+
             </div>
 
     </div>
