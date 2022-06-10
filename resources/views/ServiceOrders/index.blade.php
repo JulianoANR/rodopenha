@@ -35,7 +35,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Status</th>
-                                <th>Driver</th>
+                                <th >Driver</th>
                                 <th>Picked Up</th>
                                 <th>Delivered</th>
                                 <th>Vehicles</th>
@@ -146,7 +146,7 @@
                     "scrollCollapse": true,
                     "paging": false,
                     "order": [
-                        [3, "desc"]
+                        [0, "desc"]
                     ],
                     "language": {
                         "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Portuguese-Brasil.json",

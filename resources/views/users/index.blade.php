@@ -28,7 +28,7 @@
                     {{ __('manage users') }}
                 </div>
 
-                <div class="card-body px-2 py-5 sm:p-5 overflow-scroll max-h-96 ">
+                <div class="card-body px-2 py-5 sm:p-5">
                     <table id="table_recent_activities" class="stripe hover display">
                         <thead>
                             <tr>
