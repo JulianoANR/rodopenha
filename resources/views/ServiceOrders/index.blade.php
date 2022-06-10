@@ -11,9 +11,9 @@
                 <x-breadcrumb :path="['Service Orders' => route('service-orders.index')]" />
             </div>
 
-            <a href="{{ route('dashboard') }}" class="button button-primary hidden md:flex">
-                Return
-                <i class="fa-solid fa-arrow-left"></i>
+            <a href="{{ route('dashboard') }}" class="button button-primary capitalize hidden md:flex">
+                <x-icon name="arrow-undo" class="w-5 h-5 text-xl" library="ion-icon" />
+                {{ __('return') }}
             </a>
         </div>
     </div>

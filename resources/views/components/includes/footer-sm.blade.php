@@ -1,8 +1,8 @@
 <footer class="bg-gray-100 dark:bg-header">
     <div class="py-6 px-4 text-center space-y-4 md:px-6 md:flex md:items-center md:justify-between md:space-y-0">
 
-        <span class="text-sm dark:text-white">
-            © 2022 <a href="{{ route('index') }}">Your company</a>. All Rights Reserved.
+        <span class="text-sm capitalize dark:text-white">
+            © {{ now()->year }} <a href="{{ route('index') }}">Rodopenha</a>. {{ __('all rights reserved') }}.
         </span>
 
         <ul class="inline-flex items-center text-sm gap-4">

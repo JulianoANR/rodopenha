@@ -11,7 +11,9 @@
                 <x-breadcrumb :path="['Dashboard' => route('dashboard')]" />
             </div>
 
-
+            <button class="button button-primary capitalize waves-effect">
+                {{ __('create order') }} <i class="fa-solid fa-plus"></i>
+            </button>
         </div>
     </div>
 
@@ -144,7 +146,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <span class="px-3 py-1 text-sm rounded-full bg-sky-200 text-sky-600">
+                                    <span class="badge-info text-sm font-normal rounded-md">
                                         Picked Up
                                     </span>
                                 </td>
@@ -159,7 +161,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <span class="px-3 py-1 text-sm rounded-full bg-green-200 text-green-600">
+                                    <span class="badge-success text-sm font-normal rounded-md">
                                         Delivered
                                     </span>
                                 </td>
@@ -174,7 +176,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <span class="px-3 py-1 text-sm rounded-full bg-green-200 text-green-600">
+                                    <span class="badge-success text-sm font-normal rounded-md">
                                         Delivered
                                     </span>
                                 </td>

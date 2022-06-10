@@ -53,7 +53,6 @@ Route::middleware(['auth'])->group( function () {
         Route::view('/company', 'settings.company')->name('settings.company_data');
         Route::view('/terms', 'settings.company_terms')->name('settings.company_terms');
     });
-
 });
 
 

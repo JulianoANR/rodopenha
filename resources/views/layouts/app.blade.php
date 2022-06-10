@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="{{ asset('images/icon.png') }}" type="image/x-icon">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @stack('header')
@@ -15,11 +14,15 @@
     {{-- FlowBite --}}
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.7/dist/flowbite.min.css" />
 
-    <!-- Fonts -->
+    {{-- Fonts --}}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
-    <!-- Fontawesome 6.1.1 -->
+    {{-- Fontawesome 6.1.1 --}}
     <link href="{{ asset('assets/fontawesome/css/all.css') }}" rel="stylesheet">
+
+    {{-- Pace Loading --}}
+    <script src="{{ asset('assets/pace/pace.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('assets/pace/minimal.css') }}">
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -29,7 +32,7 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-    <!-- Init preferences -->
+    {{-- Init preferences --}}
     <script>
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark')
@@ -49,8 +52,9 @@
             <header class="sticky top-0 z-20 h-16 w-full flex items-center bg-theme shadow-[0_2px_4px_rgba(0,0,0,0.5)] dark:shadow-none">
 
                 <div class="h-16 flex items-center pl-2 md:pl-3 xl:w-72">
-                    <div class="flex items-center">
-                        <label class="p-2 -translate-x-2 text-white rounded-full cursor-pointer hover:transition hover:ease-out hover:bg-white/10 focus:outline-none focus:ring focus:ring-white/20 focus:bg-white/10 xl:hidden" for="checkbox-navigation" tabindex="1">
+                    <div class="flex items-center gap-1">
+
+                        <label class="p-2 text-white rounded-full cursor-pointer hover:transition hover:ease-out hover:bg-white/10 focus:outline-none focus:ring focus:ring-white/20 focus:bg-white/10 xl:hidden" for="checkbox-navigation" tabindex="1">
                             <svg class="w-6 h-6 stroke-current" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
                             <input id="checkbox-navigation" type="checkbox" class="hidden">
                         </label>
@@ -58,8 +62,7 @@
                         <div>
                             <!-- Brand -->
                             <a href="{{ route('index') }}">
-                                <x-application-logo type="full" class="min-w-16 h-10 fill-cur
-                                rent text-white" />
+                                <x-application-logo type="white" class="h-10" />
                             </a>
                         </div>
                     </div>
@@ -122,8 +125,8 @@
                                     <input class="grow bg-gray-100 text-sm rounded-l-sm border-0 focus:ring-0 dark:bg-white/5 dark:placeholder-gray-200 dark:text-gray-200"
                                            placeholder="{{  __('Search for anything') }}" id="search-mobile" name="search" type="text" spellcheck="false" autocomplete="off">
 
-                                    <button class="button button-primary rounded-l-none">
-                                        <x-icon type="search" width="22" height="22" />
+                                    <button class="button button-secondary rounded-l-none">
+                                        <x-icon class="w-5 h-5 text-xl" name="search-outline" library="ion-icon" />
                                     </button>
                                 </form>
                             </div>
@@ -202,7 +205,7 @@
                                 <x-icon name="chevron-down" class="w-5 h-5 text-xl" library="ion-icon" />
                             </button>
 
-                            <div class="hidden animate-fade-up absolute right-0 top-14 rounded shadow bg-white py-2 min-w-[200px] border border-slate-200
+                            <div class="hidden animate-zoom-in origin-top-right absolute right-0 top-14 rounded shadow bg-white py-2 min-w-[200px] border border-slate-200
                                         dark:bg-header dark:border-zinc-800 dark:shadow-lg">
                                 <!---->
                                 <!---->
@@ -210,7 +213,7 @@
                                           dark:text-gray-100 dark:hover:bg-white/5 dark:focus:bg-white/10" href="#">
 
                                     <i class="fa-solid fa-user"></i>
-                                    <span>Profile</span>
+                                    <span>{{ __('profile') }}</span>
                                 </a>
                                 <!---->
                                 <!---->
@@ -218,7 +221,7 @@
                                           dark:text-gray-100 dark:hover:bg-white/5 dark:focus:bg-white/10" href="{{ route('settings.account_data') }}">
 
                                     <i class="fa-solid fa-gear"></i>
-                                    <span>Settings</span>
+                                    <span>{{ 'settings' }}</span>
                                 </a>
                                 <!---->
                                 <!---->
@@ -229,7 +232,7 @@
                                                    dark:text-gray-100 dark:hover:bg-white/5 dark:focus:bg-white/10 dark:border-zinc-700" type="submit">
 
                                         <i class="fa-solid fa-power-off"></i>
-                                        <span>Logout</span>
+                                        <span>{{ __('logout') }}</span>
                                     </button>
                                 </form>
                             </div>
@@ -243,9 +246,8 @@
                 <nav class="fixed z-30 top-0 -left-full w-80 h-full flex flex-col bg-theme shadow transition-[left] duration-300 ease-in-out lg:w-72 xl:!left-0 xl:z-10 xl:bg-aside xl:pt-16 xl:transition-none" id="navigation">
 
                     <div class="h-16 flex items-center justify-between p-4 px-5 xl:hidden">
-
                         <a href="{{  route('index') }}">
-                            <x-application-logo type="full" class="min-w-8 h-8 fill-current text-white" />
+                            <x-application-logo type="white" class="h-10" />
                         </a>
 
                         <label class="cursor-pointer p-2 text-white rounded-full transition hover:bg-white/10 focus:outline-none focus:ring focus:ring-white/20 focus:bg-white/10" for="checkbox-navigation" tabindex="1">
@@ -253,10 +255,10 @@
                         </label>
                     </div>
 
+                    <!-- Active classes: bg-white/5 xl:text-primary xl:bg-gray-50 dark:bg-white/5 -->
                     <div class="h-[calc(100%-4rem)] overflow-y-auto flex flex-col pt-2 px-3 pb-4 space-y-4 text-white xl:h-full xl:pt-6 xl:text-gray-700 dark:text-gray-400 capitalize">
-                        <!-- Active classes: bg-white/5 xl:text-primary xl:bg-gray-50 dark:bg-white/5 -->
 
-                        <!-- Dashboard -->
+                        <!-- Home -->
                         <div class="space-y-2">
                             <h2 class="font-semibold text-gray-200 ml-2 xl:text-gray-500 dark:text-gray-200">
                                 {{ __('home') }}
@@ -270,14 +272,13 @@
                                 <x-icon name="pie-chart" library="ion-icon"></x-icon>
                                 {{ __('dashboard') }}
                             </a>
-
                             <!---->
                             <!---->
                             <div>
                                 <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 capitalize
                                                dark:hover:bg-white/10 dark:focus:bg-white/20" data-trigger="collapse">
 
-                                    <x-icon name="mail-open" library="ion-icon"></x-icon>
+                                    <x-icon name="mail-open-outline" library="ion-icon"></x-icon>
 
                                     <span class="grow flex justify-between items-center">
                                         {{ __('service orders') }}
@@ -289,14 +290,14 @@
                                     <!---->
                                     <!---->
                                     <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2"  href="{{ route('service-orders.create') }}">
-                                        {{ __('new order') }}
+                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('service-orders.index') }}">
+                                        {{ __('all orders') }}
                                     </a>
                                     <!---->
                                     <!---->
                                     <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('service-orders.index') }}">
-                                        {{ __('all orders') }}
+                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2"  href="{{ route('service-orders.create') }}">
+                                        {{ __('new order') }}
                                     </a>
                                     <!---->
                                     <!---->
@@ -311,41 +312,47 @@
                             <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
                                       dark:hover:bg-white/10 dark:focus:bg-white/20" href="{{ route('users.index') }}">
 
-                                <x-icon name="person" library="ion-icon"></x-icon>
+                                <x-icon name="person-outline" library="ion-icon"></x-icon>
                                 {{ __('users') }}
                             </a>
                             <!---->
                             <!---->
-                            <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
+                            <div>
+                                <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
                                          dark:hover:bg-white/10 dark:focus:bg-white/20" data-trigger="collapse">
 
-                                <x-icon name="settings-sharp" library="ion-icon"></x-icon>
+                                    <x-icon name="settings-outline" library="ion-icon"></x-icon>
 
-                                <span class="grow flex justify-between items-center">
-                                    Settings
-                                    <x-icon class="h-5 w-5 text-xl" name="chevron-down" library="ion-icon"></x-icon>
-                                </span>
-                            </button>
+                                    <span class="grow flex justify-between items-center">
+                                        Settings
+                                        <x-icon class="h-5 w-5 text-xl" name="chevron-down" library="ion-icon"></x-icon>
+                                    </span>
+                                </button>
 
-                            <div class="is-collapsed collapsible mt-2 space-y-1">
-                                <!---->
-                                <!---->
-                                <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                <div class="is-collapsed collapsible mt-2 capitalize space-y-1">
+                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
                                             before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('settings.account_data') }}">
-                                    Account data
-                                </a>
-                                <!---->
-                                <!---->
-                                <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                        {{ __('account data') }}
+                                    </a>
+                                    <!---->
+                                    <!---->
+                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
                                             before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('settings.preferences') }}">
-                                    Preferences
-                                </a>
-                                <!---->
-                                <!---->
-                                <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                        {{ __('preferences') }}
+                                    </a>
+                                    <!---->
+                                    <!---->
+                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
                                             before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('settings.company_data') }}">
-                                    Company data
-                                </a>
+                                        {{ __('company data') }}
+                                    </a>
+                                    <!---->
+                                    <!---->
+                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                            before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('settings.company_terms') }}">
+                                        {{ __('terms & conditions') }}
+                                    </a>
+                                </div>
                             </div>
                         </div>
 
@@ -354,24 +361,20 @@
                             <h2 class="font-semibold text-gray-200 ml-2 xl:text-gray-500 dark:text-gray-200">
                                 {{ 'finances' }}
                             </h2>
+
+                            <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
+                                    dark:hover:bg-white/10 dark:focus:bg-white/20" href="#">
+
+                                <x-icon name="cash-outline" library="ion-icon"></x-icon>
+                                {{ __('financial panel') }}
+                            </a>
                             <!---->
                             <!---->
                             <div>
-
-                                <!---->
-                                <!---->
-                                <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
-                                    dark:hover:bg-white/10 dark:focus:bg-white/20" href="#">
-
-                                    <x-icon name="money-bill-trend-up fa-xl" library="fontawesome"></x-icon>
-                                    {{ __('financial panel') }}
-                                </a>
-
-                                {{-- Incomes --}}
                                 <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 capitalize
                                                dark:hover:bg-white/10 dark:focus:bg-white/20" data-trigger="collapse">
 
-                                    <x-icon name="arrow-left fa-xl" library="fontawesome"></x-icon>
+                                    <x-icon name="arrow-back" library="ion-icon"></x-icon>
 
                                     <span class="grow flex justify-between items-center">
                                         {{ __('incomes') }}
@@ -380,8 +383,6 @@
                                 </button>
 
                                 <div class="is-collapsed collapsible mt-2 capitalize space-y-1">
-                                    <!---->
-                                    <!---->
                                     <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
                                               before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="#">
                                         Introduction
@@ -399,12 +400,14 @@
                                         DataTable
                                     </a>
                                 </div>
-
-                                {{-- Expenses --}}
+                            </div>
+                            <!---->
+                            <!---->
+                            <div>
                                 <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 capitalize
                                     dark:hover:bg-white/10 dark:focus:bg-white/20" data-trigger="collapse">
 
-                                    <x-icon name="arrow-right fa-xl" library="fontawesome"></x-icon>
+                                    <x-icon name="arrow-forward" library="ion-icon"></x-icon>
 
                                     <span class="grow flex justify-between items-center">
                                         {{ __('expenses') }}
@@ -413,40 +416,35 @@
                                 </button>
 
                                 <div class="is-collapsed collapsible mt-2 capitalize space-y-1">
-                                    <!---->
-                                    <!---->
                                     <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                            before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="#">
+                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="#">
                                         Introduction
                                     </a>
                                     <!---->
                                     <!---->
                                     <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                            before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2"  href="#">
+                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2"  href="#">
                                         Icons
                                     </a>
                                     <!---->
                                     <!---->
                                     <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                            before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="#">
+                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="#">
                                         DataTable
                                     </a>
                                 </div>
-
-                                <!---->
-                                <!---->
-                                <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
+                            </div>
+                            <!---->
+                            <!---->
+                            <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
                                     dark:hover:bg-white/10 dark:focus:bg-white/20" href="#">
 
-                                    <x-icon name="box-open fa-lg" library="fontawesome"></x-icon>
-
-                                    {{ __('inventory') }}
-                                </a>
-                            </div>
+                                <x-icon name="bag-outline" library="ion-icon"></x-icon>
+                                {{ __('inventory') }}
+                            </a>
                         </div>
 
                         {{--<div class="p-3 flex flex-col gap-y-4 bg-white/10 rounded xl:bg-gray-100 dark:bg-white/5 normal-case">
-
                             <div class="flex justify-center text-3xl">
                                 <i class="fa-solid fa-gift"></i>
                             </div>
@@ -469,7 +467,6 @@
 
             <!-- Page Content -->
             <div class="grow flex flex-col bg-body xl:ml-72">
-
                 @if(Session::has('flash_message'))
                     <x-alert status="{{ Session::get('flash_message')['class'] }}" msg="{{ Session::get('flash_message')['msg'] }}"/>
                 @endif
@@ -480,10 +477,14 @@
                 </main>
 
                 <x-includes.footer-sm />
-
             </div>
         </div>
     </div>
+
+    <!-- Go top -->
+    <button class="invisible opacity-0 button button-secondary button-sm p-3 shadow-lg rounded fixed bottom-6 right-6 lg:bottom-6 lg:right-6" role="button">
+        <x-icon class="w-4 h-4" name="arrow-up" library="ion-icon" />
+    </button>
 
     {{-- FlowBite --}}
     <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>

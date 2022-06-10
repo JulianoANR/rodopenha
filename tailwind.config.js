@@ -36,17 +36,22 @@ module.exports = {
                 'current': 'currentColor',
 
                 'primary': withOpacityValue('--color-primary'),
+                'primary-active': withOpacityValue('--color-primary-active'),
                 'secondary': withOpacityValue('--color-secondary'),
+                'secondary-active': withOpacityValue('--color-secondary-active'),
                 'success': withOpacityValue('--color-success'),
+                'success-active': withOpacityValue('--color-success-active'),
                 'danger': withOpacityValue('--color-danger'),
+                'danger-active': withOpacityValue('--color-danger-active'),
                 'warning': withOpacityValue('--color-warning'),
+                'warning-active': withOpacityValue('--color-warning-active'),
                 'info': withOpacityValue('--color-info'),
+                'info-active': withOpacityValue('--color-info-active'),
 
                 'theme': withOpacityValue('--bg-theme'),
                 'header': withOpacityValue('--bg-header'),
                 'body': withOpacityValue('--bg-body'),
                 'aside': withOpacityValue('--bg-aside')
-
             },
 
             keyframes: {
@@ -76,7 +81,7 @@ module.exports = {
                 },
 
                 'zoom-in': {
-                    '0%': { transform: 'scale(.95)', opacity: '0' },
+                    '0%': { transform: 'scale(.90)', opacity: '0' },
                     '100%': { transform: 'scale(1)', opacity: '1' }
                 },
 

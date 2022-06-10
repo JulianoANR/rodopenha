@@ -31,22 +31,6 @@
                     <x-icon class="w-5 h-5 text-xl" name="brush-outline" library="ion-icon"></x-icon>
                     Preferences
                 </a>
-                <!---->
-                <!---->
-                <a class="flex items-center gap-x-3 relative py-2 px-4 mb-1 w-full cursor-pointer rounded-sm transition text-sm hover:bg-gray-100 focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                          {{ strtolower($active) == 'teams' ? $activeClasses : '' }}" href="#">
-
-                    <x-icon class="w-5 h-5 text-xl" name="people-outline" library="ion-icon"></x-icon>
-                    Teams
-                </a>
-                <!---->
-                <!---->
-                <a class="flex items-center gap-x-3 relative py-2 px-4 mb-1 w-full cursor-pointer rounded-sm transition text-sm hover:bg-gray-100 focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                          {{ strtolower($active) == 'browser_sessions' ? $activeClasses : '' }}" href="#">
-
-                    <x-icon class="w-5 h-5 text-xl" name="tv-outline" library="ion-icon"></x-icon>
-                    Browser Sessions
-                </a>
             </div>
 
             <div>
