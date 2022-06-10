@@ -444,7 +444,7 @@
                             </div>
                         </div>
 
-                        <div class="p-3 flex flex-col gap-y-4 bg-white/10 rounded xl:bg-gray-100 dark:bg-white/5 normal-case">
+                        {{--<div class="p-3 flex flex-col gap-y-4 bg-white/10 rounded xl:bg-gray-100 dark:bg-white/5 normal-case">
 
                             <div class="flex justify-center text-3xl">
                                 <i class="fa-solid fa-gift"></i>
@@ -457,7 +457,7 @@
                             <button class="button button-primary button-sm w-full waves-effect">
                                 Go to <i class="fa-brands fa-github"></i>
                             </button>
-                        </div>
+                        </div> --}}
                     </div>
                 </nav>
 

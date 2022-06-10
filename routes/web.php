@@ -51,6 +51,7 @@ Route::middleware(['auth'])->group( function () {
         Route::view('/account', 'settings.account')->name('settings.account_data');
         Route::view('/preferences', 'settings.preferences')->name('settings.preferences');
         Route::view('/company', 'settings.company')->name('settings.company_data');
+        Route::view('/terms', 'settings.company_terms')->name('settings.company_terms');
     });
 
 });

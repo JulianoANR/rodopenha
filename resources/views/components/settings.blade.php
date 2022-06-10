@@ -8,7 +8,7 @@
         </x-slot>
     </x-card>
 
-    <div class="w-full relative mb-6 lg:w-64 lg:mb-0">
+    <div class="w-full relative mb-6 lg:w-64 lg:min-w-[16rem] lg:mb-0">
 
         <div class="w-full max-h-[11rem] space-y-6 overflow-hidden lg:py-5 lg:max-h-max" id="wrapper_items">
 
@@ -59,6 +59,12 @@
 
                     <x-icon class="w-5 h-5 text-xl" name="business-outline" library="ion-icon"></x-icon>
                     Company data
+                </a>
+                <a class="flex items-center gap-x-3 relative py-2 px-4 mb-1 w-full cursor-pointer rounded-sm transition text-sm hover:bg-gray-100 focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                          {{ strtolower($active) == 'terms' ? $activeClasses : '' }}" href="{{ route('settings.company_terms') }}">
+
+                    <x-icon class="w-5 h-5 text-xl" name="document-text-outline" library="ion-icon"></x-icon>
+                    Terms & Conditions
                 </a>
             </div>
         </div>

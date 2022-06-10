@@ -329,7 +329,7 @@
             <!-- Page Content -->
             <div class="grow flex flex-col bg-body xl:ml-72">
 
-                <x-includes 
+                <x-includes
 
                 <main class="grow pb-12">
                     {{ $slot }}
