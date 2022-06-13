@@ -11,183 +11,306 @@
                 <x-breadcrumb :path="['Dashboard' => route('dashboard')]" />
             </div>
 
-            <button class="button button-primary capitalize waves-effect">
+            <button class="button button-primary capitalize waves-effect hidden md:flex">
                 {{ __('create order') }} <i class="fa-solid fa-plus"></i>
             </button>
         </div>
     </div>
 
-    {{-- <div class="my-6 px-4 md:px-6">
-        <div class="flex flex-wrap gap-2 justify-between items-center">
-            <h1 class="text-xl font-semibold text-gray-400 dark:text-white">
-                Dashboard
-            </h1>
-
-            <x-breadcrumb :path="['Dashboard' => route('dashboard')]" />
-        </div>
-    </div> --}}
-
-
-
-    <!-- Grid Cards -->
     <div class="px-4 md:px-6">
-        {{-- <div class="grid gap-6 md:grid-cols-2">
-            <div class="p-2 bg-white shadow rounded-sm dark:bg-zinc-800">
+        <div class="flex flex-wrap -mx-2 md:-mx-3">
 
-            </div>
-        </div> --}}
+            <!-- Cards Status -->
+            <div class="w-full px-2 mb-6 md:w-1/3 md:px-3">
+                <div class="card animate-up">
+                    <div class="card-body p-5 flex items-center space-x-4">
 
-        <div class="grid gap-6 sm:grid-cols-3">
+                        <div class="grow">
+                            <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">{{ __('0 Orders') }}</h3>
 
-            <div class="card card-primary animate-up">
-                <div class="card-body p-5 flex items-center space-x-4">
+                            <div class="font-semibold">
+                                {{ __('Pickup') }}
+                            </div>
 
-                    <div class="grow">
-                        <h3 class="text-2xl font-semibold text-white">{{ '0 Orders' }}</h3>
+                            <div class="mt-4 text-xs text-gray-400">
+                                <span class="font-bold mr-2">
+                                    <i class="fa-solid fa-arrow-trend-up"></i>
+                                    {{ '0%' }}
+                                </span>
 
-                        <div class="font-semibold text-gray-100">
-                            {{ __('Pickup') }}
+                                {{ 'For today' }}
+                            </div>
                         </div>
 
-                        <div class="mt-4 text-xs text-gray-200">
-                            <span class="font-bold mr-2">
-                                <i class="fa-solid fa-arrow-trend-up"></i>
-                                {{-- {{ 'TODAY' }} --}}
-                            </span>
-
-                            {{ __('For today') }}
+                        <div class="w-12 h-12 bg-primary-soft text-primary flex items-center justify-center rounded dark:text-white">
+                            <i class="fa-solid fa-user-group"></i>
                         </div>
-                    </div>
-
-                        <div class="w-12 h-12 bg-white/20 text-white flex items-center justify-center rounded-full">
-                        <i class="fa-solid fa-user-group"></i>
                     </div>
                 </div>
             </div>
 
-            <div class="card card-success animate-up">
-                <div class="card-body p-5 flex items-center space-x-4">
+            <div class="w-full px-2 mb-6 md:w-1/3 md:px-3">
+                <div class="card animate-up">
+                    <div class="card-body p-5 flex items-center space-x-4">
 
-                    <div class="grow">
-                        <h3 class="text-2xl font-semibold text-white">{{ '0 Orders' }}</h3>
+                        <div class="grow">
+                            <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">{{ __('0 Orders') }}</h3>
 
-                        <div class="font-semibold text-gray-100">
-                            {{ 'Delivery' }}
+                            <div class="font-semibold">
+                                {{ __('Delivery') }}
+                            </div>
+
+                            <div class="mt-4 text-xs text-gray-400">
+                                <span class="font-bold mr-2">
+                                    <i class="fa-solid fa-ban"></i>
+                                    {{ '--' }}
+                                </span>
+
+                                {{ 'For today' }}
+                            </div>
                         </div>
 
-                        <div class="mt-4 text-xs text-gray-200">
-                            <span class="mr-2 rounded-full">
-                                <i class="fa-solid fa-ban"></i>
-                                {{-- {{ '--' }} --}}
-                            </span>
-
-                            {{ __('For today') }}
+                        <div class="w-12 h-12 bg-success-soft text-success flex items-center justify-center rounded dark:text-white">
+                            <i class="fa-solid fa-money-bill-transfer"></i>
                         </div>
-                    </div>
-
-                    <div class="w-12 h-12 bg-white/20 text-white flex items-center justify-center rounded-full">
-                        <i class="fa-solid fa-money-bill-transfer"></i>
                     </div>
                 </div>
             </div>
 
-            <div class="card card-orange animate-up">
-                <div class="card-body p-5 flex items-center space-x-4">
+            <div class="w-full px-2 mb-6 md:w-1/3 md:px-3">
+                <div class="card animate-up">
+                    <div class="card-body p-5 flex items-center space-x-4">
 
-                    <div class="grow">
-                        <h3 class="text-2xl font-semibold text-white">{{ '0 Payments' }}</h3>
+                        <div class="grow">
+                            <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">{{ __('0 Payments') }}</h3>
 
-                        <div class="font-semibold text-gray-100">
-                            {{ __('Pending') }}
+                            <div class="font-semibold">
+                                {{ __('Pending') }}
+                            </div>
+
+                            <div class="mt-4 text-xs text-gray-400">
+                                <span class="font-bold mr-2">
+                                    <i class="fa-solid fa-arrow-trend-down"></i>
+                                    {{ '0%' }}
+                                </span>
+
+                                {{ 'For today' }}
+                            </div>
                         </div>
 
-                        <div class="mt-4 text-xs text-gray-200">
-                            <span class="font-bold mr-2">
-                                <i class="fa-solid fa-arrow-trend-down"></i>
-                                {{-- {{ '1.5%' }} --}}
-                            </span>
-
-                            {{ __('For today') }}
+                        <div class="w-12 h-12 bg-warning-soft text-warning flex items-center justify-center rounded dark:text-white">
+                            <i class="fa-solid fa-sack-dollar"></i>
                         </div>
-                    </div>
-
-                    <div class="w-12 h-12 bg-white/20 text-white flex items-center justify-center rounded-full">
-                        <i class="fa-solid fa-sack-dollar"></i>
                     </div>
                 </div>
             </div>
         </div>
-        {{-- End cards --}}
 
-        <div class="grid gap-6 mt-6">
+        <div class="flex flex-wrap -mx-2 md:-mx-3">
 
-            {{-- Table activity --}}
-            <div class="card">
-                <div class="card-header capitalize">
-                    {{ __('recent activities') }}
+            <!-- Start Payments -->
+            <div class="w-full px-2 mb-6 md:px-3">
+                <div class="card">
+                    <div class="card-header bg-transparent">
+                        <div>
+                            {{ __('Payments') }}
+
+                            <!-- Criar tooltip -->
+                            <span class="ml-1 cursor-pointer">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="card-body !p-0">
+                        <div class="relative overflow-x-auto">
+                            <table class="w-full text-sm text-left">
+                                <thead class="text-gray-700 uppercase bg-gray-50 dark:text-gray-300 dark:bg-white/5 dark:text-white">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3">
+                                            Product name
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Color
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Category
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Price
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            <span class="sr-only">Edit</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b dark:bg-transparent dark:border-zinc-700 odd:bg-transparent even:bg-gray-50 odd:dark:bg-transparent even:dark:bg-white/5">
+                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                                            Apple MacBook Pro 17"
+                                        </th>
+                                        <td class="px-6 py-4">
+                                            Sliver
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            Laptop
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            $2999
+                                        </td>
+                                        <td class="px-6 py-4 text-right">
+                                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                        </td>
+                                    </tr>
+                                    <tr class="border-b dark:bg-transparent dark:border-zinc-700 odd:bg-transparent even:bg-gray-50 odd:dark:bg-transparent even:dark:bg-white/5">
+                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                                            Microsoft Surface Pro
+                                        </th>
+                                        <td class="px-6 py-4">
+                                            White
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            Laptop PC
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            $1999
+                                        </td>
+                                        <td class="px-6 py-4 text-right">
+                                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                        </td>
+                                    </tr>
+                                    <tr class="border-b dark:bg-transparent dark:border-zinc-700 odd:bg-transparent even:bg-gray-50 odd:dark:bg-transparent even:dark:bg-white/5">
+                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                                            Magic Mouse 2
+                                        </th>
+                                        <td class="px-6 py-4">
+                                            Black
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            Accessories
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            $99
+                                        </td>
+                                        <td class="px-6 py-4 text-right">
+                                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                        </td>
+                                    </tr>
+                                    <tr class="border-b dark:bg-transparent dark:border-zinc-700 odd:bg-transparent even:bg-gray-50 odd:dark:bg-transparent even:dark:bg-white/5">
+                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                                            Google Pixel Phone
+                                        </th>
+                                        <td class="px-6 py-4">
+                                            Gray
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            Phone
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            $799
+                                        </td>
+                                        <td class="px-6 py-4 text-right">
+                                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                        </td>
+                                    </tr>
+                                    <tr class="dark:bg-transparent dark:border-zinc-700 odd:bg-transparent even:bg-gray-50 odd:dark:bg-transparent even:dark:bg-white/5">
+                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                                            Apple Watch 5
+                                        </th>
+                                        <td class="px-6 py-4">
+                                            Red
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            Wearables
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            $999
+                                        </td>
+                                        <td class="px-6 py-4 text-right">
+                                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <!-- End Payments -->
 
-                <div class="card-body px-2 py-5 sm:p-5 overflow-scroll max-h-96 ">
-                    <table id="table_recent_activities" class="stripe hover display">
-                        <thead>
-                            <tr>
-                                <th>User</th>
-                                <th class="text-center">Status</th>
-                                <th>Service Order</th>
-                                <th>Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="relative flex">
-                                        <x-avatar-user :user="Auth::user()" />
-                                        <span class="ml-5">Alberto Luiz</span>
-                                    </div>
-                                </td>
-                                <td>
+            <!-- Start Recent Activities -->
+            <div class="w-full px-2 mb-6 md:px-3">
+
+                <div class="card">
+                    <div class="card-header">
+                        {{ __('Recent Activities') }}
+                    </div>
+
+                    <div class="card-body">
+                        <div class="relative overflow-x-auto">
+                            <table id="table_recent_activities" class="stripe hover display">
+                                <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th class="text-center">Status</th>
+                                    <th>Service Order</th>
+                                    <th>Date</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="relative flex">
+                                            <x-avatar-user :user="Auth::user()" />
+                                            <span class="ml-5">Alberto Luiz</span>
+                                        </div>
+                                    </td>
+                                    <td>
                                     <span class="badge-info text-sm font-normal rounded-md">
                                         Picked Up
                                     </span>
-                                </td>
-                                <td><a class="hover:underline underline-offset-2" href="#">ORDER #14325</a></td>
-                                <td>{{ now() }}</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="relative flex">
-                                        <x-avatar-user :user="Auth::user()" />
-                                        <span class="ml-5">Juliano Appezzato</span>
-                                    </div>
-                                </td>
-                                <td>
+                                    </td>
+                                    <td><a class="hover:underline underline-offset-2" href="#">ORDER #14325</a></td>
+                                    <td>{{ now() }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="relative flex">
+                                            <x-avatar-user :user="Auth::user()" />
+                                            <span class="ml-5">Juliano Appezzato</span>
+                                        </div>
+                                    </td>
+                                    <td>
                                     <span class="badge-success text-sm font-normal rounded-md">
                                         Delivered
                                     </span>
-                                </td>
-                                <td><a class="hover:underline underline-offset-2" href="#">ORDER #45324</a></td>
-                                <td>{{ now() }}</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="relative flex">
-                                        <x-avatar-user :user="Auth::user()" />
-                                        <span class="ml-5">Matheus Henrique</span>
-                                    </div>
-                                </td>
-                                <td>
+                                    </td>
+                                    <td><a class="hover:underline underline-offset-2" href="#">ORDER #45324</a></td>
+                                    <td>{{ now() }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="relative flex">
+                                            <x-avatar-user :user="Auth::user()" />
+                                            <span class="ml-5">Matheus Henrique</span>
+                                        </div>
+                                    </td>
+                                    <td>
                                     <span class="badge-success text-sm font-normal rounded-md">
                                         Delivered
                                     </span>
-                                </td>
-                                <td><a class="hover:underline underline-offset-2" href="#">ORDER #23421</a></td>
-                                <td>{{ now() }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                    </td>
+                                    <td><a class="hover:underline underline-offset-2" href="#">ORDER #23421</a></td>
+                                    <td>{{ now() }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
-        {{-- End table activity --}}
+            <!-- End Recent Activities -->
+        </div>
     </div>
 
     @push('header')

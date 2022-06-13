@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @stack('header')
 
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/icon.png') }}">
 
     <title>{{ $title }}</title>
 
@@ -24,11 +24,11 @@
     <script src="{{ asset('assets/pace/pace.min.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('assets/pace/minimal.css') }}">
 
-    <!-- Styles -->
+    {{-- Styles --}}
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     @stack('styles')
 
-    <!-- Ion-icon -->
+    {{-- Ion-icon --}}
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
@@ -51,10 +51,11 @@
             <!-- Header -->
             <header class="sticky top-0 z-20 h-16 w-full flex items-center bg-theme shadow-[0_2px_4px_rgba(0,0,0,0.5)] dark:shadow-none">
 
-                <div class="h-16 flex items-center pl-2 md:pl-3 xl:w-72">
+                <div class="h-16 flex items-center pl-4 md:pl-6 xl:w-72">
                     <div class="flex items-center gap-1">
 
-                        <label class="p-2 text-white rounded-full cursor-pointer hover:transition hover:ease-out hover:bg-white/10 focus:outline-none focus:ring focus:ring-white/20 focus:bg-white/10 xl:hidden" for="checkbox-navigation" tabindex="1">
+                        <label class="p-2 -translate-x-2 text-white rounded-full cursor-pointer hover:transition hover:ease-out hover:bg-white/10 focus:outline-none focus:ring focus:ring-white/20 focus:bg-white/10 xl:hidden"
+                               for="checkbox-navigation" tabindex="1">
                             <svg class="w-6 h-6 stroke-current" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
                             <input id="checkbox-navigation" type="checkbox" class="hidden">
                         </label>
@@ -62,7 +63,7 @@
                         <div>
                             <!-- Brand -->
                             <a href="{{ route('index') }}">
-                                <x-application-logo type="white" class="h-10" />
+                                <x-application-logo type="white" class="h-8 md:h-10" />
                             </a>
                         </div>
                     </div>
@@ -72,15 +73,6 @@
 
                     <!-- Left -->
                     <div class="flex items-center gap-2">
-
-                        {{--<form class="hidden lg:block relative" method="GET" action="#">
-                            <input class="w-72 xl:w-96 bg-white/5 pl-12 text-sm text-gray-100 rounded border-0 focus:ring-0 placeholder-gray-200"
-                                   placeholder="{{  __('Search for anything ...') }}" id="search_desktop" name="search" value="{{ request('search') }}" autocomplete="off" spellcheck="false" type="text">
-
-                            <div class="absolute left-3.5 top-1/2 -translate-y-1/2 text-white pointer-events-none">
-                                <x-icon type="search" class="w-5 h-5" />
-                            </div>
-                        </form> --}}
 
                         <form class="hidden lg:block relative" method="GET" action="#">
 
@@ -97,15 +89,23 @@
                             </div>
 
                             <div class="hidden animate-fade-up">
-                                <!-- Auto complete -->
+                                <!-- Create auto complete -->
                             </div>
                         </form>
                     </div>
 
                     <!-- Right -->
                     <div class="flex items-center gap-2">
-                        <button class="hidden lg:block p-2 text-white rounded-full relative transition ease-out hover:bg-white/10 focus:outline-none focus:ring focus:ring-white/20 focus:bg-white/10">
-                            <x-icon name="expand" library="ion-icon"></x-icon>
+                        <button class="hidden lg:block p-2 text-white rounded-full relative transition ease-out hover:bg-white/10 focus:outline-none focus:ring focus:ring-white/20 focus:bg-white/10"
+                                x-data="fullScreen" @click="toggleFullScreen()">
+
+                            <span :class="active ? 'hidden' : 'block'">
+                                <x-icon name="expand" library="ion-icon"></x-icon>
+                            </span>
+
+                            <span :class="active ? 'block' : 'hidden'">
+                                <x-icon name="contract" library="ion-icon"></x-icon>
+                            </span>
                         </button>
                         <!---->
                         <!---->
@@ -125,26 +125,14 @@
                                     <input class="grow bg-gray-100 text-sm rounded-l-sm border-0 focus:ring-0 dark:bg-white/5 dark:placeholder-gray-200 dark:text-gray-200"
                                            placeholder="{{  __('Search for anything') }}" id="search-mobile" name="search" type="text" spellcheck="false" autocomplete="off">
 
-                                    <button class="button button-secondary rounded-l-none">
+                                    <button class="button button-secondary rounded-l-none dark:button-primary">
                                         <x-icon class="w-5 h-5 text-xl" name="search-outline" library="ion-icon" />
                                     </button>
                                 </form>
                             </div>
                         </div>
-
-                        <div class="hidden sm:block sm:relative">
-                            <button class="p-2 text-white rounded-full relative transition ease-out hover:bg-white/10 focus:outline-none focus:ring focus:ring-white/20 focus:bg-white/10">
-                                <x-icon name="mail" library="ion-icon"></x-icon>
-
-                                <!-- Counter -->
-                                @if(false)
-                                    <span class="absolute top-0 right-0 w-[16px] h-[16px] bg-red-500 text-[11px] text-white shadow rounded-full">
-                                        1
-                                    </span>
-                                @endif
-                            </button>
-                        </div>
-
+                        <!---->
+                        <!---->
                         <div class="sm:relative">
                             <button class="p-2 text-white rounded-full relative transition ease-out hover:bg-white/10 focus:outline-none focus:ring focus:ring-white/20 focus:bg-white/10"
                                     data-trigger="dropdown" data-dropdown-sensible aria-expanded="false">
@@ -205,11 +193,11 @@
                                 <x-icon name="chevron-down" class="w-5 h-5 text-xl" library="ion-icon" />
                             </button>
 
-                            <div class="hidden animate-zoom-in origin-top-right absolute right-0 top-14 rounded shadow bg-white py-2 min-w-[200px] border border-slate-200
+                            <div class="hidden animate-zoom-in origin-top-right absolute right-0 top-14 rounded text-[15px] shadow bg-white py-2 min-w-[200px] border border-slate-200
                                         dark:bg-header dark:border-zinc-800 dark:shadow-lg">
                                 <!---->
                                 <!---->
-                                <a class="flex items-center space-x-4 w-full px-4 py-2 text-gray-700 cursor-pointer transition hover:bg-gray-100 focus:bg-gray-200
+                                <a class="flex items-center space-x-4 w-full px-4 py-2 text-gray-700 capitalize cursor-pointer transition hover:bg-gray-100 focus:bg-gray-200
                                           dark:text-gray-100 dark:hover:bg-white/5 dark:focus:bg-white/10" href="#">
 
                                     <i class="fa-solid fa-user"></i>
@@ -217,7 +205,7 @@
                                 </a>
                                 <!---->
                                 <!---->
-                                <a class="flex items-center space-x-4 w-full px-4 py-2 text-gray-700 cursor-pointer transition hover:bg-gray-100 focus:bg-gray-200
+                                <a class="flex items-center space-x-4 w-full px-4 py-2 text-gray-700 capitalize cursor-pointer transition hover:bg-gray-100 focus:bg-gray-200
                                           dark:text-gray-100 dark:hover:bg-white/5 dark:focus:bg-white/10" href="{{ route('settings.account_data') }}">
 
                                     <i class="fa-solid fa-gear"></i>
@@ -228,7 +216,7 @@
                                 <form action="{{ route('logout') }}" method="POST">
                                     @csrf
 
-                                    <button class="flex items-center space-x-4 px-4 py-2 text-gray-700 border-t w-full cursor-pointer transition hover:text-white hover:bg-red-400 focus:text-white focus:bg-red-500
+                                    <button class="flex items-center space-x-4 px-4 py-2 text-gray-700 capitalize border-t w-full cursor-pointer transition hover:text-white hover:bg-red-400 focus:text-white focus:bg-red-500
                                                    dark:text-gray-100 dark:hover:bg-white/5 dark:focus:bg-white/10 dark:border-zinc-700" type="submit">
 
                                         <i class="fa-solid fa-power-off"></i>
@@ -444,7 +432,7 @@
                             </a>
                         </div>
 
-                        {{--<div class="p-3 flex flex-col gap-y-4 bg-white/10 rounded xl:bg-gray-100 dark:bg-white/5 normal-case">
+                        <div class="p-3 flex flex-col gap-y-4 bg-white/10 rounded xl:bg-gray-100 dark:bg-white/5 normal-case">
                             <div class="flex justify-center text-3xl">
                                 <i class="fa-solid fa-gift"></i>
                             </div>
@@ -456,7 +444,7 @@
                             <button class="button button-primary button-sm w-full waves-effect">
                                 Go to <i class="fa-brands fa-github"></i>
                             </button>
-                        </div> --}}
+                        </div>
                     </div>
                 </nav>
 
@@ -482,7 +470,7 @@
     </div>
 
     <!-- Go top -->
-    <button class="invisible opacity-0 button button-secondary button-sm p-3 shadow-lg rounded fixed bottom-6 right-6 lg:bottom-6 lg:right-6" role="button">
+    <button class="invisible opacity-0 button button-secondary button-sm p-3 shadow-lg rounded fixed bottom-6 right-6 lg:bottom-6 lg:right-6 dark:button-primary" role="button">
         <x-icon class="w-4 h-4" name="arrow-up" library="ion-icon" />
     </button>
 

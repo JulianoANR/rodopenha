@@ -8,9 +8,8 @@
         </x-slot>
     </x-card>
 
-    <div class="w-full relative mb-6 lg:w-64 lg:min-w-[16rem] lg:mb-0">
-
-        <div class="w-full max-h-[11rem] space-y-6 overflow-hidden lg:py-5 lg:max-h-max" id="wrapper_items">
+    <div class="w-full relative mb-6 lg:w-64 lg:min-w-[16rem] lg:mb-0" x-data="{ expanded: false }">
+        <div class="w-full space-y-6 overflow-hidden lg:py-5 lg:max-h-max" :class="expanded ? 'max-h-max' : 'max-h-[11rem]'">
 
             <div>
                 <h3 class="font-semibold text-sm pl-4 mb-2">
@@ -53,15 +52,16 @@
             </div>
         </div>
 
-        <div class="absolute inset-x-0 bottom-0 pointer-events-none flex justify-center pt-10 pb-3 bg-gradient-to-t from-body lg:!hidden">
-            <button class="button button-primary button-sm pointer-events-auto" id="show_more">
+        <div class="absolute inset-x-0 bottom-0 pointer-events-none flex justify-center pt-10 pb-3 bg-gradient-to-t from-body lg:!hidden" x-show="!expanded">
+            <button class="button button-primary button-sm pointer-events-auto" @click="expanded = true">
                 View all <i class="fa-solid fa-chevron-down"></i>
             </button>
         </div>
     </div>
 </div>
 
-@push('scripts')
+{{--
+ @push('scripts')
     <script>
         window.addEventListener('DOMContentLoaded', () => {
 
@@ -73,3 +73,5 @@
         });
     </script>
 @endpush
+ --}}
+

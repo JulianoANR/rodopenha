@@ -23,7 +23,9 @@
     <div class="px-4 md:px-6">
 
         <div class="flex justify-center items-center w-full">
-            <label for="dropzone-file" class="flex flex-col justify-center items-center w-full h-40 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+            <label for="dropzone-file" class="flex flex-col justify-center items-center w-full h-40 p-4 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer hover:bg-gray-100
+            dark:bg-white/5 dark:hover:bg-white/10 dark:border-zinc-700">
+
                 <div class="flex flex-col justify-center items-center pt-5 pb-6">
                     <svg class="mb-3 w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
                     <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Drop</span> dispatch sheet</p>
@@ -38,8 +40,11 @@
         <div class="grid gap-6 mt-6">
 
             <div class="card">
-                <div class="card-header capitalize">
-                    {{ __('Order') }}
+                <div class="card-header">
+                    <span>
+                        {{ __('Order') }}
+                        <i class="ml-1 fa-solid fa-clipboard-list"></i>
+                    </span>
                 </div>
 
                 <div class="card-body">
@@ -66,15 +71,13 @@
 
                     <div class="mt-3">
                         <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Dispatch Instructions</label>
-                        <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300
-                            focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
-                            dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder=""></textarea>
+                        <textarea id="message" rows="4" class="input" placeholder="{{ __('Add some shipping instructions') }}"></textarea>
                     </div>
                 </div>
             </div>
 
             <div class="card">
-                <div class="card-header flex content-between capitalize">
+                <div class="card-header flex content-between">
                     {{ __('Vehicles') }}
                     <button class="button button-primary">Inspection Type<i class="fa-solid fa-file"></i></button>
                 </div>
@@ -146,96 +149,268 @@
 
             <div class="card">
                 <div class="card-header">
-                    {{ __('Pickup') }}
+                    <span>
+                        {{ __('Pickup') }}
+                        <i class="ml-1 fa-solid fa-map-location-dot"></i>
+                    </span>
                 </div>
 
-                <div class="card-body pb-5">
-                    <div class="inline-flex shadow-sm">
-                        <button class="button button-primary-outline button-sm rounded-r-none rounded-l-md">Personal Contact</button>
-                        <button class="button button-primary-outline button-sm rounded-r-md rounded-l-none">Business Contact</button>
-                    </div>
-                    <div class="grid md:grid-cols-3 gap-4 mt-5">
-                        <div class="w-full">
-                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Name</label>
-                            <input class="input" name="vin" type="text" id="vin">
+                <div class="card-body">
+                    <div x-data="{ active: 'personal' }">
+                        <div class="flex items-center space-x-2 mb-5">
+                            <div class="inline-flex gap-2 p-1 bg-gray-100 rounded-sm dark:bg-white/5">
+                                <button class="button button-sm button-primary" @click="active = 'personal'" :class="active === 'personal' ? 'button-primary' : 'button-primary-outline'">
+                                    Personal Contact
+                                </button>
+
+                                <button class="button button-sm" @click="active = 'business'" :class="active === 'business' ? 'button-primary' : 'button-primary-outline'">
+                                    Business Contact
+                                </button>
+                            </div>
+
+                            <div class="text-xs capitalize font-bold hidden md:block">
+                                Active: <span x-text="active"></span> Contact
+                            </div>
                         </div>
-                        <div class="w-full">
-                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Email</label>
-                            <input class="input" name="vin" type="text" id="vin">
+
+                        <div x-show="active === 'personal'">
+                            <div class="flex flex-wrap -mx-2">
+                                <div class="w-full px-2 mb-4 md:w-1/3">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Name</label>
+                                    <input class="input" name="vin" type="text" id="vin">
+                                </div>
+
+                                <div class="w-full px-2 mb-4 md:w-1/3">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Email</label>
+                                    <input class="input" name="vin" type="text" id="vin">
+                                </div>
+
+                                <div class="w-full px-2 mb-4 md:w-1/3">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Phone</label>
+                                    <input class="input" name="vin" type="text" id="vin" placeholder="(__)_____-____">
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap -mx-2">
+                                <div class="w-full px-2 mb-4 md:w-2/5">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Address</label>
+                                    <input class="input" name="vin" type="text" id="vin">
+                                </div>
+
+                                <div class="w-full px-2 mb-4 md:w-2/5">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Notes</label>
+                                    <input class="input" name="vin" type="text" id="vin">
+                                </div>
+
+                                <div class="w-full px-2 mb-4 md:w-1/5">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Zip</label>
+                                    <input class="input" name="vin" type="text" id="vin">
+                                </div>
+                            </div>
                         </div>
-                        <div class="w-full">
-                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Phone</label>
-                            <input class="input" name="vin" type="text" id="vin" placeholder="(__)_____-____">
+
+                        <div x-show="active === 'business'">
+                            <div class="flex flex-wrap -mx-2">
+                                <div class="w-full px-2 mb-4 md:w-4/12">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Company Name</label>
+                                    <input class="input" name="vin" type="text" id="vin">
+                                </div>
+
+                                <div class="w-full px-2 mb-4 md:w-3/12">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Name</label>
+                                    <input class="input" name="vin" type="text" id="vin">
+                                </div>
+
+                                <div class="w-full px-2 mb-4 md:w-3/12">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Email</label>
+                                    <input class="input" name="vin" type="email" id="vin">
+                                </div>
+
+                                <div class="w-full px-2 mb-4 md:w-2/12">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Phone</label>
+                                    <input class="input" name="vin" type="text" id="vin" placeholder="(__)_____-____">
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap -mx-2">
+                                <div class="w-full px-2 mb-4 md:w-1/2">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Working from</label>
+                                    <input class="input" name="vin" type="time" id="vin">
+                                </div>
+
+                                <div class="w-full px-2 mb-4 md:w-1/2">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Working to</label>
+                                    <input class="input" name="vin" type="time" id="vin">
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap -mx-2">
+                                <div class="w-full px-2 mb-4 md:w-2/5">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Address</label>
+                                    <input class="input" name="vin" type="text" id="vin">
+                                </div>
+                                <div class="w-full px-2 mb-4 md:w-2/5">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Notes</label>
+                                    <input class="input" name="vin" type="text" id="vin">
+                                </div>
+                                <div class="w-full px-2 mb-4 md:w-1/5">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Zip</label>
+                                    <input class="input" name="vin" type="text" id="vin">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex gap-4 mt-5">
-                        <div class="w-2/5">
-                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Address</label>
-                            <input class="input" name="vin" type="text" id="vin">
+
+                        <div class="flex flex-wrap -mx-2">
+                            <div class="w-full px-2 mb-4 md:w-1/2">
+                                <label class="text-sm font-semibold pl-1 mb-2" for="">Pickup date</label>
+                                <input class="input" name="vin" type="date" id="vin">
+                            </div>
+                            <div class="w-full px-2 mb-4 md:w-1/2">
+                                <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Restrictions</label>
+
+                                <select class="input" disabled id="vin">
+                                    <option selected>No restrictions</option>
+                                    <option value="1">One</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="w-2/5">
-                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Notes</label>
-                            <input class="input" name="vin" type="text" id="vin">
-                        </div>
-                        <div class="w-1/5">
-                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Zip</label>
-                            <input class="input" name="vin" type="text" id="vin">
-                        </div>
-                    </div>
-                    <div class="w-full mt-5">
-                        <label class="text-sm font-semibold pl-1 mb-2" for="example04">Date Delivery</label>
-                        <input class="input" type="date" id="example04">
                     </div>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-header">
-                    {{ __('Delivery') }}
+                    <span>
+                        {{ __('Delivery') }}
+                        <i class="ml-1 fa-solid fa-map-location-dot"></i>
+                    </span>
                 </div>
 
                 <div class="card-body pb-5">
-                    <div class="inline-flex shadow-sm">
-                        <button class="button button-primary-outline button-sm rounded-r-none rounded-l-md">Personal Contact</button>
-                        <button class="button button-primary-outline button-sm rounded-r-md rounded-l-none">Business Contact</button>
-                    </div>
-                    <div class="grid md:grid-cols-3 gap-4 mt-5">
-                        <div class="w-full">
-                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Name</label>
-                            <input class="input" name="vin" type="text" id="vin">
+                    <div x-data="{ active: 'personal' }">
+                        <div class="flex items-center space-x-2 mb-5">
+                            <div class="inline-flex gap-2 p-1 bg-gray-100 rounded-sm dark:bg-white/5">
+                                <button class="button button-sm button-primary" @click="active = 'personal'" :class="active === 'personal' ? 'button-primary' : 'button-primary-outline'">
+                                    Personal Contact
+                                </button>
+
+                                <button class="button button-sm" @click="active = 'business'" :class="active === 'business' ? 'button-primary' : 'button-primary-outline'">
+                                    Business Contact
+                                </button>
+                            </div>
+
+                            <div class="text-xs capitalize font-bold hidden md:block">
+                                Active: <span x-text="active"></span> Contact
+                            </div>
                         </div>
-                        <div class="w-full">
-                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Email</label>
-                            <input class="input" name="vin" type="text" id="vin">
+
+                        <div x-show="active === 'personal'">
+                            <div class="flex flex-wrap -mx-2">
+                                <div class="w-full px-2 mb-4 md:w-1/3">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Name</label>
+                                    <input class="input" name="vin" type="text" id="vin">
+                                </div>
+
+                                <div class="w-full px-2 mb-4 md:w-1/3">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Email</label>
+                                    <input class="input" name="vin" type="text" id="vin">
+                                </div>
+
+                                <div class="w-full px-2 mb-4 md:w-1/3">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Phone</label>
+                                    <input class="input" name="vin" type="text" id="vin" placeholder="(__)_____-____">
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap -mx-2">
+                                <div class="w-full px-2 mb-4 md:w-2/5">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Address</label>
+                                    <input class="input" name="vin" type="text" id="vin">
+                                </div>
+
+                                <div class="w-full px-2 mb-4 md:w-2/5">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Notes</label>
+                                    <input class="input" name="vin" type="text" id="vin">
+                                </div>
+
+                                <div class="w-full px-2 mb-4 md:w-1/5">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Zip</label>
+                                    <input class="input" name="vin" type="text" id="vin">
+                                </div>
+                            </div>
                         </div>
-                        <div class="w-full">
-                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Phone</label>
-                            <input class="input" name="vin" type="text" id="vin" placeholder="(__)_____-____">
+
+                        <div x-show="active === 'business'">
+                            <div class="flex flex-wrap -mx-2">
+                                <div class="w-full px-2 mb-4 md:w-4/12">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Company Name</label>
+                                    <input class="input" name="vin" type="text" id="vin">
+                                </div>
+
+                                <div class="w-full px-2 mb-4 md:w-3/12">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Name</label>
+                                    <input class="input" name="vin" type="text" id="vin">
+                                </div>
+
+                                <div class="w-full px-2 mb-4 md:w-3/12">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Email</label>
+                                    <input class="input" name="vin" type="email" id="vin">
+                                </div>
+
+                                <div class="w-full px-2 mb-4 md:w-2/12">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Phone</label>
+                                    <input class="input" name="vin" type="text" id="vin" placeholder="(__)_____-____">
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap -mx-2">
+                                <div class="w-full px-2 mb-4 md:w-1/2">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Working from</label>
+                                    <input class="input" name="vin" type="time" id="vin">
+                                </div>
+
+                                <div class="w-full px-2 mb-4 md:w-1/2">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Working to</label>
+                                    <input class="input" name="vin" type="time" id="vin">
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap -mx-2">
+                                <div class="w-full px-2 mb-4 md:w-2/5">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Address</label>
+                                    <input class="input" name="vin" type="text" id="vin">
+                                </div>
+                                <div class="w-full px-2 mb-4 md:w-2/5">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Notes</label>
+                                    <input class="input" name="vin" type="text" id="vin">
+                                </div>
+                                <div class="w-full px-2 mb-4 md:w-1/5">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Zip</label>
+                                    <input class="input" name="vin" type="text" id="vin">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex gap-4 mt-5">
-                        <div class="w-2/5">
-                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Address</label>
-                            <input class="input" name="vin" type="text" id="vin">
+
+                        <div class="flex flex-wrap -mx-2">
+                            <div class="w-full px-2 mb-4 md:w-1/2">
+                                <label class="text-sm font-semibold pl-1 mb-2" for="">Delivery date</label>
+                                <input class="input" name="vin" type="date" id="vin">
+                            </div>
+                            <div class="w-full px-2 mb-4 md:w-1/2">
+                                <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Restrictions</label>
+
+                                <select class="input" disabled id="vin">
+                                    <option selected>No restrictions</option>
+                                    <option value="1">One</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="w-2/5">
-                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Notes</label>
-                            <input class="input" name="vin" type="text" id="vin">
-                        </div>
-                        <div class="w-1/5">
-                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Zip</label>
-                            <input class="input" name="vin" type="text" id="vin">
-                        </div>
-                    </div>
-                    <div class="w-full mt-5">
-                        <label class="text-sm font-semibold pl-1 mb-2" for="example04">Date Delivery</label>
-                        <input class="input" type="date" id="example04">
                     </div>
                 </div>
             </div>
 
             <div class="card">
-                <div class="card-header capitalize">
+                <div class="card-header">
                     {{ __('Payment') }}
                 </div>
 
@@ -257,61 +432,132 @@
                     </div>
 
                     <div class="mt-3">
-                        <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Dispatch Instructions</label>
-                        <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300
-                            focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
-                            dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder=""></textarea>
+                        <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Payment notes</label>
+                        <textarea id="message" rows="4" class="input" placeholder=""></textarea>
                     </div>
                 </div>
             </div>
 
             <div class="card">
-                <div class="card-header capitalize">
-                    {{ __('Shipper') }}
+                <div class="card-header">
+                    <span>
+                        {{ __('Shipper') }}
+                        <i class="ml-1 fa-solid fa-clipboard-user"></i>
+                    </span>
                 </div>
 
                 <div class="card-body">
-                    <div class="inline-flex shadow-sm">
-                        <button class="button button-primary-outline button-sm rounded-r-none rounded-l-md">Personal Contact</button>
-                        <button class="button button-primary-outline button-sm rounded-r-md rounded-l-none">Business Contact</button>
-                    </div>
-                    <div class="grid md:grid-cols-3 gap-4 mt-5">
-                        <div class="w-full">
-                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Name</label>
-                            <input class="input" name="vin" type="text" id="vin">
-                        </div>
-                        <div class="w-full">
-                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Email</label>
-                            <input class="input" name="vin" type="text" id="vin">
-                        </div>
-                        <div class="w-full">
-                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Phone</label>
-                            <input class="input" name="vin" type="text" id="vin" placeholder="(__)_____-____">
-                        </div>
-                    </div>
-                    <div class="flex gap-4 mt-5">
-                        <div class="w-2/5">
-                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Address</label>
-                            <input class="input" name="vin" type="text" id="vin">
-                        </div>
-                        <div class="w-2/5">
-                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Notes</label>
-                            <input class="input" name="vin" type="text" id="vin">
-                        </div>
-                        <div class="w-1/5">
-                            <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Zip</label>
-                            <input class="input" name="vin" type="text" id="vin">
-                        </div>
-                    </div>
+                    <div x-data="{ active: 'personal' }">
+                        <div class="flex items-center space-x-2 mb-5">
+                            <div class="inline-flex gap-2 p-1 bg-gray-100 rounded-sm dark:bg-white/5">
+                                <button class="button button-sm button-primary" @click="active = 'personal'" :class="active === 'personal' ? 'button-primary' : 'button-primary-outline'">
+                                    Personal Contact
+                                </button>
 
+                                <button class="button button-sm" @click="active = 'business'" :class="active === 'business' ? 'button-primary' : 'button-primary-outline'">
+                                    Business Contact
+                                </button>
+                            </div>
+
+                            <div class="text-xs capitalize font-bold hidden md:block">
+                                Active: <span x-text="active"></span> Contact
+                            </div>
+                        </div>
+
+                        <div x-show="active === 'personal'">
+                            <div class="flex flex-wrap -mx-2">
+                                <div class="w-full px-2 mb-4 md:w-1/3">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Name</label>
+                                    <input class="input" name="vin" type="text" id="vin">
+                                </div>
+
+                                <div class="w-full px-2 mb-4 md:w-1/3">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Email</label>
+                                    <input class="input" name="vin" type="text" id="vin">
+                                </div>
+
+                                <div class="w-full px-2 mb-4 md:w-1/3">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Phone</label>
+                                    <input class="input" name="vin" type="text" id="vin" placeholder="(__)_____-____">
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap -mx-2">
+                                <div class="w-full px-2 mb-4 md:w-2/5">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Address</label>
+                                    <input class="input" name="vin" type="text" id="vin">
+                                </div>
+
+                                <div class="w-full px-2 mb-4 md:w-2/5">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Notes</label>
+                                    <input class="input" name="vin" type="text" id="vin">
+                                </div>
+
+                                <div class="w-full px-2 mb-4 md:w-1/5">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Zip</label>
+                                    <input class="input" name="vin" type="text" id="vin">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div x-show="active === 'business'">
+                            <div class="flex flex-wrap -mx-2">
+                                <div class="w-full px-2 mb-4 md:w-4/12">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Company Name</label>
+                                    <input class="input" name="vin" type="text" id="vin">
+                                </div>
+
+                                <div class="w-full px-2 mb-4 md:w-3/12">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Name</label>
+                                    <input class="input" name="vin" type="text" id="vin">
+                                </div>
+
+                                <div class="w-full px-2 mb-4 md:w-3/12">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Email</label>
+                                    <input class="input" name="vin" type="email" id="vin">
+                                </div>
+
+                                <div class="w-full px-2 mb-4 md:w-2/12">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Contact Phone</label>
+                                    <input class="input" name="vin" type="text" id="vin" placeholder="(__)_____-____">
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap -mx-2">
+                                <div class="w-full px-2 mb-4 md:w-1/2">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Working from</label>
+                                    <input class="input" name="vin" type="time" id="vin">
+                                </div>
+
+                                <div class="w-full px-2 mb-4 md:w-1/2">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Working to</label>
+                                    <input class="input" name="vin" type="time" id="vin">
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap -mx-2">
+                                <div class="w-full px-2 mb-4 md:w-2/5">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Address</label>
+                                    <input class="input" name="vin" type="text" id="vin">
+                                </div>
+                                <div class="w-full px-2 mb-4 md:w-2/5">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Notes</label>
+                                    <input class="input" name="vin" type="text" id="vin">
+                                </div>
+                                <div class="w-full px-2 mb-4 md:w-1/5">
+                                    <label class="text-sm font-semibold pl-1 mb-2" for="load_id">Zip</label>
+                                    <input class="input" name="vin" type="text" id="vin">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="flex justify-end mb-5 mt-10">
                         <button class="button button-primary">Save Service Order <i class="fa-solid fa-box-archive"></i></button>
                     </div>
                 </div>
-
             </div>
-
+        </div>
     </div>
 
     @push('header')
