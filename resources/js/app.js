@@ -1,8 +1,10 @@
 require('./bootstrap');
 
 import Alpine from 'alpinejs';
+import mask from '@alpinejs/mask'
 
 window.Alpine = Alpine;
+Alpine.plugin(mask);
 
 document.addEventListener('alpine:init', () => {
     Alpine.data('fullScreen', () => ({

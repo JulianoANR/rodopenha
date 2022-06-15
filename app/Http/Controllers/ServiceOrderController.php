@@ -2,12 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{ServiceOrder};
 use App\Http\Requests\StoreServiceOrderRequest;
 use App\Http\Requests\UpdateServiceOrderRequest;
 
+use App\Models\{
+    ServiceOrder
+};
+
 class ServiceOrderController extends Controller
 {
+
+    function __construct(ServiceOrder $serviceOrders) {
+        $this->serviceOrders = $serviceOrders;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -38,7 +46,7 @@ class ServiceOrderController extends Controller
      */
     public function store(StoreServiceOrderRequest $request)
     {
-        //
+        dd($request->all());
     }
 
     /**

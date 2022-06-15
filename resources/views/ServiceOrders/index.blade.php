@@ -18,115 +18,159 @@
         </div>
     </div>
 
-    <!-- Grid Cards -->
     <div class="px-4 md:px-6">
+        <div class="flex flex-wrap -mx-2 md:-mx-3">
 
-        <div class="grid gap-6 mt-6">
+            <!-- List ALl -->
+            <div class="w-full px-2 mb-6 md:px-3">
 
-            {{-- Table users --}}
-            <div class="card">
-                <div class="card-header capitalize">
-                    {{ __('manage orders') }}
-                </div>
+                <x-card>
+                    <x-slot name="header">
+                        {{ __('manage orders') }}
+                    </x-slot>
 
-                <div class="card-body px-2 py-5 sm:p-5 ">
-                    <table id="table_recent_activities" class="stripe hover display">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Status</th>
-                                <th >Driver</th>
-                                <th>Picked Up</th>
-                                <th>Delivered</th>
-                                <th>Vehicles</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>ORDER <b>#14234</b></td>
-                                <td class="w-48">
-                                    <div class="relative flex">
-                                        <x-avatar-user :user="Auth::user()" />
-                                        <span class="ml-5">Juliano Appezzato</span>
-                                    </div>
-                                </td>
-                                <td class="w-24">
-                                    <span class="px-3 py-1 text-sm rounded-full bg-sky-200 text-sky-600">
-                                        Picked Up
-                                    </span>
-                                </td>
-                                <td>724 Silverwood drive, lake mary, FL, 32746</td>
-                                <td>1522 Tamar lane, austin, TX, 78727</td>
-                                <td>2015 toyota camry</td>
-                                <td>
-                                    <button class="button button-secondary"><i class="py-3 fa-solid fa-gear fa-xl"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>ORDER <b>#23423</b></td>
-                                <td class="w-28">
-                                    <span class="px-3 py-1 text-sm rounded-full bg-red-200 text-red-600">
-                                        Not Assigned
-                                    </span>
-                                </td>
-                                <td>
-                                    <span class="px-3 py-1 text-sm rounded-full bg-gray-200 text-gray-600">
-                                        New
-                                    </span>
-                                </td>
-                                <td>9217 Apollo Heights Ave, Las Vegas, NV, 89110</td>
-                                <td>16203 2nd St E, Redington Beach, FL, 33708</td>
-                                <td>2020 Honda CR-V</td>
-                                <td>
-                                    <button class="button button-secondary"><i class="py-3 fa-solid fa-gear fa-xl"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>ORDER <b>#13245</b></td>
-                                <td>
-                                    <div class="relative flex">
-                                        <x-avatar-user :user="Auth::user()" />
-                                        <span class="ml-5">John Peter</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <span class="px-3 py-1 text-sm rounded-full bg-green-200 text-green-600">
-                                        Delivered
-                                    </span>
-                                </td>
-                                <td>2371 Southwest 36th Street, Fort Lauderdale, FL, Fort Lauderdale, FL, 33312</td>
-                                <td>31205 Interstate 10, Boerne, TX, Boerne, TX, 78006</td>
-                                <td>2021 Toyota Corolla</td>
-                                <td>
-                                    <button class="button button-secondary"><i class="py-3 fa-solid fa-gear fa-xl"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>ORDER <b>#13245</b></td>
-                                <td>
-                                    <div class="relative flex">
-                                        <x-avatar-user :user="Auth::user()" />
-                                        <span class="ml-5">João Silva</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <span class="px-3 py-1 text-sm rounded-full bg-green-200 text-green-600">
-                                        Delivered
-                                    </span>
-                                </td>
-                                <td>6175 NW 104TH CT, miami, FL, 33178</td>
-                                <td> 78660 PLEASANTON PKWY, pflugerville, TX, 78660</td>
-                                <td>2000 honda crv</td>
-                                <td>
-                                    <button class="button button-secondary"><i class="py-3 fa-solid fa-gear fa-xl"></i></button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                    <x-slot name="body" class="!p-0">
+                        <div class="relative overflow-x-auto px-5 py-4">
+                            <table id="table_all_orders" class="stripe hover">
+
+                                <thead>
+                                    <tr>
+                                        <th>{{ __('order') }}</th>
+                                        <th>{{ __('driver') }}</th>
+                                        <th>{{ __('status') }}</th>
+                                        <th>{{ __('picked up') }}</th>
+                                        <th>{{ __('delivered') }}</th>
+                                        <th>{{ __('vehicles') }}</th>
+                                        <th>{{ __('actions') }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="font-bold text-gray-900 dark:text-gray-300 whitespace-nowrap">
+                                            #14234
+                                        </td>
+
+                                        <td class="align-middle whitespace-nowrap">
+                                            Giovani Appezzato
+                                        </td>
+
+                                        <td class="align-middle">
+                                            <span class="badge badge-danger">
+                                                Picked Up
+                                            </span>
+                                        </td>
+
+                                        <td class="align-middle">
+                                            9217 Apollo Heights Ave, Las Vegas, NV, 89110
+                                        </td>
+
+                                        <td class="align-middle">
+                                            724 Silverwood drive, lake mary, FL, 32746
+                                        </td>
+
+                                        <td class="align-middle">
+                                            2015 toyota camry
+                                        </td>
+
+                                        <td>
+                                            <div class="inline-flex items-center gap-x-3">
+                                                <a class="button-icon button-icon-sm button-secondary-soft rounded" href="#">
+                                                    <i class="fa-solid fa-gear"></i>
+                                                </a>
+
+                                                <button class="button-icon button-icon-sm button-info-soft rounded">
+                                                    <i class="fa-solid fa-truck-front"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="font-bold text-gray-900 dark:text-gray-300 whitespace-nowrap">
+                                            #23423
+                                        </td>
+
+                                        <td class="align-middle whitespace-nowrap">
+                                            Juliano Appezzato
+                                        </td>
+
+                                        <td class="align-middle">
+                                            <span class="badge-warning">
+                                                Delivery
+                                            </span>
+                                        </td>
+
+                                        <td class="align-middle">
+                                            2371 Southwest 36th Street, Fort Lauderdale, FL, Fort Lauderdale, FL, 33312
+                                        </td>
+
+                                        <td class="align-middle">
+                                            31205 Interstate 10, Boerne, TX, Boerne, TX, 78006
+                                        </td>
+
+                                        <td class="align-middle">
+                                            2021 Toyota Corolla
+                                        </td>
+
+                                        <td>
+                                            <div class="inline-flex items-center gap-x-3">
+                                                <a class="button-icon button-icon-sm button-secondary-soft rounded" href="#">
+                                                    <i class="fa-solid fa-gear"></i>
+                                                </a>
+
+                                                <button class="button-icon button-icon-sm button-info-soft rounded">
+                                                    <i class="fa-solid fa-truck-front"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="font-bold text-gray-900 dark:text-gray-300 whitespace-nowrap">
+                                            #13245
+                                        </td>
+
+                                        <td class="align-middle whitespace-nowrap">
+                                            Not assigned
+                                        </td>
+
+                                        <td class="align-middle">
+                                            <span class="badge-secondary">
+                                                Assigned
+                                            </span>
+                                        </td>
+
+                                        <td class="align-middle">
+                                            6175 NW 104TH CT, miami, FL, 33178
+                                        </td>
+
+                                        <td class="align-middle">
+                                            1522 Tamar lane, austin, TX, 78727
+                                        </td>
+
+                                        <td class="align-middle">
+                                            2000 honda crv
+                                        </td>
+
+                                        <td>
+                                            <div class="inline-flex items-center gap-x-3">
+                                                <a class="button-icon button-icon-sm button-secondary-soft rounded" href="#">
+                                                    <i class="fa-solid fa-gear"></i>
+                                                </a>
+
+                                                <button class="button-icon button-icon-sm button-info-soft rounded">
+                                                    <i class="fa-solid fa-truck-front"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </x-slot>
+                </x-card>
             </div>
-        {{-- End table activity --}}
+        </div>
     </div>
 
     @push('header')
@@ -136,29 +180,14 @@
     @push('scripts')
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
         <script>
-            $(document).ready( function () {
-                var table = $('#table_recent_activities').DataTable({
-                    dom: 'Bfrtip',
-                    buttons: [
-                        'colvis'
-                    ],
-                    "responsive": true,
-                    "scrollCollapse": true,
-                    "paging": false,
-                    "order": [
-                        [0, "desc"]
-                    ],
-                    "language": {
-                        "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Portuguese-Brasil.json",
-                        "buttons": {
-                            "colvis": 'Exibir'
-                        }
-                    },
-                    "lengthMenu": [
-                        [25, 50, 75, 100 - 1],
-                        ["25", "50", "75", "100", "Tudo"]
-                    ]
-                });
+            var table = $('#table_all_orders').DataTable({
+                "responsive": true,
+                "scrollCollapse": true,
+
+                "lengthMenu": [
+                    [10, 25, 50, 75, 100 - 1],
+                    ["10", "25", "50", "75", "100", "Tudo"]
+                ]
             });
         </script>
     @endpush

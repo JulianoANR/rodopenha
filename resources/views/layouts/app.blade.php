@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/icon.png') }}">
 
-    <title>{{ $title }}</title>
+    <title>{{ $title }} | RODOPENHA</title>
 
     {{-- FlowBite --}}
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.7/dist/flowbite.min.css" />
@@ -277,19 +277,19 @@
                                 <div class="is-collapsed collapsible mt-2 capitalize space-y-1">
                                     <!---->
                                     <!---->
-                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                    <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
                                               before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('service-orders.index') }}">
                                         {{ __('all orders') }}
                                     </a>
                                     <!---->
                                     <!---->
-                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                    <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
                                               before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2"  href="{{ route('service-orders.create') }}">
                                         {{ __('new order') }}
                                     </a>
                                     <!---->
                                     <!---->
-                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                    <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
                                               before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2"  href="#">
                                         {{ __('archived orders') }}
                                     </a>
@@ -318,13 +318,13 @@
                                 </button>
 
                                 <div class="is-collapsed collapsible mt-2 capitalize space-y-1">
-                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                    <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
                                             before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('settings.account_data') }}">
                                         {{ __('account data') }}
                                     </a>
                                     <!---->
                                     <!---->
-                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                    <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
                                             before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('settings.preferences') }}">
                                         {{ __('preferences') }}
                                     </a>
@@ -336,7 +336,7 @@
                                     </a>
                                     <!---->
                                     <!---->
-                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                    <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
                                             before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('settings.company_terms') }}">
                                         {{ __('terms & conditions') }}
                                     </a>
@@ -371,19 +371,19 @@
                                 </button>
 
                                 <div class="is-collapsed collapsible mt-2 capitalize space-y-1">
-                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                    <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
                                               before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="#">
                                         Introduction
                                     </a>
                                     <!---->
                                     <!---->
-                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                    <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
                                               before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2"  href="#">
                                         Icons
                                     </a>
                                     <!---->
                                     <!---->
-                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                    <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
                                               before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="#">
                                         DataTable
                                     </a>
@@ -404,19 +404,19 @@
                                 </button>
 
                                 <div class="is-collapsed collapsible mt-2 capitalize space-y-1">
-                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                    <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
                                               before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="#">
                                         Introduction
                                     </a>
                                     <!---->
                                     <!---->
-                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                    <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
                                               before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2"  href="#">
                                         Icons
                                     </a>
                                     <!---->
                                     <!---->
-                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                    <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
                                               before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="#">
                                         DataTable
                                     </a>
@@ -468,11 +468,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Go top -->
-    <button class="invisible opacity-0 button button-secondary button-sm p-3 shadow-lg rounded fixed bottom-6 right-6 lg:bottom-6 lg:right-6 dark:button-primary" role="button">
-        <x-icon class="w-4 h-4" name="arrow-up" library="ion-icon" />
-    </button>
 
     {{-- FlowBite --}}
     <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>

@@ -248,6 +248,73 @@
 
                     <div class="card-body">
                         <div class="relative overflow-x-auto">
+
+                            <table id="table_recent_activities" class="stripe hover">
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Status</th>
+                                        <th>Service Order</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="font-medium text-gray-900 dark:text-gray-300 whitespace-nowrap">
+                                            Alberto Luiz
+                                        </td>
+                                        <td>
+                                            Picked Up
+                                        </td>
+                                        <td>
+                                            <a href="#">
+                                                ORDER #14325
+                                            </a>
+                                        </td>
+                                        <td class="whitespace-nowrap">
+                                            {{ now() }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-medium text-gray-900 dark:text-gray-300 whitespace-nowrap">
+                                            Alberto Luiz
+                                        </td>
+                                        <td>
+                                        <span>
+                                            Picked Up
+                                        </span>
+                                        </td>
+                                        <td>
+                                            <a href="#">
+                                                ORDER #14325
+                                            </a>
+                                        </td>
+                                        <td class="whitespace-nowrap">
+                                            {{ now() }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-medium text-gray-900 dark:text-gray-300 whitespace-nowrap">
+                                            Alberto Luiz
+                                        </td>
+                                        <td>
+                                        <span>
+                                            Picked Up
+                                        </span>
+                                        </td>
+                                        <td>
+                                            <a href="#">
+                                                ORDER #14325
+                                            </a>
+                                        </td>
+                                        <td class="whitespace-nowrap">
+                                            {{ now() }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            {{--
                             <table id="table_recent_activities" class="stripe hover display">
                                 <thead>
                                 <tr>
@@ -262,7 +329,7 @@
                                     <td>
                                         <div class="relative flex">
                                             <x-avatar-user :user="Auth::user()" />
-                                            <span class="ml-5">Alberto Luiz</span>
+                                            <span class="ml-5 whitespace-nowrap">Alberto Luiz</span>
                                         </div>
                                     </td>
                                     <td>
@@ -277,7 +344,7 @@
                                     <td>
                                         <div class="relative flex">
                                             <x-avatar-user :user="Auth::user()" />
-                                            <span class="ml-5">Juliano Appezzato</span>
+                                            <span class="ml-5 whitespace-nowrap">Juliano Appezzato</span>
                                         </div>
                                     </td>
                                     <td>
@@ -292,7 +359,7 @@
                                     <td>
                                         <div class="relative flex">
                                             <x-avatar-user :user="Auth::user()" />
-                                            <span class="ml-5">Matheus Henrique</span>
+                                            <span class="ml-5 whitespace-nowrap">Matheus Henrique</span>
                                         </div>
                                     </td>
                                     <td>
@@ -304,7 +371,7 @@
                                     <td>{{ now() }}</td>
                                 </tr>
                                 </tbody>
-                            </table>
+                            </table> --}}
                         </div>
                     </div>
                 </div>
@@ -322,22 +389,9 @@
         <script>
             $(document).ready( function () {
                 var table = $('#table_recent_activities').DataTable({
-                    dom: 'Bfrtip',
-                    buttons: [
-                        'colvis'
-                    ],
                     "responsive": true,
                     "scrollCollapse": true,
-                    "paging": false,
-                    "order": [
-                        [3, "desc"]
-                    ],
-                    "language": {
-                        "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Portuguese-Brasil.json",
-                        "buttons": {
-                            "colvis": 'Exibir'
-                        }
-                    },
+
                     "lengthMenu": [
                         [25, 50, 75, 100 - 1],
                         ["25", "50", "75", "100", "Tudo"]
