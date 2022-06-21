@@ -16,4 +16,5 @@ class Driver extends Model
      */
     protected $fillable = ['type_trailer', 'user_id', 'equiped_inoperable', 'max_capacity'];
 
+    
 }
