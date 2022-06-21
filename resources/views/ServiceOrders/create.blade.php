@@ -1,4 +1,4 @@
-<x-app title="New Service Order">
+<x-app title="New Service Order" :active="['item' => 'service']">
 
     <!-- Header page -->
     <div class="my-6 px-4 md:px-6">
@@ -10,7 +10,6 @@
 
                 <x-breadcrumb :path="['Service Orders' => route('service-orders.index'), 'New Service Order' => route('service-orders.create')]" />
             </div>
-
 
             <a href="{{ route('service-orders.index') }}" class="button button-primary capitalize hidden md:flex">
                 <x-icon name="arrow-undo" class="w-5 h-5 text-xl" library="ion-icon" />
@@ -235,6 +234,26 @@
                                         <option selected>No restrictions</option>
                                     </select>
                                 </div>
+
+                                <div class="w-full mt-2 px-2 mb-4">
+                                    <div class="inline-flex items-center gap-3 ml-1">
+                                        <input class="checkbox scale-110" id="pickup_signature" name="pickup[signature]" type="checkbox">
+                                        <label class="font-semibold text-base capitalize cursor-pointer select-none" for="pickup_signature">
+                                            {{ __('signature not required') }}
+
+                                            <div class="inline relative" x-data="{ tooltip: false }">
+                                                <i class="ml-1 fa-solid fa-circle-exclamation" @mouseover="tooltip = true" @mouseleave="tooltip = false"></i>
+
+                                                <div class="absolute top-1/2 -translate-y-1/2 left-[110%] ml-2 z-10 w-72 p-2 text-sm leading-tight text-white bg-zinc-800 rounded-md shadow-lg" x-cloak x-show="tooltip" >
+                                                    <div class="space-y-1.5">
+                                                        <span>If turned on, this setting will skip the customer Review and Signature steps during the driver's inspection.</span>
+                                                        <span>A stamp saying 'Customer Not Present' will be applied on the BOL instead of a signature.</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </x-slot>
@@ -323,12 +342,23 @@
                                     <label class="text-sm font-semibold pl-1 mb-2" for="delivery_date">Delivery date</label>
                                     <input class="input" id="delivery_date" name="delivery[date]" type="date">
                                 </div>
+
                                 <div class="w-full px-2 mb-4 md:w-1/2">
                                     <label class="text-sm font-semibold pl-1 mb-2" for="delivery_restrictions">Restrictions</label>
 
                                     <select class="input" id="delivery_restrictions" name="delivery[restrictions]" disabled>
                                         <option selected>No restrictions</option>
                                     </select>
+                                </div>
+
+                                <div class="w-full mt-2 px-2 mb-4">
+                                    <div class="inline-flex items-center gap-3 ml-1">
+                                        <input class="checkbox scale-110" id="delivery_signature" name="delivery[signature]" type="checkbox">
+                                        <label class="font-semibold text-base capitalize cursor-pointer select-none" for="delivery_signature">
+                                            {{ __('signature not required') }}
+                                            <i class="ml-1 fa-solid fa-circle-exclamation"></i>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>

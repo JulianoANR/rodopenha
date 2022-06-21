@@ -1,14 +1,4 @@
-<x-app title="Settings">
-
-    {{-- <section class="my-6 px-4 md:px-6">
-        <div class="flex flex-wrap gap-2 justify-between items-center">
-            <h1 class="text-xl font-semibold text-gray-400 dark:text-white">
-                Settings
-            </h1>
-
-            <x-breadcrumb :path="['Dashboard' => route('dashboard')]" />
-        </div>
-    </section> --}}
+<x-app title="Settings" :active="['item' => 'settings']">
 
     <!-- Header page -->
     <div class="my-6 px-4 md:px-6">
@@ -25,7 +15,7 @@
 
     <div class="px-4 md:px-6">
         <x-settings active="account_data">
-            <h2 class="text-xl font-semibold mb-4">
+            <h2 class="text-xl text-gray-700 font-semibold mb-4 dark:text-gray-300">
                 {{ 'Account data' }}
             </h2>
 
@@ -38,7 +28,7 @@
                 </div>
 
                 <div>
-                    <h1 class="uppercase text-sm font-semibold mb-2">
+                    <h1 class="pl-2 mb-2  text-gray-700 font-semibold text-base uppercase dark:text-gray-300">
                         <i class="fa-solid fa-user mr-1"></i> Account info
                     </h1>
 
@@ -60,7 +50,7 @@
 
                 <div class="flex items-center justify-end mt-6">
                     <button class="button button-secondary dark:button-primary uppercase" type="submit">
-                        Update <i class="fa-solid fa-pen"></i>
+                        SAVE
                     </button>
                 </div>
             </form>

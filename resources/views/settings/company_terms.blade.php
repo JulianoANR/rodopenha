@@ -1,4 +1,4 @@
-<x-app title="Settings">
+<x-app title="Settings" :active="['item' => 'settings']">
 
     <!-- Header page -->
     <div class="my-6 px-4 md:px-6">

@@ -57,7 +57,7 @@ class ServiceOrderController extends Controller
      */
     public function show(ServiceOrder $serviceOrder)
     {
-        //
+        return view('serviceOrders.show');
     }
 
     /**

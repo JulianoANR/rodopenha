@@ -1,4 +1,4 @@
-<x-app title="Users">
+<x-app title="Users" :active="['item' => 'service']">
 
     <!-- Header page -->
     <div class="my-6 px-4 md:px-6">
@@ -74,7 +74,7 @@
 
                                         <td>
                                             <div class="inline-flex items-center gap-x-3">
-                                                <a class="button-icon button-icon-sm button-secondary-soft rounded" href="#">
+                                                <a class="button-icon button-icon-sm button-secondary-soft rounded" href="{{ route('service-orders.show') }}">
                                                     <i class="fa-solid fa-gear"></i>
                                                 </a>
 
@@ -114,7 +114,7 @@
 
                                         <td>
                                             <div class="inline-flex items-center gap-x-3">
-                                                <a class="button-icon button-icon-sm button-secondary-soft rounded" href="#">
+                                                <a class="button-icon button-icon-sm button-secondary-soft rounded">
                                                     <i class="fa-solid fa-gear"></i>
                                                 </a>
 

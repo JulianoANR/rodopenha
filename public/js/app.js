@@ -5240,44 +5240,18 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
 /* harmony import */ var _alpinejs_mask__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @alpinejs/mask */ "./node_modules/@alpinejs/mask/dist/module.esm.js");
+/* harmony import */ var _components_toggleFullScreen_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/toggleFullScreen.js */ "./resources/js/components/toggleFullScreen.js");
+/* harmony import */ var _components_slideOver_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/slideOver.js */ "./resources/js/components/slideOver.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+
 
 
 
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
 alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].plugin(_alpinejs_mask__WEBPACK_IMPORTED_MODULE_1__["default"]);
-document.addEventListener('alpine:init', function () {
-  alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].data('fullScreen', function () {
-    return {
-      active: false,
-      toggleFullScreen: function toggleFullScreen() {
-        this.active = !this.active;
-
-        if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
-          if (document.documentElement.requestFullscreen) {
-            document.documentElement.requestFullscreen();
-          } else if (document.documentElement.msRequestFullscreen) {
-            document.documentElement.msRequestFullscreen();
-          } else if (document.documentElement.mozRequestFullScreen) {
-            document.documentElement.mozRequestFullScreen();
-          } else if (document.documentElement.webkitRequestFullscreen) {
-            document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-          }
-        } else {
-          if (document.exitFullscreen) {
-            document.exitFullscreen();
-          } else if (document.msExitFullscreen) {
-            document.msExitFullscreen();
-          } else if (document.mozCancelFullScreen) {
-            document.mozCancelFullScreen();
-          } else if (document.webkitExitFullscreen) {
-            document.webkitExitFullscreen();
-          }
-        }
-      }
-    };
-  });
-});
+alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].data('toggleFullScreen', _components_toggleFullScreen_js__WEBPACK_IMPORTED_MODULE_2__["default"]);
+alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].data('slideOver', _components_slideOver_js__WEBPACK_IMPORTED_MODULE_3__["default"]);
 alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
 
 /***/ }),
@@ -5319,6 +5293,80 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/slideOver.js":
+/*!**********************************************!*\
+  !*** ./resources/js/components/slideOver.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function () {
+  var initialState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+  var id = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'null';
+  return {
+    open: initialState,
+    id: id.toLowerCase(),
+    toggle: function toggle() {
+      this.open = !this.open;
+    },
+    toggleOutside: function toggleOutside(detail) {
+      if (detail.toLowerCase() === this.id) {
+        this.toggle();
+      }
+    }
+  };
+});
+
+/***/ }),
+
+/***/ "./resources/js/components/toggleFullScreen.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/toggleFullScreen.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function () {
+  return {
+    active: false,
+    toggle: function toggle() {
+      this.active = !this.active;
+
+      if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+        if (document.documentElement.requestFullscreen) {
+          document.documentElement.requestFullscreen();
+        } else if (document.documentElement.msRequestFullscreen) {
+          document.documentElement.msRequestFullscreen();
+        } else if (document.documentElement.mozRequestFullScreen) {
+          document.documentElement.mozRequestFullScreen();
+        } else if (document.documentElement.webkitRequestFullscreen) {
+          document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+        }
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        }
+      }
+    }
+  };
+});
 
 /***/ }),
 

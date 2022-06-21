@@ -1,4 +1,4 @@
-<x-app title="Users">
+<x-app title="Users" :active="['item' => 'users']">
 
     <!-- Header page -->
     <div class="my-6 px-4 md:px-6">
@@ -19,8 +19,23 @@
 
     <!-- Grid Cards -->
     <div class="px-4 md:px-6">
+        <div class="flex flex-wrap -mx-2 md:-mx-3">
 
-        <div class="grid gap-6 mt-6">
+            <div class="w-full px-2 mb-6 md:px-3">
+
+                <x-card>
+                    <x-slot name="header">
+                        {{ __('manage users') }}
+                    </x-slot>
+
+                    <x-slot name="body">
+
+                    </x-slot>
+                </x-card>
+            </div>
+        </div>
+
+        <div class="grid gap-6">
 
             {{-- Table users --}}
             <div class="card">

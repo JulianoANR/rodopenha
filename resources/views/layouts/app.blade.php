@@ -73,7 +73,6 @@
 
                     <!-- Left -->
                     <div class="flex items-center gap-2">
-
                         <form class="hidden lg:block relative" method="GET" action="#">
 
                             <div>
@@ -97,7 +96,7 @@
                     <!-- Right -->
                     <div class="flex items-center gap-2">
                         <button class="hidden lg:block p-2 text-white rounded-full relative transition ease-out hover:bg-white/10 focus:outline-none focus:ring focus:ring-white/20 focus:bg-white/10"
-                                x-data="fullScreen" @click="toggleFullScreen()">
+                                x-data="toggleFullScreen    " @click="toggle()">
 
                             <span :class="active ? 'hidden' : 'block'">
                                 <x-icon name="expand" library="ion-icon"></x-icon>
@@ -243,7 +242,6 @@
                         </label>
                     </div>
 
-                    <!-- Active classes: bg-white/5 xl:text-primary xl:bg-gray-50 dark:bg-white/5 -->
                     <div class="h-[calc(100%-4rem)] overflow-y-auto flex flex-col pt-2 px-3 pb-4 space-y-4 text-white xl:h-full xl:pt-6 xl:text-gray-700 dark:text-gray-400 capitalize">
 
                         <!-- Home -->
@@ -253,20 +251,18 @@
                             </h2>
 
                             <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
-                                      dark:hover:bg-white/10 dark:focus:bg-white/20
+                                      dark:hover:bg-white/10 dark:focus:bg-white/20 {{ $active['item'] == 'dashboard' ? $activeClasses : '' }}" href="{{ route('dashboard') }}">
 
-                                      bg-white/5 xl:text-primary xl:bg-gray-50 dark:bg-white/5 dark:text-white" href="{{ route('dashboard') }}">
-
-                                <x-icon name="pie-chart" library="ion-icon"></x-icon>
+                                <x-icon name="pie-chart{{ $active['item'] != 'dashboard' ? '-outline' : '' }}" library="ion-icon"></x-icon>
                                 {{ __('dashboard') }}
                             </a>
                             <!---->
                             <!---->
                             <div>
                                 <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 capitalize
-                                               dark:hover:bg-white/10 dark:focus:bg-white/20" data-trigger="collapse">
+                                               dark:hover:bg-white/10 dark:focus:bg-white/20 {{ $active['item'] == 'service' ? $activeClasses : '' }}" data-trigger="collapse">
 
-                                    <x-icon name="mail-open-outline" library="ion-icon"></x-icon>
+                                    <x-icon name="mail{{ $active['item'] != 'service' ? '-outline' : '' }}" library="ion-icon"></x-icon>
 
                                     <span class="grow flex justify-between items-center">
                                         {{ __('service orders') }}
@@ -274,23 +270,24 @@
                                     </span>
                                 </button>
 
-                                <div class="is-collapsed collapsible mt-2 capitalize space-y-1">
-                                    <!---->
-                                    <!---->
+                                <div class="{{ $active['item'] != 'service' ? 'is-collapsed' : '' }} collapsible mt-2 capitalize space-y-1">
                                     <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('service-orders.index') }}">
+                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('service-orders.index')}}">
+
                                         {{ __('all orders') }}
                                     </a>
                                     <!---->
                                     <!---->
                                     <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
                                               before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2"  href="{{ route('service-orders.create') }}">
+
                                         {{ __('new order') }}
                                     </a>
                                     <!---->
                                     <!---->
                                     <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
                                               before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2"  href="#">
+
                                         {{ __('archived orders') }}
                                     </a>
                                 </div>
@@ -298,18 +295,18 @@
                             <!---->
                             <!---->
                             <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
-                                      dark:hover:bg-white/10 dark:focus:bg-white/20" href="{{ route('users.index') }}">
+                                      dark:hover:bg-white/10 dark:focus:bg-white/20 {{ $active['item'] == 'users' ? $activeClasses : '' }}" href="{{ route('users.index') }}">
 
-                                <x-icon name="person-outline" library="ion-icon"></x-icon>
+                                <x-icon name="person{{ $active['item'] != 'users' ? '-outline' : '' }}" library="ion-icon"></x-icon>
                                 {{ __('users') }}
                             </a>
                             <!---->
                             <!---->
                             <div>
                                 <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
-                                         dark:hover:bg-white/10 dark:focus:bg-white/20" data-trigger="collapse">
+                                               dark:hover:bg-white/10 dark:focus:bg-white/20 {{ $active['item'] == 'settings' ? $activeClasses : '' }}" data-trigger="collapse">
 
-                                    <x-icon name="settings-outline" library="ion-icon"></x-icon>
+                                    <x-icon name="settings{{ $active['item'] != 'settings' ? '-outline' : '-sharp' }}" library="ion-icon"></x-icon>
 
                                     <span class="grow flex justify-between items-center">
                                         Settings
@@ -317,27 +314,31 @@
                                     </span>
                                 </button>
 
-                                <div class="is-collapsed collapsible mt-2 capitalize space-y-1">
+                                <div class="{{ $active['item'] != 'settings' ? 'is-collapsed' : '' }} collapsible mt-2 capitalize space-y-1">
                                     <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                            before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('settings.account_data') }}">
+                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('settings.account_data') }}">
+
                                         {{ __('account data') }}
                                     </a>
                                     <!---->
                                     <!---->
                                     <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                            before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('settings.preferences') }}">
+                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('settings.preferences') }}">
+
                                         {{ __('preferences') }}
                                     </a>
                                     <!---->
                                     <!---->
                                     <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                            before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('settings.company_data') }}">
+                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('settings.company_data') }}">
+
                                         {{ __('company data') }}
                                     </a>
                                     <!---->
                                     <!---->
                                     <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                            before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('settings.company_terms') }}">
+                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('settings.company_terms') }}">
+
                                         {{ __('terms & conditions') }}
                                     </a>
                                 </div>
@@ -432,7 +433,7 @@
                             </a>
                         </div>
 
-                        <div class="p-3 flex flex-col gap-y-4 bg-white/10 rounded xl:bg-gray-100 dark:bg-white/5 normal-case">
+                        {{--<div class="p-3 flex flex-col gap-y-4 bg-white/10 rounded xl:bg-gray-100 dark:bg-white/5 normal-case">
                             <div class="flex justify-center text-3xl">
                                 <i class="fa-solid fa-gift"></i>
                             </div>
@@ -444,7 +445,7 @@
                             <button class="button button-primary button-sm w-full waves-effect">
                                 Go to <i class="fa-brands fa-github"></i>
                             </button>
-                        </div>
+                        </div> --}}
                     </div>
                 </nav>
 
@@ -468,6 +469,92 @@
             </div>
         </div>
     </div>
+
+    @stack('outside')
+
+    {{--
+    <div class="hidden relative z-20" :class="{ 'pointer-events-none': !open }" aria-labelledby="slide-over-title" role="dialog" aria-modal="true" x-data="{ open: false }">
+        <!--
+          Background backdrop, show/hide based on slide-over state.
+
+          Entering: "ease-in-out duration-500"
+            From: "opacity-0"
+            To: "opacity-100"
+          Leaving: "ease-in-out duration-500"
+            From: "opacity-100"
+            To: "opacity-0"
+        -->
+        <div
+            class="fixed inset-0 bg-zinc-900/60 transition-opacity"
+             x-show="open"
+             x-transition:enter="ease-in-out duration-500"
+             x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100"
+             x-transition:leave="ease-in-out duration-500"
+             x-transition:leave-start="opacity-100"
+             x-transition:leave-end="opacity-0"
+        ></div>
+
+        <div class="fixed inset-0 overflow-hidden">
+            <div class="absolute inset-0 overflow-hidden">
+                <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+                    <!--
+                      Slide-over panel, show/hide based on slide-over state.
+
+                      Entering: "transform transition ease-in-out duration-500 sm:duration-700"
+                        From: "translate-x-full"
+                        To: "translate-x-0"
+                      Leaving: "transform transition ease-in-out duration-500 sm:duration-700"
+                        From: "translate-x-0"
+                        To: "translate-x-full"
+                    -->
+                    <div
+                        class="pointer-events-auto relative w-screen max-w-md"
+                        x-show="open"
+                        x-transition:enter="transform transition ease-in-out duration-500 sm:duration-700"
+                        x-transition:enter-start="translate-x-full"
+                        x-transition:enter-end="translate-x-0"
+                        x-transition:leave="transform transition ease-in-out duration-500 sm:duration-700"
+                        x-transition:leave-start="translate-x-0"
+                        x-transition:leave-end="translate-x-full"
+                    >
+                        <!--
+                          Close button, show/hide based on slide-over state.
+
+                          Entering: "ease-in-out duration-500"
+                            From: "opacity-0"
+                            To: "opacity-100"
+                          Leaving: "ease-in-out duration-500"
+                            From: "opacity-100"
+                            To: "opacity-0"
+                        -->
+                        <div class="absolute top-0 left-0 -ml-8 flex pt-4 pr-2 sm:-ml-10 sm:pr-4">
+                            <button type="button" class="rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white">
+                                <span class="sr-only">Close panel</span>
+                                <!-- Heroicon name: outline/x -->
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
+                            <div class="px-4 sm:px-6">
+                                <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Panel title</h2>
+                            </div>
+                            <div class="relative mt-6 flex-1 px-4 sm:px-6">
+                                <!-- Replace with your content -->
+                                <div class="absolute inset-0 px-4 sm:px-6">
+                                    <div class="h-full border-2 border-dashed border-gray-200" aria-hidden="true"></div>
+                                </div>
+                                <!-- /End replace -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> --}}
 
     {{-- FlowBite --}}
     <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>

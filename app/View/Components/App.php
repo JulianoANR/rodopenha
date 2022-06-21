@@ -14,13 +14,33 @@ class App extends Component
     public string $title;
 
     /**
+     * Activated item in navbar
+     *
+     * @var array
+     */
+    public array $active;
+
+    /**
+     * Style activated item
+     *
+     * @var string
+     */
+    public string $activeClasses;
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($title = 'default')
+    public function __construct($title = 'default', $active = [])
     {
         $this->title = $title;
+
+        gettype($active) == 'string'
+            ? $this->active = ['item' => $active]
+            : $this->active = $active;
+
+        $this->activeClasses = 'bg-white/5 xl:text-primary xl:bg-gray-50 dark:bg-white/5 dark:text-white';
     }
 
     /**

@@ -1,4 +1,4 @@
-<x-app title="Dashboard">
+<x-app title="Dashboard" active="dashboard">
 
     <!-- Header page -->
     <div class="my-6 px-4 md:px-6">
@@ -313,65 +313,6 @@
                                     </tr>
                                 </tbody>
                             </table>
-
-                            {{--
-                            <table id="table_recent_activities" class="stripe hover display">
-                                <thead>
-                                <tr>
-                                    <th>User</th>
-                                    <th class="text-center">Status</th>
-                                    <th>Service Order</th>
-                                    <th>Date</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="relative flex">
-                                            <x-avatar-user :user="Auth::user()" />
-                                            <span class="ml-5 whitespace-nowrap">Alberto Luiz</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                    <span class="badge-info text-sm font-normal rounded-md">
-                                        Picked Up
-                                    </span>
-                                    </td>
-                                    <td><a class="hover:underline underline-offset-2" href="#">ORDER #14325</a></td>
-                                    <td>{{ now() }}</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="relative flex">
-                                            <x-avatar-user :user="Auth::user()" />
-                                            <span class="ml-5 whitespace-nowrap">Juliano Appezzato</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                    <span class="badge-success text-sm font-normal rounded-md">
-                                        Delivered
-                                    </span>
-                                    </td>
-                                    <td><a class="hover:underline underline-offset-2" href="#">ORDER #45324</a></td>
-                                    <td>{{ now() }}</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="relative flex">
-                                            <x-avatar-user :user="Auth::user()" />
-                                            <span class="ml-5 whitespace-nowrap">Matheus Henrique</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                    <span class="badge-success text-sm font-normal rounded-md">
-                                        Delivered
-                                    </span>
-                                    </td>
-                                    <td><a class="hover:underline underline-offset-2" href="#">ORDER #23421</a></td>
-                                    <td>{{ now() }}</td>
-                                </tr>
-                                </tbody>
-                            </table> --}}
                         </div>
                     </div>
                 </div>

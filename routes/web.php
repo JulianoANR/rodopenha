@@ -29,7 +29,7 @@ Route::middleware(['auth'])->group( function () {
 
     Route::get('/dashboard', function () {
         return view('dashboard');
-    })->middleware(['auth'])->name('dashboard');
+    })->name('dashboard');
 
     Route::prefix('/users')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('users.index');
@@ -45,6 +45,8 @@ Route::middleware(['auth'])->group( function () {
         Route::post('/store', [ServiceOrderController::class, 'store'])->name('service-orders.store');
         Route::get('/edit/{id}', [ServiceOrderController::class, 'edit'])->name('service-orders.edit');
         Route::post('/update', [ServiceOrderController::class, 'update'])->name('service-orders.update');
+
+        Route::get('/id', [ServiceOrderController::class, 'show'])->name('service-orders.show');
     });
 
     Route::prefix('settings')->group(function () {
