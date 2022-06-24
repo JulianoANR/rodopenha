@@ -1,49 +1,57 @@
-<x-app title="Users" :active="['item' => 'users']">
+<x-app title="Vehicles" :active="['item' => 'vehicles']">
 
     <!-- Header page -->
     <div class="my-6 px-4 md:px-6">
         <div class="flex flex-wrap gap-2 justify-between items-center">
             <div class="w-full md:w-max">
                 <h1 class="w-full truncate text-2xl mb-1 font-bold text-gray-400 md:text-3xl dark:text-white">
-                    Users
+                    Vehicles
                 </h1>
 
-                <x-breadcrumb :path="['Users' => route('users.index')]" />
+                <x-breadcrumb :path="['Vehicles' => route('vehicles.index')]" />
             </div>
 
-            <button class="button button-primary hidden md:flex uppercase">
-                Add User <i class="fa-solid fa-plus fa-lg"></i>
-            </button>
+            <a class="button button-primary capitalize hidden md:flex " href="{{ route('vehicles.create') }}">
+                {{ __('create vehicle') }} <i class="fa-solid fa-plus"></i>
+            </a>
         </div>
     </div>
 
-    <!-- Grid Cards -->
+    <!-- Grid cards -->
     <div class="px-4 md:px-6">
         <div class="flex flex-wrap -mx-2 md:-mx-3">
 
             <div class="w-full px-2 mb-6 md:px-3">
-
                 <x-card>
                     <x-slot name="header">
-                        {{ __('manage users') }}
+                        {{ __('manage vehicles') }}
                     </x-slot>
 
                     <x-slot name="body">
                         <div class="relative overflow-x-auto">
-                            <table class="stripe hover" id="table_all_users">
+                            <table class="stripe hover" id="table_all_vehicles">
                                 <thead>
                                     <tr>
                                         <th scope="col" class="whitespace-nowrap">
-                                            User
+                                            Model
                                         </th>
                                         <th scope="col" class="whitespace-nowrap">
-                                            Permissions
+                                            Make
                                         </th>
                                         <th scope="col" class="whitespace-nowrap">
-                                            Email
+                                            License plate
                                         </th>
                                         <th scope="col" class="whitespace-nowrap">
-                                            Phone
+                                            Truck license plate
+                                        </th>
+                                        <th scope="col" class="whitespace-nowrap">
+                                            Driver
+                                        </th>
+                                        <th scope="col" class="whitespace-nowrap">
+                                            Has trailer
+                                        </th>
+                                        <th scope="col" class="whitespace-nowrap">
+                                            Company
                                         </th>
                                         <th scope="col" class="whitespace-nowrap">
                                             Actions
@@ -52,66 +60,33 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th scope="row" class="text-left align-middle whitespace-nowrap">
-                                           <div class="flex items-center gap-1.5 h-full">
-                                               <x-avatar-user class="w-9 h-9 min-w-[2.25rem]" :user="Auth::user()" />
-                                               <span class="font-semibold">Admin</span>
-                                           </div>
+                                        <th scope="col" class="text-left font-medium whitespace-nowrap">
+                                            2009 Ford Mustang
                                         </th>
-
-                                        <td class="text-left whitespace-nowrap">
-                                            Supervisor
+                                        <td class="text-left">
+                                            Ford
                                         </td>
-
-                                        <td class="text-left whitespace-nowrap">
-                                            admin@admin.com
+                                        <td class="text-left">
+                                            BVVX003
                                         </td>
-
-                                        <td class="text-left whitespace-nowrap">
-                                            (954) 709-8060
+                                        <td class="text-left">
+                                            BVVX003
                                         </td>
-
+                                        <td class="text-left">
+                                            No linked driver
+                                        </td>
+                                        <td class="text-left">
+                                            <span class="badge badge-primary">
+                                                Yes (1)
+                                            </span>
+                                        </td>
+                                        <td class="text-left">
+                                            Invent Digital
+                                        </td>
                                         <td class="text-left">
                                             <div class="inline-flex items-center gap-3">
                                                 <button class="button button-icon button-icon-sm button-primary-soft rounded">
                                                     <i class="fa-solid fa-pen-clip"></i>
-                                                </button>
-
-                                                <button class="button button-icon button-icon-sm button-danger-soft rounded">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <th scope="row" class="text-left align-middle whitespace-nowrap">
-                                            <div class="flex items-center gap-1.5 h-full">
-                                                <x-avatar-user class="w-9 h-9 min-w-[2.25rem]" :user="Auth::user()" />
-                                                <span class="font-semibold">Giovani Appezzato</span>
-                                            </div>
-                                        </th>
-
-                                        <td class="text-left whitespace-nowrap">
-                                            Driver
-                                        </td>
-
-                                        <td class="text-left whitespace-nowrap">
-                                            giovani.apztt@gmail.com
-                                        </td>
-
-                                        <td class="text-left whitespace-nowrap">
-                                            (954) 258-7390
-                                        </td>
-
-                                        <td class="text-left">
-                                            <div class="inline-flex items-center gap-3">
-                                                <button class="button button-icon button-icon-sm button-primary-soft rounded">
-                                                    <i class="fa-solid fa-pen-clip"></i>
-                                                </button>
-
-                                                <button class="button button-icon button-icon-sm button-secondary-soft rounded">
-                                                    <i class="fa-solid fa-truck-front"></i>
                                                 </button>
 
                                                 <button class="button button-icon button-icon-sm button-danger-soft rounded">
@@ -132,7 +107,7 @@
     @push('scripts')
         <script>
             $(document).ready( function () {
-                var table = $('#table_all_users').DataTable({
+                var table = $('#table_all_vehicles').DataTable({
                     dom: 'Bfrtip',
                     buttons: [
                         'colvis'
@@ -151,7 +126,4 @@
             });
         </script>
     @endpush
-
 </x-app>
-
-

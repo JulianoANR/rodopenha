@@ -128,13 +128,16 @@
                                 <thead class="text-gray-700 uppercase bg-gray-50 dark:text-gray-300 dark:bg-white/5 dark:text-white">
                                     <tr>
                                         <th scope="col" class="px-6 py-3">
-                                            Product name
+                                            Order ID
                                         </th>
                                         <th scope="col" class="px-6 py-3">
-                                            Color
+                                            Payment Type
                                         </th>
                                         <th scope="col" class="px-6 py-3">
-                                            Category
+                                            Contract Terms
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Remaining Days
                                         </th>
                                         <th scope="col" class="px-6 py-3">
                                             Price
@@ -147,13 +150,16 @@
                                 <tbody>
                                     <tr class="border-b dark:bg-transparent dark:border-zinc-700 odd:bg-transparent even:bg-gray-50 odd:dark:bg-transparent even:dark:bg-white/5">
                                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                            Apple MacBook Pro 17"
+                                            Contract Terms
                                         </th>
                                         <td class="px-6 py-4">
-                                            Sliver
+                                            Company check
                                         </td>
                                         <td class="px-6 py-4">
-                                            Laptop
+                                            Not defined
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            3 days overdue
                                         </td>
                                         <td class="px-6 py-4">
                                             $2999
@@ -164,16 +170,19 @@
                                     </tr>
                                     <tr class="border-b dark:bg-transparent dark:border-zinc-700 odd:bg-transparent even:bg-gray-50 odd:dark:bg-transparent even:dark:bg-white/5">
                                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                            Microsoft Surface Pro
+                                            Contract Terms
                                         </th>
                                         <td class="px-6 py-4">
-                                            White
+                                            Company check
                                         </td>
                                         <td class="px-6 py-4">
-                                            Laptop PC
+                                            Not defined
                                         </td>
                                         <td class="px-6 py-4">
-                                            $1999
+                                            3 days overdue
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            $2999
                                         </td>
                                         <td class="px-6 py-4 text-right">
                                             <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
@@ -181,33 +190,19 @@
                                     </tr>
                                     <tr class="border-b dark:bg-transparent dark:border-zinc-700 odd:bg-transparent even:bg-gray-50 odd:dark:bg-transparent even:dark:bg-white/5">
                                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                            Magic Mouse 2
+                                            Contract Terms
                                         </th>
                                         <td class="px-6 py-4">
-                                            Black
+                                            Company check
                                         </td>
                                         <td class="px-6 py-4">
-                                            Accessories
+                                            Not defined
                                         </td>
                                         <td class="px-6 py-4">
-                                            $99
-                                        </td>
-                                        <td class="px-6 py-4 text-right">
-                                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                        </td>
-                                    </tr>
-                                    <tr class="border-b dark:bg-transparent dark:border-zinc-700 odd:bg-transparent even:bg-gray-50 odd:dark:bg-transparent even:dark:bg-white/5">
-                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                            Google Pixel Phone
-                                        </th>
-                                        <td class="px-6 py-4">
-                                            Gray
+                                            3 days overdue
                                         </td>
                                         <td class="px-6 py-4">
-                                            Phone
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            $799
+                                            $2999
                                         </td>
                                         <td class="px-6 py-4 text-right">
                                             <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
@@ -215,16 +210,19 @@
                                     </tr>
                                     <tr class="dark:bg-transparent dark:border-zinc-700 odd:bg-transparent even:bg-gray-50 odd:dark:bg-transparent even:dark:bg-white/5">
                                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                            Apple Watch 5
+                                            Contract Terms
                                         </th>
                                         <td class="px-6 py-4">
-                                            Red
+                                            Company check
                                         </td>
                                         <td class="px-6 py-4">
-                                            Wearables
+                                            Not defined
                                         </td>
                                         <td class="px-6 py-4">
-                                            $999
+                                            3 days overdue
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            $2999
                                         </td>
                                         <td class="px-6 py-4 text-right">
                                             <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
@@ -321,12 +319,7 @@
         </div>
     </div>
 
-    @push('header')
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
-    @endpush
-
     @push('scripts')
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
         <script>
             $(document).ready( function () {
                 var table = $('#table_recent_activities').DataTable({

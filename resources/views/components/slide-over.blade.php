@@ -5,7 +5,7 @@
         x-data="slideOver({{ $initialState }}, '{{ $id }}')" x-cloak
         :class="{ 'pointer-events-none': !open }"
 
-        aria-labelledby="slide-over-title"
+        aria-labelledby="slide-over-{{ $id }}"
         role="dialog"
         aria-modal="true"
     >

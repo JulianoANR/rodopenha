@@ -104,7 +104,7 @@
                             <div class="w-full px-2 mb-4 md:w-3/12 grid md:grid-cols-2 gap-4">
                                 <div class="w-full">
                                     <label class="text-sm font-semibold pl-1 mb-2" for="vehicle_year">Year</label>
-                                    <input class="input" id="vehicle_year" name="vehicle_year" type="number" placeholder="YYYY">
+                                    <input class="input" id="vehicle_year" name="vehicle_year" x-data x-mask="9999" type="text" placeholder="YYYY">
                                 </div>
                                 <div class="w-full">
                                     <label class="text-sm font-semibold pl-1 mb-2" for="vehicle_color">Color</label>
@@ -485,40 +485,6 @@
             </div>
         </form>
     </div>
-
-    @push('header')
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
-    @endpush
-
-    @push('scripts')
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
-        <script>
-            $(document).ready( function () {-
-                var table = $('#table_recent_activities').DataTable({
-                    dom: 'Bfrtip',
-                    buttons: [
-                        'colvis'
-                    ],
-                    "responsive": true,
-                    "scrollCollapse": true,
-                    "paging": false,
-                    "order": [
-                        [3, "desc"]
-                    ],
-                    "language": {
-                        "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Portuguese-Brasil.json",
-                        "buttons": {
-                            "colvis": 'Exibir'
-                        }
-                    },
-                    "lengthMenu": [
-                        [25, 50, 75, 100 - 1],
-                        ["25", "50", "75", "100", "Tudo"]
-                    ]
-                });
-            });
-        </script>
-    @endpush
 
 </x-app>
 

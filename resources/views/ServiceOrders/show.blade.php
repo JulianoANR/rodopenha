@@ -642,7 +642,7 @@
             </div>
 
             <div class="h-16 w-full flex justify-end items-center gap-2 border-t px-4 md:px-6 dark:border-zinc-700">
-                <button class="button button-primary capitalize" type="submit">
+                <button class="button button-primary uppercase" type="submit">
                     {{ __('save') }}
                 </button>
             </div>

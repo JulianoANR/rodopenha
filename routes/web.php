@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     UserController,
-    ServiceOrderController
+    ServiceOrderController,
+    VehicleController
 };
 
 /*
@@ -17,19 +18,11 @@ use App\Http\Controllers\{
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('index');
-
-Route::get('/components', function () {
-    return view('componentsCSS');
-})->name('components');
+Route::view('/', 'welcome')->name('index');
+Route::view('/components', 'componentsCSS')->name('components');
 
 Route::middleware(['auth'])->group( function () {
-
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::view('/dashboard', 'dashboard')->name('dashboard');
 
     Route::prefix('/users')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('users.index');
@@ -45,7 +38,6 @@ Route::middleware(['auth'])->group( function () {
         Route::post('/store', [ServiceOrderController::class, 'store'])->name('service-orders.store');
         Route::get('/edit/{id}', [ServiceOrderController::class, 'edit'])->name('service-orders.edit');
         Route::post('/update', [ServiceOrderController::class, 'update'])->name('service-orders.update');
-
         Route::get('/id', [ServiceOrderController::class, 'show'])->name('service-orders.show');
     });
 
@@ -54,6 +46,11 @@ Route::middleware(['auth'])->group( function () {
         Route::view('/preferences', 'settings.preferences')->name('settings.preferences');
         Route::view('/company', 'settings.company')->name('settings.company_data');
         Route::view('/terms', 'settings.company_terms')->name('settings.company_terms');
+    });
+
+    Route::prefix('vehicles')->group(function () {
+        Route::get('/', [VehicleController::class, 'index'])->name('vehicles.index');
+        Route::get('/create', [VehicleController::class, 'create'])->name('vehicles.create');
     });
 });
 
