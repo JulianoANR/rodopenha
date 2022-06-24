@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     UserController,
     ServiceOrderController,
-    VehicleController
+    VehicleController,
+    FinanceController
 };
 
 /*
@@ -41,16 +42,20 @@ Route::middleware(['auth'])->group( function () {
         Route::get('/id', [ServiceOrderController::class, 'show'])->name('service-orders.show');
     });
 
-    Route::prefix('settings')->group(function () {
+    Route::prefix('/settings')->group(function () {
         Route::view('/account', 'settings.account')->name('settings.account_data');
         Route::view('/preferences', 'settings.preferences')->name('settings.preferences');
         Route::view('/company', 'settings.company')->name('settings.company_data');
         Route::view('/terms', 'settings.company_terms')->name('settings.company_terms');
     });
 
-    Route::prefix('vehicles')->group(function () {
+    Route::prefix('/vehicles')->group(function () {
         Route::get('/', [VehicleController::class, 'index'])->name('vehicles.index');
         Route::get('/create', [VehicleController::class, 'create'])->name('vehicles.create');
+    });
+
+    Route::prefix('/finance')->group(function () {
+        Route::get('/', [FinanceController::class, 'dashboard'])->name('finance.dashboard');
     });
 });
 
