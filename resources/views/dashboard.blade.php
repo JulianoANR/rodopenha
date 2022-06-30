@@ -11,9 +11,9 @@
                 <x-breadcrumb :path="['Dashboard' => route('dashboard')]" />
             </div>
 
-            <button class="button button-primary capitalize waves-effect hidden md:flex">
+            <a class="button button-primary capitalize waves-effect hidden md:flex" href="{{ route('service-orders.create') }}">
                 {{ __('create order') }} <i class="fa-solid fa-plus"></i>
-            </button>
+            </a>
         </div>
     </div>
 

@@ -20,7 +20,7 @@
 
     <!-- Grid Cards -->
     <div class="px-4 md:px-6">
-        <form action="{{ route('service-orders.store') }}" method="POST">
+            <form action="{{ route('service-orders.store') }}" method="POST">
             @csrf
 
             <div class="flex justify-center items-center w-full">
@@ -240,17 +240,7 @@
                                         <input class="checkbox scale-110" id="pickup_signature" name="pickup[signature]" type="checkbox">
                                         <label class="font-semibold text-base capitalize cursor-pointer select-none" for="pickup_signature">
                                             {{ __('signature not required') }}
-
-                                            <div class="inline relative" x-data="{ tooltip: false }">
-                                                <i class="ml-1 fa-solid fa-circle-exclamation" @mouseover="tooltip = true" @mouseleave="tooltip = false"></i>
-
-                                                <div class="absolute top-1/2 -translate-y-1/2 left-[110%] ml-2 z-10 w-72 p-2 text-sm leading-tight text-white bg-zinc-800 rounded-md shadow-lg" x-cloak x-show="tooltip" >
-                                                    <div class="space-y-1.5">
-                                                        <span>If turned on, this setting will skip the customer Review and Signature steps during the driver's inspection.</span>
-                                                        <span>A stamp saying 'Customer Not Present' will be applied on the BOL instead of a signature.</span>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <i class="ml-1 fa-solid fa-circle-exclamation"></i>
                                         </label>
                                     </div>
                                 </div>

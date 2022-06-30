@@ -52,6 +52,11 @@ Route::middleware(['auth'])->group( function () {
     Route::prefix('/vehicles')->group(function () {
         Route::get('/', [VehicleController::class, 'index'])->name('vehicles.index');
         Route::get('/create', [VehicleController::class, 'create'])->name('vehicles.create');
+        Route::post('/store', [VehicleController::class, 'store'])->name('vehicles.store');
+    });
+
+    Route::prefix('/trips')->group(function () {
+        Route::view('/', 'trips.index')->name('trips.index');
     });
 
     Route::prefix('/finance')->group(function () {
@@ -59,4 +64,5 @@ Route::middleware(['auth'])->group( function () {
     });
 });
 
+require __DIR__.'/data.php';
 require __DIR__.'/auth.php';

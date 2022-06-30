@@ -93,7 +93,7 @@
                     <!-- Right -->
                     <div class="flex items-center gap-2">
                         <button class="hidden lg:block p-2 text-white rounded-full relative transition ease-out hover:bg-white/10 focus:outline-none focus:ring focus:ring-white/20 focus:bg-white/10"
-                                x-data="toggleFullScreen    " @click="toggle()">
+                                x-data="toggleFullScreen" @click="toggle()">
 
                             <span :class="active ? 'hidden' : 'block'">
                                 <x-icon name="expand" library="ion-icon"></x-icon>
@@ -119,7 +119,7 @@
                                 <form class="flex" action="#" method="GET" data-trigger="collapse">
 
                                     <input class="grow bg-gray-100 text-sm rounded-l-sm border-0 focus:ring-0 dark:bg-white/5 dark:placeholder-gray-200 dark:text-gray-200"
-                                           placeholder="{{  __('Search for anything') }}" id="search-mobile" name="search" type="text" spellcheck="false" autocomplete="off">
+                                           placeholder="{{  __('Search') }}" id="search-mobile" name="search" type="text" spellcheck="false" autocomplete="off">
 
                                     <button class="button button-secondary rounded-l-none dark:button-primary">
                                         <x-icon class="w-5 h-5 text-xl" name="search-outline" library="ion-icon" />
@@ -315,6 +315,35 @@
                                               before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('vehicles.create') }}">
 
                                         {{ __('create vehicle') }}
+                                    </a>
+                                </div>
+                            </div>
+                            <!---->
+                            <!---->
+                            <div>
+                                <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 capitalize
+                                               dark:hover:bg-white/10 dark:focus:bg-white/20 {{ $active['item'] == 'trips' ? $activeClasses : '' }}" data-trigger="collapse">
+
+                                    <x-icon name="git-pull-request{{ $active['item'] != 'trips' ? '-outline' : '' }}" library="ion-icon"></x-icon>
+
+                                    <span class="grow flex justify-between items-center">
+                                        {{ __('trips') }}
+                                        <x-icon class="h-5 w-5 text-xl" name="chevron-down" library="ion-icon"></x-icon>
+                                    </span>
+                                </button>
+
+                                <div class="{{ $active['item'] != 'trips' ? 'is-collapsed' : '' }} collapsible mt-2 capitalize space-y-1">
+                                    <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('trips.index') }}">
+
+                                        {{ __('all trips') }}
+                                    </a>
+                                    <!---->
+                                    <!---->
+                                    <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="#">
+
+                                        {{ __('create trip') }}
                                     </a>
                                 </div>
                             </div>

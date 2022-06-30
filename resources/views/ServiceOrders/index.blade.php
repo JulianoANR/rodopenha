@@ -95,7 +95,7 @@
                                         <td class="align-middle whitespace-nowrap">
                                             <div class="flex items-center gap-1.5 w-full h-full">
                                                 <x-avatar-user class="w-9 h-9 min-w-[2.25rem]" :user="Auth::user()" />
-                                                <span class="ml-3 font-semibold">Juliano Appezzato</span>
+                                                <span class="ml-3 font-semibold">Admin</span>
                                             </div>
                                         </td>
 

@@ -33,7 +33,7 @@
                 <!-- Start Detail -->
                 <x-card class="mb-6">
                     <x-slot name="body">
-                        <div class="flex items-center justify-between">
+                        <div class="flex items-center justify-between mb-4">
                             <h2 class="text-lg text-gray-700 font-semibold dark:text-gray-300">
                                 <i class="ml-1 fa-solid fa-clipboard-list"></i> {{ __('Basic details') }}
                             </h2>
@@ -45,6 +45,51 @@
                             </div>
                         </div>
 
+                        <div class="relative overflow-x-auto">
+                            <table id="table_payment_order">
+                                <tbody>
+                                    <tr class="font-semibold text-gray-700 dark:text-gray-300">
+                                        <td class="p-1 whitespace-nowrap">
+                                            ID Load
+                                        </td>
+
+                                        <td class="p-1 font-bold">
+                                            #3824426-AT
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="p-1 whitespace-nowrap">
+                                            Trailer type
+                                        </td>
+
+                                        <td class="p-1">
+                                            Open
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="p-1 whitespace-nowrap">
+                                            Inspection type
+                                        </td>
+
+                                        <td class="p-1">
+                                            Standard
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="p-1 whitespace-nowrap">
+                                            Dispatch Instructions
+                                        </td>
+
+                                        <td class="p-1">
+                                            No instruction <i class="text-danger fa-solid fa-ban"></i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </x-slot>
                 </x-card>
                 <!-- End Detail -->
@@ -52,7 +97,7 @@
                 <!-- Start Driver -->
                 <x-card class="mb-6">
                     <x-slot name="body">
-                        <div class="flex items-center justify-between">
+                        <div class="flex items-center justify-between mb-4">
                             <h2 class="text-lg text-gray-700 font-semibold dark:text-gray-300">
                                 <i class="mr-1 fa-solid fa-user"></i> {{ __('Driver') }}
                             </h2>
@@ -63,59 +108,49 @@
                             </span>
                         </div>
 
-                        {{--<div class="flex flex-wrap md:flex-nowrap">
-                            <div class="w-full mb-4 md:w-max md:shrink">
-                                <div class="flex items-center justify-between">
-                                    <x-avatar-user class="w-12 h-12 min-w-[3rem]" :user="Auth::user()" />
+                        <div class="flex items-center">
 
-                                    <button class="button button-primary-outline md:hidden">
-                                        Re-Assign Driver
-                                    </button>
-                                </div>
+                            <div class="shrink">
+                                <x-avatar-user class="w-24 h-24 min-w-[3rem] !rounded" :user="Auth::user()" />
                             </div>
 
-                            <div class="grow md:ml-6">
-                                <div class="flex justify-between pb-4 border-b dark:border-zinc-700">
-
-                                    <table id="table_driver_order">
+                            <div class="grow ml-4">
+                                <div class="relative overflow-x-auto">
+                                    <table id="table_shipper_order">
                                         <tbody>
-                                            <!-- Name -->
                                             <tr>
                                                 <td class="p-1">
                                                     <i class="fa-solid fa-user"></i>
                                                 </td>
 
-                                                <td class="p-1">
-                                                    Gil Antonio Apolinario
+                                                <td class="p-1 whitespace-nowrap">
+                                                    Adilson Silva
                                                 </td>
                                             </tr>
 
-                                            <!-- Phone -->
-                                            <tr class="text-primary font-bold">
+                                            <tr>
                                                 <td class="p-1">
                                                     <i class="fa-solid fa-phone"></i>
                                                 </td>
 
                                                 <td class="p-1">
-                                                    (561) 827-2543
+                                                    (561) 866-1518
                                                 </td>
                                             </tr>
 
-                                            <!-- Email -->
-                                            <tr class="text-primary font-bold">
+                                            <tr>
                                                 <td class="p-1">
                                                     <i class="fa-solid fa-envelope"></i>
                                                 </td>
 
-                                                <td class="p-1">
-                                                    test+Gil+Antonio@ship.cars
+                                                <td class="p-1 whitespace-nowrap">
+                                                    f1autotransport@hotmail.com
                                                 </td>
                                             </tr>
 
-                                            <!-- Type vehicle -->
                                             <tr>
                                                 <td class="p-1">
-                                                    <i class="fa-solid fa-car"></i>
+                                                    <i class="fa-solid fa-trailer"></i>
                                                 </td>
 
                                                 <td class="p-1">
@@ -123,45 +158,20 @@
                                                 </td>
                                             </tr>
 
-                                            <!-- Capacity -->
                                             <tr>
                                                 <td class="p-1">
-                                                    <i class="fa-solid fa-truck-moving"></i>
+                                                    <i class="fa-solid fa-truck-front"></i>
                                                 </td>
 
                                                 <td class="p-1">
-                                                    07 Vehicles
+                                                    7 vehicles
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
-
-                                    <div>
-                                        <button class="hidden md:flex button button-primary-outline">
-                                            Re-Assign Driver
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <div class="mt-4 mb-2 md:flex md:items-center md:justify-between">
-                                    <div class="flex items-center gap-3">
-
-                                        <div class="w-12 h-12 bg-secondary-soft text-secondary rounded-sm flex items-center justify-center dark:bg-primary dark:text-white">
-                                            <i class="text-xl fa-solid fa-circle-question"></i>
-                                        </div>
-
-                                        <div class="flex items-center">
-                                            No recent driver location
-                                            <i class="ml-1 fa-solid fa-circle-exclamation"></i>
-                                        </div>
-                                    </div>
-
-                                    <button class="mt-4 button button-sm button-secondary-soft dark:button-primary md:mt-0">
-                                        Request New <i class="fa-solid fa-circle-plus"></i>
-                                    </button>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
                     </x-slot>
                 </x-card>
                 <!-- End Driver -->
@@ -560,6 +570,27 @@
                     </x-slot>
                 </x-card> -->
                 <!-- End Activity -->
+
+                <!-- Start Damages -->
+                <x-card class="mb-6">
+                    <x-slot name="body">
+                        <!-- Payment -->
+                        <div class="flex items-center justify-between mb-1">
+                            <h2 class="text-lg text-gray-700 font-semibold dark:text-gray-300">
+                                <i class="fa-solid fa-car-burst"></i> {{ __('Damages') }}
+                            </h2>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <span>No damage in that order</span>
+
+                            <button class="button button-icon button-primary-soft button-icon-xs rounded">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </x-slot>
+                </x-card>
+                <!-- End Damages -->
             </div>
         </div>
     </div>

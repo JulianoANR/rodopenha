@@ -1,18 +1,18 @@
-<x-app title="Vehicles" :active="['item' => 'vehicles']">
+<x-app title="Vehicles" :active="['item' => 'trips']">
 
     <!-- Header page -->
     <div class="my-6 px-4 md:px-6">
         <div class="flex flex-wrap gap-2 justify-between items-center">
             <div class="w-full md:w-max">
                 <h1 class="w-full truncate text-2xl mb-1 font-bold text-gray-400 md:text-3xl dark:text-white">
-                    Vehicles
+                    Trips
                 </h1>
 
-                <x-breadcrumb :path="['Vehicles' => route('vehicles.index')]" />
+                <x-breadcrumb :path="['Trips' => route('vehicles.index')]" />
             </div>
 
-            <a class="button button-primary capitalize hidden md:flex " href="{{ route('vehicles.create') }}">
-                {{ __('create vehicle') }} <i class="fa-solid fa-plus"></i>
+            <a class="button button-primary capitalize hidden md:flex " href="#">
+                {{ __('create trip') }} <i class="fa-solid fa-plus"></i>
             </a>
         </div>
     </div>
@@ -21,38 +21,31 @@
     <div class="px-4 md:px-6">
         <div class="flex flex-wrap -mx-2 md:-mx-3">
 
-            <div class="w-full px-2 mb-6">
-                <!-- Start Vehicles -->
+            <div class="w-full px-2 mb-6 md:px-3 md:w-full">
                 <x-card>
                     <x-slot name="header">
-                        {{ __('manage vehicles') }}
+                        {{ __('manage trip') }}
                     </x-slot>
 
                     <x-slot name="body">
                         <div class="relative overflow-x-auto">
-                            <table class="stripe hover" id="table_all_vehicles">
+                            <table class="stripe hover" id="table_all_trips">
                                 <thead>
                                     <tr>
                                         <th scope="col" class="whitespace-nowrap">
-                                            Model
+                                            Trip ID
                                         </th>
                                         <th scope="col" class="whitespace-nowrap">
-                                            Make
+                                            Total orders
                                         </th>
                                         <th scope="col" class="whitespace-nowrap">
-                                            License plate
-                                        </th>
-                                        <th scope="col" class="whitespace-nowrap">
-                                            Truck license plate
+                                            Status
                                         </th>
                                         <th scope="col" class="whitespace-nowrap">
                                             Driver
                                         </th>
                                         <th scope="col" class="whitespace-nowrap">
-                                            Has trailer
-                                        </th>
-                                        <th scope="col" class="whitespace-nowrap">
-                                            Company
+                                            Date
                                         </th>
                                         <th scope="col" class="whitespace-nowrap">
                                             Actions
@@ -62,27 +55,24 @@
                                 <tbody>
                                     <tr>
                                         <th scope="col" class="text-left font-medium whitespace-nowrap">
-                                            2009 Ford Mustang
+                                           AdminTRIP-#2588755
                                         </th>
                                         <td class="text-left">
-                                            Ford
-                                        </td>
-                                        <td class="text-left">
-                                            BVVX003
-                                        </td>
-                                        <td class="text-left">
-                                            BVVX003
-                                        </td>
-                                        <td class="text-left">
-                                            No linked driver
-                                        </td>
-                                        <td class="text-left">
                                             <span class="badge badge-primary">
-                                                Yes (1)
+                                                2
                                             </span>
                                         </td>
                                         <td class="text-left">
-                                            Invent Digital
+                                            2x Pickup
+                                        </td>
+                                        <td class="text-left">
+                                            <div class="flex items-center gap-1.5 w-full h-full">
+                                                <x-avatar-user class="w-9 h-9 min-w-[2.25rem]" :user="Auth::user()" />
+                                                <span class="ml-3 font-semibold">Admin</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-left">
+                                            28/06/2022
                                         </td>
                                         <td class="text-left">
                                             <div class="inline-flex items-center gap-3">
@@ -101,7 +91,6 @@
                         </div>
                     </x-slot>
                 </x-card>
-                <!-- End Vehicles -->
             </div>
         </div>
     </div>
@@ -109,7 +98,7 @@
     @push('scripts')
         <script>
             $(document).ready( function () {
-                var table = $('#table_all_vehicles').DataTable({
+                var table = $('#table_all_trips').DataTable({
                     dom: 'Bfrtip',
                     buttons: [
                         'colvis'
