@@ -18,7 +18,13 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = ['name', 'email', 'password', 'profile_photo', 'profile_folder', 'phone'];
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'profile_photo',
+        'phone'
+    ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -37,4 +43,12 @@ class User extends Authenticatable
     ];
 
     protected $dates = ['deleted_at'];
+
+    /**
+     * The roles that belong to the user.
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'role_user', 'user_id');
+    }
 }

@@ -16,16 +16,21 @@ return new class extends Migration
         Schema::create('vehicles', function (Blueprint $table) {
             $table->id();
             $table->string('vin');
-            $table->string('year');
             $table->string('make')->nullable();
             $table->string('model')->nullable();
-            $table->unsignedBigInteger('type_id')->nullable();
+            $table->string('year')->nullable();
             $table->string('color')->nullable();
             $table->string('operable')->nullable();
             $table->string('lot_number')->nullable();
             $table->string('buyer_number')->nullable();
-            $table->unsignedBigInteger('service_orders_id')->nullable();
-            $table->timestamps();
+            $table->foreignId('vehicle_type_id')->constrained('vehicles_types')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->unsignedBigInteger('service_order_id');
+
+            /* $table->unsignedBigInteger('vehicle_type_id');
+            $table->foreign('vehicle_type_id')->references('id')->on('vehicles_types'); */
+
+            // $table->foreignId('service_order_id')->constrained('service_orders')->cascadeOnUpdate()->cascadeOnDelete()->nullable();
+                $table->timestamps();
         });
     }
 

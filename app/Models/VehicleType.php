@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class VehicleType extends Model
 {
     use HasFactory;
 
-    protected $table = 'roles';
+    protected $table = 'vehicles_types';
 
     /**
      * The attributes that are mass assignable.
@@ -20,8 +20,11 @@ class Role extends Model
         'name'
     ];
 
-    public function users()
+    /**
+     * Get all vehicles of a certain type
+     */
+    public function vehicles()
     {
-        return $this->belongsToMany(User::class, 'role_user','role_id');
+        return $this->hasMany(Vehicle::class);
     }
 }
