@@ -5501,16 +5501,17 @@ window.addEventListener('DOMContentLoaded', function () {
   var app = {
     'global': document.getElementById('wrapper_global')
   };
-  var navigation = document.getElementById('navigation');
-
-  if (navigation) {
-    var overlay = document.getElementById('overlay-navigation');
-    document.querySelector('#checkbox-navigation').addEventListener('change', function () {
-      navigation.classList.toggle('is-navigation-show');
-      overlay.classList.toggle('is-visible');
-      this.checked ? document.body.classList.add('!overflow-hidden') : document.body.classList.remove('!overflow-hidden');
-    });
-  }
+  /* const navigation = document.getElementById('navigation');
+   if (navigation) {
+      let overlay = document.getElementById('overlay-navigation');
+       document.querySelector('#checkbox-navigation').addEventListener('change', function () {
+          navigation.classList.toggle('is-navigation-show');
+          overlay.classList.toggle('is-visible');
+           this.checked
+              ? document.body.classList.add('!overflow-hidden')
+              : document.body.classList.remove('!overflow-hidden');
+      });
+  } */
 
   var dropdownCollection = document.querySelectorAll('[data-trigger=dropdown]');
   var collapseCollection = document.querySelectorAll('[data-trigger=collapse]');

@@ -23,5 +23,11 @@ class VehicleSeeder extends Seeder
             "vehicle_type_id"        => 1,
             "service_order_id"        => 1,
         ]);
+
+        Vehicle::create([
+            "vin"                    => "Admin#46724",
+            "vehicle_type_id"        => 2,
+            "service_order_id"        => 1,
+        ]);
     }
 }

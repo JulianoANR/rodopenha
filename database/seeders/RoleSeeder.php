@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\RolesEnum;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\{
@@ -19,22 +20,22 @@ class RoleSeeder extends Seeder
     {
         Role::create([
             'id'   => 1,
-            'name' => 'administrator'
+            'name' => RolesEnum::ADMIN
         ]);
 
         Role::create([
             'id'   => 2,
-            'name' => 'driver'
+            'name' => RolesEnum::DRIVER
         ]);
 
         Role::create([
             'id'   => 3,
-            'name' => 'supervisor'
+            'name' => RolesEnum::SUPERVISOR
         ]);
 
         Role::create([
             'id'   => 4,
-            'name' => 'dispatcher'
+            'name' => RolesEnum::DISPATCHER
         ]);
     }
 }

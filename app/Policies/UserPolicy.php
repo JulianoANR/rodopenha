@@ -2,8 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+
+use App\Models\{
+    User
+};
 
 class UserPolicy
 {
@@ -14,9 +17,8 @@ class UserPolicy
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User $user)
     {
         //
     }
-
 }

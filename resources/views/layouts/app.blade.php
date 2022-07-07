@@ -41,8 +41,9 @@
 </head>
 <body {{ $attributes }}>
 
-    <div>
-        <!-- Wrapper Global -->
+    <div id="app" x-data="{ open: false }">
+
+        <!-- Wrapper App -->
         <div class="flex flex-col w-full h-screen !overflow-y-auto overflow-x-hidden relative" id="wrapper_global">
 
             <!-- Header -->
@@ -51,11 +52,9 @@
                 <div class="h-16 flex items-center pl-4 md:pl-6 xl:w-72">
                     <div class="flex items-center gap-1">
 
-                        <label class="p-2 -translate-x-2 text-white rounded-full cursor-pointer hover:transition hover:ease-out hover:bg-white/10 focus:outline-none focus:ring focus:ring-white/20 focus:bg-white/10 xl:hidden"
-                               for="checkbox-navigation" tabindex="1">
+                        <button class="-translate-x-2 p-2 text-white rounded-full cursor-pointer hover:transition hover:ease-out hover:bg-white/10 focus:outline-none focus:ring focus:ring-white/20 focus:bg-white/10 xl:hidden" @click="open = !open">
                             <svg class="w-6 h-6 stroke-current" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
-                            <input id="checkbox-navigation" type="checkbox" class="hidden">
-                        </label>
+                        </button>
 
                         <div>
                             <!-- Brand -->
@@ -68,8 +67,8 @@
 
                 <div class="grow h-16 flex justify-end items-center pr-4 md:pr-6 lg:px-6 lg:justify-between">
 
-                    <!-- Left -->
                     <div class="flex items-center gap-2">
+                        <!-- Start Search DESKTOP -->
                         <form class="hidden lg:block relative" method="GET" action="#">
 
                             <div>
@@ -84,14 +83,13 @@
                                 </button>
                             </div>
 
-                            <div class="hidden animate-fade-up">
-                                <!-- Create auto complete -->
-                            </div>
+                            <div class="hidden animate-fade-up"></div>
                         </form>
+                        <!-- End Search DESKTOP -->
                     </div>
 
-                    <!-- Right -->
                     <div class="flex items-center gap-2">
+                        <!-- Start FullScreen -->
                         <button class="hidden lg:block p-2 text-white rounded-full relative transition ease-out hover:bg-white/10 focus:outline-none focus:ring focus:ring-white/20 focus:bg-white/10"
                                 x-data="toggleFullScreen" @click="toggle()">
 
@@ -103,8 +101,9 @@
                                 <x-icon name="contract" library="ion-icon"></x-icon>
                             </span>
                         </button>
-                        <!---->
-                        <!---->
+                        <!-- End FullScreen -->
+
+                        <!-- Start Search MOBILE -->
                         <div class="sm:relative lg:hidden">
                             <button class="flex gap-2 p-2 text-white rounded-full relative transition ease-out hover:bg-white/10 focus:outline-none focus:ring focus:ring-white/20 focus:bg-white/10"
                                     data-trigger="dropdown" data-dropdown-sensible aria-expanded="false">
@@ -115,7 +114,6 @@
                             <div class="hidden animate-fade-up absolute right-2 top-[4.75rem] w-[calc(100%-1rem)] rounded shadow bg-white p-2 border border-slate-200 sm:w-[350px] sm:right-0 sm:top-16
                                         dark:bg-header dark:border-zinc-800 dark:shadow-lg">
 
-                                <!-- Search Mobile -->
                                 <form class="flex" action="#" method="GET" data-trigger="collapse">
 
                                     <input class="grow bg-gray-100 text-sm rounded-l-sm border-0 focus:ring-0 dark:bg-white/5 dark:placeholder-gray-200 dark:text-gray-200"
@@ -127,15 +125,15 @@
                                 </form>
                             </div>
                         </div>
-                        <!---->
-                        <!---->
+                        <!-- End Search MOBILE -->
+
+                        <!-- Start Notifications -->
                         <div class="sm:relative">
                             <button class="p-2 text-white rounded-full relative transition ease-out hover:bg-white/10 focus:outline-none focus:ring focus:ring-white/20 focus:bg-white/10"
                                     data-trigger="dropdown" data-dropdown-sensible aria-expanded="false">
 
                                 <x-icon name="notifications" library="ion-icon"></x-icon>
 
-                                <!-- Counter -->
                                 @if(true)
                                     <span class="absolute top-0 right-0 w-[16px] h-[16px] bg-red-500 text-[11px] text-white shadow rounded-full">
                                         1
@@ -154,16 +152,16 @@
                                         1
                                     </span>
                                 </div>
+
                                 <!-- body -->
                                 <div class="flex flex-col divide-y overflow-y-auto max-h-64 dark:divide-zinc-700">
-                                    <!---->
-                                    <!---->
+
                                     <a class="px-4 py-2 block text-sm text-gray-700 cursor-pointer transition ease-out hover:bg-gray-100 focus:bg-gray-200
                                               dark:text-gray-300 dark:hover:bg-white/5 dark:focus:bg-white/10" href="#">
 
-                                    <span>
-                                        ❤ Welcome and may our space be conducive to your development and may we grow together!
-                                    </span>
+                                        <span>
+                                            ❤ Welcome and may our space be conducive to your development and may we grow together!
+                                        </span>
 
                                         <div class="flex justify-end text-xs font-medium text-gray-400 mt-2">
                                             Nov 24, 2003
@@ -172,8 +170,9 @@
                                 </div>
                             </div>
                         </div>
-                        <!---->
-                        <!---->
+                        <!-- End Notifications -->
+
+                        <!-- Start User Options -->
                         <div class="relative">
                             <button class="flex items-center justify-center space-x-2 text-white ml-2" data-trigger="dropdown" data-dropdown-sensible>
 
@@ -191,24 +190,21 @@
 
                             <div class="hidden animate-zoom-in origin-top-right absolute right-0 top-14 rounded text-[15px] shadow bg-white py-2 min-w-[200px] border border-slate-200
                                         dark:bg-header dark:border-zinc-800 dark:shadow-lg">
-                                <!---->
-                                <!---->
+
                                 <a class="flex items-center space-x-4 w-full px-4 py-2 text-gray-700 capitalize cursor-pointer transition hover:bg-gray-100 focus:bg-gray-200
                                           dark:text-gray-100 dark:hover:bg-white/5 dark:focus:bg-white/10" href="#">
 
                                     <i class="fa-solid fa-user"></i>
                                     <span>{{ __('profile') }}</span>
                                 </a>
-                                <!---->
-                                <!---->
+
                                 <a class="flex items-center space-x-4 w-full px-4 py-2 text-gray-700 capitalize cursor-pointer transition hover:bg-gray-100 focus:bg-gray-200
-                                          dark:text-gray-100 dark:hover:bg-white/5 dark:focus:bg-white/10" href="{{ route('settings.account_data') }}">
+                                          dark:text-gray-100 dark:hover:bg-white/5 dark:focus:bg-white/10" href="#">
 
                                     <i class="fa-solid fa-gear"></i>
                                     <span>{{ 'settings' }}</span>
                                 </a>
-                                <!---->
-                                <!---->
+
                                 <form action="{{ route('logout') }}" method="POST">
                                     @csrf
 
@@ -221,292 +217,251 @@
                                 </form>
                             </div>
                         </div>
+                        <!-- End User Options -->
                     </div>
                 </div>
             </header>
 
             <!-- Navbar -->
             <div>
-                <nav class="fixed z-30 top-0 -left-full w-80 h-full flex flex-col bg-theme shadow transition-[left] duration-500 ease-in-out lg:w-72 xl:!left-0 xl:z-10 xl:bg-aside xl:pt-16 xl:transition-none" id="navigation">
+                <nav
+                    x-show="open" x-cloak
+                    x-transition:enter="transform transition ease-in-out duration-500 sm:duration-700"
+                    x-transition:enter-start="-translate-x-full"
+                    x-transition:enter-end="translate-x-0"
+                    x-transition:leave="transform transition ease-in-out duration-500 sm:duration-700"
+                    x-transition:leave-start="translate-x-0"
+                    x-transition:leave-end="-translate-x-full"
+                    class="fixed z-30 top-0 h-full xl:z-10 xl:!flex xl:z-10 xl:pt-16">
 
-                    <div class="h-16 flex items-center justify-between p-4 px-5 xl:hidden">
-                        <a href="{{  route('index') }}">
-                            <x-application-logo type="white" class="h-10" />
-                        </a>
+                    <div class="flex flex-col w-80 h-full bg-theme shadow lg:w-72 xl:bg-aside">
 
-                        <label class="cursor-pointer p-2 text-white rounded-full transition hover:bg-white/10 focus:outline-none focus:ring focus:ring-white/20 focus:bg-white/10" for="checkbox-navigation" tabindex="1">
-                            <x-icon name="close" library="ion-icon"></x-icon>
-                        </label>
-                    </div>
+                        <div class="w-full h-16 flex items-center justify-between p-4 px-5 xl:hidden">
+                            <a href="{{  route('index') }}"><x-application-logo type="white" class="h-10" /></a>
 
-                    <div class="h-[calc(100%-4rem)] overflow-y-auto flex flex-col pt-2 px-3 pb-4 space-y-4 text-white xl:h-full xl:pt-6 xl:text-gray-700 dark:text-gray-400 capitalize">
+                            <button class="p-2 text-white rounded-full transition hover:bg-white/10 focus:outline-none focus:ring focus:ring-white/20 focus:bg-white/10" @click="open = !open">
+                                <x-icon name="close" library="ion-icon"></x-icon>
+                            </button>
+                        </div>
 
-                        <!-- Home -->
-                        <div class="space-y-2">
-                            <h2 class="font-semibold text-gray-200 ml-2 xl:text-gray-500 dark:text-gray-200">
-                                {{ __('home') }}
-                            </h2>
+                        <div class="h-[calc(100%-4rem)] overflow-y-auto xl:h-full xl:pt-6">
+                            <div class="flex flex-col pt-2 px-3 pb-4 space-y-4 text-white xl:text-gray-700 dark:text-gray-400 capitalize">
 
-                            <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
-                                      dark:hover:bg-white/10 dark:focus:bg-white/20 {{ $active['item'] == 'dashboard' ? $activeClasses : '' }}" href="{{ route('dashboard') }}">
+                                <div class="space-y-2">
+                                    <h2 class="font-semibold text-gray-200 ml-2 xl:text-gray-500 dark:text-gray-200">
+                                        {{ __('home') }}
+                                    </h2>
 
-                                <x-icon name="pie-chart{{ $active['item'] != 'dashboard' ? '-outline' : '' }}" library="ion-icon"></x-icon>
-                                {{ __('dashboard') }}
-                            </a>
-                            <!---->
-                            <!---->
-                            <div>
-                                <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 capitalize
+                                    <!-- Start Dashboard -->
+                                    <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
+                                              dark:hover:bg-white/10 dark:focus:bg-white/20 {{ $active['item'] == 'dashboard' ? $activeClasses : '' }}" href="{{ route('dashboard') }}">
+
+                                        <x-icon name="pie-chart{{ $active['item'] != 'dashboard' ? '-outline' : '' }}" library="ion-icon"></x-icon>
+                                        {{ __('dashboard') }}
+                                    </a>
+                                    <!-- End Dashboard -->
+
+                                    <!-- Start Services -->
+                                    <div>
+                                        <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 capitalize
                                                dark:hover:bg-white/10 dark:focus:bg-white/20 {{ $active['item'] == 'service' ? $activeClasses : '' }}" data-trigger="collapse">
 
-                                    <x-icon name="mail{{ $active['item'] != 'service' ? '-outline' : '' }}" library="ion-icon"></x-icon>
+                                            <x-icon name="mail{{ $active['item'] != 'service' ? '-outline' : '' }}" library="ion-icon"></x-icon>
 
-                                    <span class="grow flex justify-between items-center">
-                                        {{ __('service orders') }}
-                                        <x-icon class="h-5 w-5 text-xl" name="chevron-down" library="ion-icon"></x-icon>
-                                    </span>
-                                </button>
+                                            <span class="grow flex justify-between items-center">
+                                                {{ __('service orders') }}
+                                                <x-icon class="h-5 w-5 text-xl" name="chevron-down" library="ion-icon"></x-icon>
+                                            </span>
+                                        </button>
 
-                                <div class="{{ $active['item'] != 'service' ? 'is-collapsed' : '' }} collapsible mt-2 capitalize space-y-1">
-                                    <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('service-orders.index')}}">
+                                        <div class="{{ $active['item'] != 'service' ? 'is-collapsed' : '' }} collapsible mt-2 capitalize space-y-1">
+                                            <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                                      before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('service-orders.index')}}">
 
-                                        {{ __('all orders') }}
-                                    </a>
-                                    <!---->
-                                    <!---->
-                                    <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2"  href="{{ route('service-orders.create') }}">
+                                                {{ __('all orders') }}
+                                            </a>
 
-                                        {{ __('create order') }}
-                                    </a>
-                                    <!---->
-                                    <!---->
-                                    <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2"  href="#">
+                                            <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                                      before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2"  href="{{ route('service-orders.create') }}">
 
-                                        {{ __('archived orders') }}
-                                    </a>
-                                </div>
-                            </div>
-                            <!---->
-                            <!---->
-                            <div>
-                                <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 capitalize
-                                               dark:hover:bg-white/10 dark:focus:bg-white/20 {{ $active['item'] == 'vehicles' ? $activeClasses : '' }}" data-trigger="collapse">
+                                                {{ __('create order') }}
+                                            </a>
 
-                                    <x-icon name="car{{ $active['item'] != 'vehicles' ? '-outline' : '' }}" library="ion-icon"></x-icon>
+                                            <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                                      before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2"  href="#">
 
-                                    <span class="grow flex justify-between items-center">
-                                        {{ __('vehicles') }}
-                                        <x-icon class="h-5 w-5 text-xl" name="chevron-down" library="ion-icon"></x-icon>
-                                    </span>
-                                </button>
+                                                {{ __('archived orders') }}
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <!-- End Services -->
 
-                                <div class="{{ $active['item'] != 'vehicles' ? 'is-collapsed' : '' }} collapsible mt-2 capitalize space-y-1">
-                                    <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('vehicles.index') }}">
+                                    <!-- Start Vehicles -->
+                                    <div>
+                                        <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 capitalize
+                                                dark:hover:bg-white/10 dark:focus:bg-white/20 {{ $active['item'] == 'vehicles' ? $activeClasses : '' }}" data-trigger="collapse">
 
-                                        {{ __('all vehicles') }}
-                                    </a>
-                                    <!---->
-                                    <!---->
-                                    <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('vehicles.create') }}">
+                                            <x-icon name="car{{ $active['item'] != 'vehicles' ? '-outline' : '' }}" library="ion-icon"></x-icon>
 
-                                        {{ __('create vehicle') }}
-                                    </a>
-                                </div>
-                            </div>
-                            <!---->
-                            <!---->
-                            <div>
-                                <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 capitalize
+                                            <span class="grow flex justify-between items-center">
+                                                {{ __('vehicles') }}
+                                                <x-icon class="h-5 w-5 text-xl" name="chevron-down" library="ion-icon"></x-icon>
+                                            </span>
+                                        </button>
+
+                                        <div class="{{ $active['item'] != 'vehicles' ? 'is-collapsed' : '' }} collapsible mt-2 capitalize space-y-1">
+                                            <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                                      before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('vehicles.index') }}">
+
+                                                {{ __('all vehicles') }}
+                                            </a>
+
+                                            <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                                      before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('vehicles.create') }}">
+
+                                                {{ __('create vehicle') }}
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <!-- End Vehicles -->
+
+                                    <!-- Start Trips -->
+                                    <div>
+                                        <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 capitalize
                                                dark:hover:bg-white/10 dark:focus:bg-white/20 {{ $active['item'] == 'trips' ? $activeClasses : '' }}" data-trigger="collapse">
 
-                                    <x-icon name="git-pull-request{{ $active['item'] != 'trips' ? '-outline' : '' }}" library="ion-icon"></x-icon>
+                                            <x-icon name="git-pull-request{{ $active['item'] != 'trips' ? '-outline' : '' }}" library="ion-icon"></x-icon>
 
-                                    <span class="grow flex justify-between items-center">
-                                        {{ __('trips') }}
-                                        <x-icon class="h-5 w-5 text-xl" name="chevron-down" library="ion-icon"></x-icon>
-                                    </span>
-                                </button>
+                                            <span class="grow flex justify-between items-center">
+                                                {{ __('trips') }}
+                                                <x-icon class="h-5 w-5 text-xl" name="chevron-down" library="ion-icon"></x-icon>
+                                            </span>
+                                        </button>
 
-                                <div class="{{ $active['item'] != 'trips' ? 'is-collapsed' : '' }} collapsible mt-2 capitalize space-y-1">
-                                    <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('trips.index') }}">
+                                        <div class="{{ $active['item'] != 'trips' ? 'is-collapsed' : '' }} collapsible mt-2 capitalize space-y-1">
+                                            <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                                      before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('trips.index') }}">
 
-                                        {{ __('all trips') }}
+                                                {{ __('all trips') }}
+                                            </a>
+
+                                            <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                                      before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="#">
+
+                                                {{ __('create trip') }}
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <!-- End Trips -->
+
+                                    <!-- Start Users -->
+                                    <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
+                                              dark:hover:bg-white/10 dark:focus:bg-white/20 {{ $active['item'] == 'users' ? $activeClasses : '' }}" href="{{ route('users.index') }}">
+
+                                        <x-icon name="person{{ $active['item'] != 'users' ? '-outline' : '' }}" library="ion-icon"></x-icon>
+                                        {{ __('users') }}
                                     </a>
-                                    <!---->
-                                    <!---->
-                                    <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="#">
+                                    <!-- End Users -->
 
-                                        {{ __('create trip') }}
-                                    </a>
-                                </div>
-                            </div>
-                            <!---->
-                            <!---->
-                            <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
-                                      dark:hover:bg-white/10 dark:focus:bg-white/20 {{ $active['item'] == 'users' ? $activeClasses : '' }}" href="{{ route('users.index') }}">
-
-                                <x-icon name="person{{ $active['item'] != 'users' ? '-outline' : '' }}" library="ion-icon"></x-icon>
-                                {{ __('users') }}
-                            </a>
-                            <!---->
-                            <!---->
-                            <div>
-                                <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
+                                    <!-- Start Settings -->
+                                    <div>
+                                        <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
                                                dark:hover:bg-white/10 dark:focus:bg-white/20 {{ $active['item'] == 'settings' ? $activeClasses : '' }}" data-trigger="collapse">
 
-                                    <x-icon name="settings{{ $active['item'] != 'settings' ? '-outline' : '-sharp' }}" library="ion-icon"></x-icon>
+                                            <x-icon name="settings{{ $active['item'] != 'settings' ? '-outline' : '-sharp' }}" library="ion-icon"></x-icon>
 
-                                    <span class="grow flex justify-between items-center">
-                                        Settings
-                                        <x-icon class="h-5 w-5 text-xl" name="chevron-down" library="ion-icon"></x-icon>
-                                    </span>
-                                </button>
+                                            <span class="grow flex justify-between items-center">
+                                                Settings
+                                                <x-icon class="h-5 w-5 text-xl" name="chevron-down" library="ion-icon"></x-icon>
+                                            </span>
+                                        </button>
 
-                                <div class="{{ $active['item'] != 'settings' ? 'is-collapsed' : '' }} collapsible mt-2 capitalize space-y-1">
-                                    <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('settings.account_data') }}">
+                                        <div class="{{ $active['item'] != 'settings' ? 'is-collapsed' : '' }} collapsible mt-2 capitalize space-y-1">
+                                            <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                                      before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('settings.account_data') }}">
 
-                                        {{ __('account data') }}
-                                    </a>
-                                    <!---->
-                                    <!---->
-                                    <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('settings.preferences') }}">
+                                                {{ __('account data') }}
+                                            </a>
 
-                                        {{ __('preferences') }}
-                                    </a>
-                                    <!---->
-                                    <!---->
-                                    <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('settings.company_data') }}">
+                                            <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                                      before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('settings.preferences') }}">
 
-                                        {{ __('company data') }}
-                                    </a>
-                                    <!---->
-                                    <!---->
-                                    <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('settings.company_terms') }}">
+                                                {{ __('preferences') }}
+                                            </a>
 
-                                        {{ __('terms & conditions') }}
-                                    </a>
+                                            <a class="py-2 px-12 block relative text-sm text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                                      before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('settings.company_data') }}">
+
+                                                {{ __('company data') }}
+                                            </a>
+
+                                            <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
+                                                      before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('settings.company_terms') }}">
+
+                                                {{ __('terms & conditions') }}
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <!-- End Settings -->
                                 </div>
-                            </div>
-                        </div>
 
-                        <!-- Finance Elements -->
-                        <div class="space-y-2">
-                            <h2 class="font-semibold text-gray-200 ml-2 xl:text-gray-500 dark:text-gray-200">
-                                {{ 'finances' }}
-                            </h2>
+                                <div class="space-y-2">
+                                    <h2 class="font-semibold text-gray-200 ml-2 xl:text-gray-500 dark:text-gray-200">
+                                        {{ 'finances' }}
+                                    </h2>
 
-                            <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
-                                    dark:hover:bg-white/10 dark:focus:bg-white/20" href="{{ route('finance.dashboard') }}">
+                                    <!-- Start Finances Painel -->
+                                    <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
+                                              dark:hover:bg-white/10 dark:focus:bg-white/20" href="{{ route('finance.dashboard') }}">
 
-                                <x-icon name="cash-outline" library="ion-icon"></x-icon>
-                                {{ __('financial panel') }}
-                            </a>
-                            <!---->
-                            <!---->
-                            <div>
-                                <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 capitalize
-                                               dark:hover:bg-white/10 dark:focus:bg-white/20" data-trigger="collapse">
+                                        <x-icon name="cash-outline" library="ion-icon"></x-icon>
+                                        {{ __('financial panel') }}
+                                    </a>
+                                    <!-- End Finances Painel -->
 
-                                    <x-icon name="arrow-back" library="ion-icon"></x-icon>
+                                    <!-- Start Incomes -->
+                                    <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
+                                              dark:hover:bg-white/10 dark:focus:bg-white/20" href="{{ route('finance.dashboard') }}">
 
-                                    <span class="grow flex justify-between items-center">
+                                        <x-icon name="arrow-back" library="ion-icon"></x-icon>
                                         {{ __('incomes') }}
-                                        <x-icon class="h-5 w-5 text-xl" name="chevron-down" library="ion-icon"></x-icon>
-                                    </span>
-                                </button>
-
-                                <div class="is-collapsed collapsible mt-2 capitalize space-y-1">
-                                    <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="#">
-                                        Introduction
                                     </a>
-                                    <!---->
-                                    <!---->
-                                    <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2"  href="#">
-                                        Icons
-                                    </a>
-                                    <!---->
-                                    <!---->
-                                    <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="#">
-                                        DataTable
-                                    </a>
-                                </div>
-                            </div>
-                            <!---->
-                            <!---->
-                            <div>
-                                <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 capitalize
-                                    dark:hover:bg-white/10 dark:focus:bg-white/20" data-trigger="collapse">
+                                    <!-- End Incomes -->
 
-                                    <x-icon name="arrow-forward" library="ion-icon"></x-icon>
+                                    <!-- Start Expenses -->
+                                    <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
+                                              dark:hover:bg-white/10 dark:focus:bg-white/20" href="{{ route('finance.dashboard') }}">
 
-                                    <span class="grow flex justify-between items-center">
+                                        <x-icon name="arrow-forward" library="ion-icon"></x-icon>
                                         {{ __('expenses') }}
-                                        <x-icon class="h-5 w-5 text-xl" name="chevron-down" library="ion-icon"></x-icon>
-                                    </span>
-                                </button>
+                                    </a>
+                                    <!-- End Expenses -->
 
-                                <div class="is-collapsed collapsible mt-2 capitalize space-y-1">
-                                    <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="#">
-                                        Introduction
+                                    <!-- Start inventory -->
+                                    <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
+                                              dark:hover:bg-white/10 dark:focus:bg-white/20" href="#">
+
+                                        <x-icon name="bag-outline" library="ion-icon"></x-icon>
+                                        {{ __('inventory') }}
                                     </a>
-                                    <!---->
-                                    <!---->
-                                    <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2"  href="#">
-                                        Icons
-                                    </a>
-                                    <!---->
-                                    <!---->
-                                    <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                              before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="#">
-                                        DataTable
-                                    </a>
+                                    <!-- End inventory -->
                                 </div>
                             </div>
-                            <!---->
-                            <!---->
-                            <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
-                                    dark:hover:bg-white/10 dark:focus:bg-white/20" href="#">
-
-                                <x-icon name="bag-outline" library="ion-icon"></x-icon>
-                                {{ __('inventory') }}
-                            </a>
                         </div>
-
-                        {{--<div class="p-3 flex flex-col gap-y-4 bg-white/10 rounded xl:bg-gray-100 dark:bg-white/5 normal-case">
-                            <div class="flex justify-center text-3xl">
-                                <i class="fa-solid fa-gift"></i>
-                            </div>
-
-                            <p class="text-sm text-center">
-                                Support this project by leaving your star on github.
-                            </p>
-
-                            <button class="button button-primary button-sm w-full waves-effect">
-                                Go to <i class="fa-brands fa-github"></i>
-                            </button>
-                        </div> --}}
                     </div>
                 </nav>
 
-                <label class="invisible opacity-0 fixed z-20 inset-0 bg-zinc-900/60 transition duration-500 xl:hidden" id="overlay-navigation" for="checkbox-navigation">
-                    <!-- Overlay Navigation -->
-                </label>
+                <div
+                    class="fixed  z-20 inset-0 bg-zinc-900/60 transition-opacity xl:!hidden"
+                    x-show="open" x-cloak
+                    x-transition:enter="ease-in-out duration-500"
+                    x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100"
+                    x-transition:leave="ease-in-out duration-500"
+                    x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0"
+                    @click="open = !open"
+                ><!-- Overlay Navigation --></div>
             </div>
 
             <!-- Page Content -->
@@ -516,7 +471,6 @@
                 @endif
 
                 <main class="grow pb-12">
-                    {{-- Content --}}
                     {{ $slot }}
                 </main>
 

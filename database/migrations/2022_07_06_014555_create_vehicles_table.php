@@ -20,17 +20,23 @@ return new class extends Migration
             $table->string('model')->nullable();
             $table->string('year')->nullable();
             $table->string('color')->nullable();
-            $table->string('operable')->nullable();
+            $table->boolean('operable')->nullable();
             $table->string('lot_number')->nullable();
             $table->string('buyer_number')->nullable();
-            $table->foreignId('vehicle_type_id')->constrained('vehicles_types')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->unsignedBigInteger('service_order_id');
 
-            /* $table->unsignedBigInteger('vehicle_type_id');
-            $table->foreign('vehicle_type_id')->references('id')->on('vehicles_types'); */
+            $table->foreignId('vehicle_type_id')
+                  ->constrained('vehicles_types')
+                  ->cascadeOnUpdate()
+                  ->cascadeOnDelete();
 
-            // $table->foreignId('service_order_id')->constrained('service_orders')->cascadeOnUpdate()->cascadeOnDelete()->nullable();
-                $table->timestamps();
+            // $table->unsignedBigInteger('service_order_id');
+
+            $table->foreignId('service_order_id')
+                  ->constrained('service_orders')
+                  ->cascadeOnUpdate()
+                  ->cascadeOnDelete();
+
+            $table->timestamps();
         });
     }
 

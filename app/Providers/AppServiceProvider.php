@@ -26,18 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Schema::defaultStringLength(191);
-
-        // Gate::define('is-company', function (User $user) {
-
-        // });
-
-        // Gate::define('is-admin', function (User $user) {
-
-        // });
-
-        // Gate::define('is-not-suspended', function (User $user) {
-
-        // });
+        //
     }
 }

@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('service_orders', function (Blueprint $table) {
+        Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->enum('status', ['new', 'assigned', 'accepted', 'picked up', 'delivered']);
-            // $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->softDeletes();
+            $table->string('name');
+            $table->string('email');
+            $table->enum('phone', ['personal', 'business']);
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('service_orders');
+        Schema::dropIfExists('contacts');
     }
 };

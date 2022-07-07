@@ -8,7 +8,7 @@ window.addEventListener('DOMContentLoaded', () => {
         'global': document.getElementById('wrapper_global'),
     }
 
-    const navigation = document.getElementById('navigation');
+    /* const navigation = document.getElementById('navigation');
 
     if (navigation) {
         let overlay = document.getElementById('overlay-navigation');
@@ -21,7 +21,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 ? document.body.classList.add('!overflow-hidden')
                 : document.body.classList.remove('!overflow-hidden');
         });
-    }
+    } */
 
     const dropdownCollection = document.querySelectorAll('[data-trigger=dropdown]');
     const collapseCollection = document.querySelectorAll('[data-trigger=collapse]');

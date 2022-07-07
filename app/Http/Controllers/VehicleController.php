@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\RolesEnum;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
-use App\Models\{
-    Vehicle,
-    VehicleType
-};
+use App\Models\{Payment, ServiceOrder, Vehicle, VehicleType};
 
 class VehicleController extends Controller
 {

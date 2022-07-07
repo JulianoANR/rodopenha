@@ -60,18 +60,3 @@
     </div>
 </div>
 
-{{--
- @push('scripts')
-    <script>
-        window.addEventListener('DOMContentLoaded', () => {
-
-            document.querySelector('#show_more').addEventListener('click', function() {
-
-                this.parentNode.remove();
-                document.getElementById('wrapper_items').classList.remove('max-h-[11rem]');
-            });
-        });
-    </script>
-@endpush
- --}}
-

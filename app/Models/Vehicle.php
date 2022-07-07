@@ -40,4 +40,9 @@ class Vehicle extends Model
     {
         return $this->belongsTo(VehicleType::class, 'vehicle_type_id', 'id');
     }
+
+    public function servideOrder()
+    {
+        return $this->belongsTo(ServiceOrder::class, 'service_order_id', 'id');
+    }
 }

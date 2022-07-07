@@ -19,7 +19,7 @@ use App\Http\Controllers\{
 |
 */
 
-Route::view('/', 'welcome')->name('index');
+Route::redirect('/', '/dashboard')->name('index');
 Route::view('/components', 'componentsCSS')->name('components');
 
 Route::middleware(['auth'])->group( function () {

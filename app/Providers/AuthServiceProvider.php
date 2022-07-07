@@ -2,8 +2,14 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+
+use App\Enums\{
+    RolesEnum,
+};
+
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -25,6 +31,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        /**
+         * Role-based authorization services.
+         */
+        Gate::define('isAdmin', fn(User $user) => $user->roles->contains('name', RolesEnum::ADMIN->value));
+        Gate::define('isDriver', fn(User $user) => $user->roles->contains('name', RolesEnum::DRIVER->value));
+        Gate::define('isSupervisor', fn(User $user) => $user->roles->contains('name', RolesEnum::SUPERVISOR->value));
+        Gate::define('isDispatcher', fn(User $user) => $user->roles->contains('name', RolesEnum::DISPATCHER->value));
     }
 }

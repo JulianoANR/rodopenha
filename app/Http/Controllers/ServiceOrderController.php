@@ -11,6 +11,7 @@ use App\Models\{
 
 class ServiceOrderController extends Controller
 {
+    protected $serviceOrders;
 
     function __construct(ServiceOrder $serviceOrders) {
         $this->serviceOrders = $serviceOrders;
