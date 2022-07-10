@@ -1,4 +1,3 @@
-
 <input {{ $attributes->merge(['class' => 'input']) }} value="{{ old($name) }}">
 
 @error($name)

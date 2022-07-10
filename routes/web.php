@@ -20,10 +20,10 @@ use App\Http\Controllers\{
 */
 
 Route::redirect('/', '/dashboard')->name('index');
-Route::view('/components', 'componentsCSS')->name('components');
+Route::view('/components', 'pages.componentsCSS')->name('components');
 
 Route::middleware(['auth'])->group( function () {
-    Route::view('/dashboard', 'dashboard')->name('dashboard');
+    Route::view('/dashboard', 'pages.dashboard')->name('dashboard');
 
     Route::prefix('/users')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('users.index');
@@ -43,10 +43,10 @@ Route::middleware(['auth'])->group( function () {
     });
 
     Route::prefix('/settings')->group(function () {
-        Route::view('/account', 'settings.account')->name('settings.account_data');
-        Route::view('/preferences', 'settings.preferences')->name('settings.preferences');
-        Route::view('/company', 'settings.company')->name('settings.company_data');
-        Route::view('/terms', 'settings.company_terms')->name('settings.company_terms');
+        Route::view('/account', 'pages.settings.account')->name('settings.account_data');
+        Route::view('/preferences', 'pages.settings.preferences')->name('settings.preferences');
+        Route::view('/company', 'pages.settings.company')->name('settings.company_data');
+        Route::view('/terms', 'pages.settings.company_terms')->name('settings.company_terms');
     });
 
     Route::prefix('/vehicles')->group(function () {
@@ -56,7 +56,7 @@ Route::middleware(['auth'])->group( function () {
     });
 
     Route::prefix('/trips')->group(function () {
-        Route::view('/', 'trips.index')->name('trips.index');
+        Route::view('/', 'pages.trips.index')->name('trips.index');
     });
 
     Route::prefix('/finance')->group(function () {

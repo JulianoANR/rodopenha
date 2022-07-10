@@ -14,7 +14,7 @@ class FinanceController extends Controller
     public function dashboard()
     {
         $data = [];
-        return view('finances.dashboard', compact(['data']));
+        return view('pages.finances.dashboard', compact(['data']));
     }
 
 }

@@ -19,7 +19,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('users.index', compact(['users']));
+        return view('pages.users.index', compact(['users']));
     }
 
     /**
@@ -29,7 +29,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        return view('pages.users.create');
     }
 
     /**
@@ -63,7 +63,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        return view('users.show', compact(['user']));
+        return view('pages.users.show', compact(['user']));
     }
 
     /**
@@ -75,7 +75,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        return view('users.edit', compact(['user']));
+        return view('pages.users.edit', compact(['user']));
     }
 
     /**

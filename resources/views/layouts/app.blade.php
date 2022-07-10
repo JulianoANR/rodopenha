@@ -232,7 +232,8 @@
                     x-transition:leave="transform transition ease-in-out duration-500 sm:duration-700"
                     x-transition:leave-start="translate-x-0"
                     x-transition:leave-end="-translate-x-full"
-                    class="fixed z-30 top-0 h-full xl:z-10 xl:!flex xl:z-10 xl:pt-16">
+                    class="fixed z-30 top-0 h-full xl:z-10 xl:!flex xl:z-10 xl:pt-16"
+                >
 
                     <div class="flex flex-col w-80 h-full bg-theme shadow lg:w-72 xl:bg-aside">
 

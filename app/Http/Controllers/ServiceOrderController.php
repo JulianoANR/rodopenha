@@ -26,7 +26,7 @@ class ServiceOrderController extends Controller
     {
         // $orders = ServiceOrder::all();
         $orders = [];
-        return view('serviceOrders.index', compact(['orders']));
+        return view('pages.serviceOrders.index', compact(['orders']));
     }
 
     /**
@@ -36,7 +36,7 @@ class ServiceOrderController extends Controller
      */
     public function create()
     {
-        return view('serviceOrders.create');
+        return view('pages.serviceOrders.create');
     }
 
     /**
@@ -58,7 +58,7 @@ class ServiceOrderController extends Controller
      */
     public function show(ServiceOrder $serviceOrder)
     {
-        return view('serviceOrders.show');
+        return view('pages.serviceOrders.show');
     }
 
     /**
