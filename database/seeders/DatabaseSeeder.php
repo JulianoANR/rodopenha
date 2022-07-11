@@ -20,7 +20,11 @@ class DatabaseSeeder extends Seeder
             ServiceOrderSeeder::class,
             VehicleTypeSeeder::class,
             VehicleSeeder::class,
-            PaymentSeeder::class
+            PaymentSeeder::class,
+            ContactSeeder::class,
+            PickupSeeder::class,
+            DeliverySeeder::class,
+            ShipperSeeder::class
         ]);
     }
 }

@@ -23,19 +23,8 @@ return new class extends Migration
             $table->boolean('operable')->nullable();
             $table->string('lot_number')->nullable();
             $table->string('buyer_number')->nullable();
-
-            $table->foreignId('vehicle_type_id')
-                  ->constrained('vehicles_types')
-                  ->cascadeOnUpdate()
-                  ->cascadeOnDelete();
-
-            // $table->unsignedBigInteger('service_order_id');
-
-            $table->foreignId('service_order_id')
-                  ->constrained('service_orders')
-                  ->cascadeOnUpdate()
-                  ->cascadeOnDelete();
-
+            $table->foreignId('vehicle_type_id')->constrained('vehicles_types')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('service_order_id')->constrained('service_orders')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -29,35 +29,10 @@
                     <!-- Start Vehicle -->
                     <x-card class="mb-6">
                         <x-slot name="header">
-                            <span>
-                                {{ __('Vehicle') }}
-                                <i class="ml-1 fa-solid fa-truck-front"></i>
-                            </span>
+                            <span>{{ __('Vehicle') }} <i class="ml-1 fa-solid fa-truck-front"></i></span>
                         </x-slot>
 
                         <x-slot name="body">
-                            {{--<div class="flex flex-wrap -mx-2">
-                                <div class="w-full px-2 mb-4 md:w-1/3">
-                                    <label class="text-sm font-semibold pl-1 mb-2" for="make">Make</label>
-                                    <select class="input" id="payment_type" name="make">
-                                        <option>Ford</option>
-                                        <option>COD</option>
-                                        <option>COP</option>
-                                        <option>Billing</option>
-                                        <option>uShip</option>
-                                    </select>
-                                </div>
-                                <div class="w-full px-2 mb-4 md:w-1/3">
-                                    <label class="text-sm font-semibold pl-1 mb-2" for="model">Model</label>
-                                    <input class="input" id="model" name="model" type="text">
-                                </div>
-
-                                <div class="w-full px-2 mb-4 md:w-1/3">
-                                    <label class="text-sm font-semibold pl-1 mb-2" for="driver">Driver</label>
-                                    <x-selects.select-user name="driver" api="{{ route('data.users') }}"></x-selects.select-user>
-                                </div>
-                            </div> --}}
-
                             <div class="flex flex-wrap -mx-2">
                                 <div class="w-full px-2 mb-4 md:w-2/6">
                                     <label class="text-sm font-semibold pl-1 mb-2" for="company">Company</label>
@@ -94,10 +69,7 @@
                     <!-- Start Trailer -->
                     <x-card>
                         <x-slot name="header">
-                            <span>
-                                {{ __('Trailer') }}
-                                <i class="ml-1 fa-solid fa-caravan"></i>
-                            </span>
+                            <span>{{ __('Trailer') }}<i class="ml-1 fa-solid fa-caravan"></i></span>
                         </x-slot>
 
                         <x-slot name="body">
@@ -142,7 +114,9 @@
                             </div>
 
                             <div class="flex justify-end mt-5">
-                                <button class="button button-primary uppercase" type="submit">Save Vehicle <i class="fa-solid fa-box-archive"></i></button>
+                                <button class="button button-primary uppercase" type="submit">
+                                    {{ __('save vehicle') }} <i class="fa-solid fa-box-archive"></i>
+                                </button>
                             </div>
                         </x-slot>
                     </x-card>

@@ -13,18 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('shippers', function (Blueprint $table) {
             $table->id();
-            $table->string('carrier_pay');
-            $table->json('internal_notes')->nullable();
-            /**
-             * Enum: PaymentTypesEnum.php
-             */
-            $table->string('type')->nullable();
-            /**
-             * Enum: PaymentMethodsEnum.php
-             */
-            $table->string('method')->nullable();
+            $table->string('address');
+            $table->string('notes')->nullable();
+            $table->string('zip');
+            $table->foreignId('contact_id')->constrained('contacts')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('service_order_id')->constrained('service_orders')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
@@ -37,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('shippers');
     }
 };

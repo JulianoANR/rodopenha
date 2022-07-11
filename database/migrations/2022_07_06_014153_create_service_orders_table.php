@@ -17,10 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('load_id');
             $table->text('dispatch_instruction')->nullable();
-
             $table->enum('trailer_type', ['open', 'closed']);
             $table->enum('inspection_type', ['standard', 'M22']);
-
             /**
              * Enum: StatusEnum.php
              */

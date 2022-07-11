@@ -33,16 +33,13 @@ class Vehicle extends Model
         'operable' => 'boolean',
     ];
 
-    /**
-     * Get vehicle type
-     */
-    public function type()
-    {
-        return $this->belongsTo(VehicleType::class, 'vehicle_type_id', 'id');
-    }
-
     public function servideOrder()
     {
         return $this->belongsTo(ServiceOrder::class, 'service_order_id', 'id');
+    }
+
+        public function type()
+    {
+        return $this->belongsTo(VehicleType::class, 'vehicle_type_id', 'id');
     }
 }

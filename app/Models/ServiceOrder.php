@@ -30,19 +30,28 @@ class ServiceOrder extends Model
         'status' => StatusEnum::class,
     ];
 
-    /**
-     * Get all the vehicles that will be transported
-     */
     public  function vehicles()
     {
         return $this->hasMany(Vehicle::class, 'service_order_id', 'id');
     }
 
-    /**
-     * Get payment information.
-     */
     public function payment()
     {
         return $this->hasOne(Payment::class, 'service_order_id', 'id');
+    }
+
+    public function pickup()
+    {
+        return $this->hasOne(Pickup::class, 'service_order_id', 'id');
+    }
+
+    public function delivery()
+    {
+        return $this->hasOne(Delivery::class, 'service_order_id', 'id');
+    }
+
+    public function shipper()
+    {
+        return $this->hasOne(Shipper::class, 'service_order_id', 'id');
     }
 }

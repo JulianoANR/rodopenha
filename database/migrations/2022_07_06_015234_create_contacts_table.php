@@ -15,9 +15,20 @@ return new class extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
+            /**
+             * Enum: ReferenceContactsEnum.php
+             */
+            $table->string('ref');
             $table->string('name');
             $table->string('email');
-            $table->enum('phone', ['personal', 'business']);
+            $table->string('phone');
+            $table->enum('type', ['personal', 'business']);
+            /**
+             * Type business.
+             */
+            $table->string('company')->nullable();
+            $table->string('working_from')->nullable();
+            $table->string('working_to')->nullable();
             $table->timestamps();
         });
     }

@@ -6,15 +6,20 @@ use App\Http\Requests\StoreServiceOrderRequest;
 use App\Http\Requests\UpdateServiceOrderRequest;
 
 use App\Models\{
-    ServiceOrder
+    ServiceOrder,
+    Vehicle,
+    Contact,
+    Pickup,
+    Delivery,
+    Shipper
 };
 
 class ServiceOrderController extends Controller
 {
-    protected $serviceOrders;
+    protected $serviceOrder;
 
-    function __construct(ServiceOrder $serviceOrders) {
-        $this->serviceOrders = $serviceOrders;
+    function __construct(ServiceOrder $serviceOrder) {
+        $this->serviceOrder = $serviceOrder;
     }
 
     /**
@@ -32,7 +37,7 @@ class ServiceOrderController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {

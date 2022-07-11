@@ -364,18 +364,26 @@
 
                     <x-slot name="body">
                         <div class="flex flex-wrap -mx-2">
-                            <div class="w-full px-2 mb-4 md:w-1/2">
+                            <div class="w-full px-2 mb-4 md:w-1/3">
                                 <label class="text-sm font-semibold pl-1 mb-2" for="payment_carrier">Carrier Pay</label>
                                 <input class="input" id="payment_carrier" name="payment[carrier]" type="text">
                             </div>
 
-                            <div class="w-full px-2 mb-4 md:w-1/2">
+                            <div class="w-full px-2 mb-4 md:w-1/3">
+                                <label class="text-sm font-semibold pl-1 mb-2" for="payment_method">Method</label>
+                                <select class="input" id="payment_method" name="payment[method]">
+                                    <option selected>cash</option>
+                                    <option>business check</option>
+                                    <option>cashier check</option>
+                                </select>
+                            </div>
+
+                            <div class="w-full px-2 mb-4 md:w-1/3">
                                 <label class="text-sm font-semibold pl-1 mb-2" for="payment_type">Type</label>
                                 <select class="input" id="payment_type" name="payment[type]">
                                     <option selected>COD</option>
                                     <option>COP</option>
                                     <option>Billing</option>
-                                    <option>uShip</option>
                                 </select>
                             </div>
                         </div>
