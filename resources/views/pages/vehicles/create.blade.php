@@ -51,7 +51,7 @@
                             <div class="flex flex-wrap -mx-2">
                                 <div class="w-full px-2 mb-4 md:w-4/6">
                                     <label class="text-sm font-semibold pl-1 mb-2" for="driver">Driver</label>
-                                    <x-selects.select-user name="driver" api="{{ route('data.users') }}"></x-selects.select-user>
+                                    <x-selects.select-user name="driver" api="{{ route('get.users') }}"></x-selects.select-user>
                                 </div>
                                 <div class="w-full px-2 mb-4 md:w-1/6">
                                     <label class="text-sm font-semibold pl-1 mb-2" for="license_plate">License plate</label>

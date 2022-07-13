@@ -19,8 +19,7 @@ use App\Http\Controllers\{
 */
 
 Route::middleware(['auth'])->group( function () {
-    Route::prefix('/data')->group(function () {
-
-        Route::get('/users', [UserController::class, 'dataUsers'])->name('data.users');
+    Route::prefix('/get')->group(function () {
+        Route::get('/users', [UserController::class, 'dataUsers'])->name('get.users');
     });
 });

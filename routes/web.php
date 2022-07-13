@@ -37,9 +37,9 @@ Route::middleware(['auth'])->group( function () {
         Route::get('/', [ServiceOrderController::class, 'index'])->name('service-orders.index');
         Route::get('/create', [ServiceOrderController::class, 'create'])->name('service-orders.create');
         Route::post('/store', [ServiceOrderController::class, 'store'])->name('service-orders.store');
-        Route::get('/edit/{id}', [ServiceOrderController::class, 'edit'])->name('service-orders.edit');
-        Route::post('/update', [ServiceOrderController::class, 'update'])->name('service-orders.update');
-        Route::get('/id', [ServiceOrderController::class, 'show'])->name('service-orders.show');
+        Route::get('/edit/id', [ServiceOrderController::class, 'edit'])->name('service-orders.edit');
+        Route::put('/update/{id}', [ServiceOrderController::class, 'update'])->name('service-orders.update');
+        Route::get('/{id}', [ServiceOrderController::class, 'show'])->name('service-orders.show');
     });
 
     Route::prefix('/settings')->group(function () {
@@ -64,5 +64,5 @@ Route::middleware(['auth'])->group( function () {
     });
 });
 
-require __DIR__.'/data.php';
+require __DIR__.'/get.php';
 require __DIR__.'/auth.php';

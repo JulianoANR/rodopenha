@@ -1,6 +1,5 @@
 <x-app title="New Service Order" :active="['item' => 'service']">
 
-    <!-- Header page -->
     <div class="my-6 px-4 md:px-6">
         <div class="flex flex-wrap gap-2 justify-between items-center">
             <div class="w-full md:w-max">
@@ -18,9 +17,8 @@
         </div>
     </div>
 
-    <!-- Grid Cards -->
     <div class="px-4 md:px-6">
-            <form action="{{ route('service-orders.store') }}" method="POST">
+        <form action="{{ route('service-orders.store') }}" method="POST">
             @csrf
 
             <div class="flex justify-center items-center w-full">
@@ -85,6 +83,13 @@
                     </x-slot>
 
                     <x-slot name="body">
+                        <div x-data="{ amount: 0 }" id="vehicles_wrapper">
+
+                            <div class="">
+
+                            </div>
+                        </div>
+
                         <div class="flex flex-wrap -mx-2">
                             <div class="w-full px-2 mb-4 md:w-3/12">
                                 <label class="text-sm font-semibold pl-1 mb-2" for="vehicle_vin">VIN</label>
@@ -108,7 +113,7 @@
                                 </div>
                                 <div class="w-full">
                                     <label class="text-sm font-semibold pl-1 mb-2" for="vehicle_color">Color</label>
-                                    <input class="input" id=vehicle_"color" name="vehicle_color" type="text">
+                                    <input class="input" id="vehicle_color" name="vehicle_color" type="text">
                                 </div>
                             </div>
                         </div>
@@ -166,6 +171,7 @@
 
                                 <div class="text-xs capitalize font-bold hidden md:block">
                                     Active: <span x-text="active"></span> Contact
+                                    <input x-show="false" x-cloak :value="active" name="pickup[type_contact]" type="text">
                                 </div>
                             </div>
 
@@ -237,7 +243,7 @@
 
                                 <div class="w-full mt-2 px-2 mb-4">
                                     <div class="inline-flex items-center gap-3 ml-1">
-                                        <input class="checkbox scale-110" id="pickup_signature" name="pickup[signature]" type="checkbox">
+                                        <input class="checkbox scale-110" id="pickup_signature" name="pickup[not_signature]" type="checkbox">
                                         <label class="font-semibold text-base capitalize cursor-pointer select-none" for="pickup_signature">
                                             {{ __('signature not required') }}
                                             <i class="ml-1 fa-solid fa-circle-exclamation"></i>
@@ -271,6 +277,7 @@
 
                                 <div class="text-xs capitalize font-bold hidden md:block">
                                     Active: <span x-text="active"></span> Contact
+                                    <input x-show="false" x-cloak :value="active" name="delivery[type_contact]" type="text">
                                 </div>
                             </div>
 
@@ -417,6 +424,7 @@
 
                                 <div class="text-xs capitalize font-bold hidden md:block">
                                     Active: <span x-text="active"></span> Contact
+                                    <input x-show="false" x-cloak :value="active" name="shipper[type_contact]" type="text">
                                 </div>
                             </div>
 
@@ -483,6 +491,5 @@
             </div>
         </form>
     </div>
-
 </x-app>
 

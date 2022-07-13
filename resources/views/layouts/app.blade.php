@@ -128,7 +128,7 @@
                         <!-- End Search MOBILE -->
 
                         <!-- Start Notifications -->
-                        <div class="sm:relative">
+                        <!-- <div class="sm:relative">
                             <button class="p-2 text-white rounded-full relative transition ease-out hover:bg-white/10 focus:outline-none focus:ring focus:ring-white/20 focus:bg-white/10"
                                     data-trigger="dropdown" data-dropdown-sensible aria-expanded="false">
 
@@ -144,7 +144,7 @@
                             <div class="hidden animate-fade-up absolute right-2 top-[4.75rem] w-[calc(100%-1rem)] rounded shadow-md bg-white py-2 border border-slate-200 sm:w-[350px] sm:right-0 sm:top-16
                                         dark:bg-header dark:border-zinc-800 dark:shadow-lg">
 
-                                <!-- Header -->
+
                                 <div class="flex items-center justify-between px-4 py-2 text-gray-500 font-semibold dark:text-gray-200">
                                     {{ __('Notifications') }}
 
@@ -153,7 +153,7 @@
                                     </span>
                                 </div>
 
-                                <!-- body -->
+
                                 <div class="flex flex-col divide-y overflow-y-auto max-h-64 dark:divide-zinc-700">
 
                                     <a class="px-4 py-2 block text-sm text-gray-700 cursor-pointer transition ease-out hover:bg-gray-100 focus:bg-gray-200
@@ -169,7 +169,7 @@
                                     </a>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- End Notifications -->
 
                         <!-- Start User Options -->
@@ -199,7 +199,7 @@
                                 </a>
 
                                 <a class="flex items-center space-x-4 w-full px-4 py-2 text-gray-700 capitalize cursor-pointer transition hover:bg-gray-100 focus:bg-gray-200
-                                          dark:text-gray-100 dark:hover:bg-white/5 dark:focus:bg-white/10" href="#">
+                                          dark:text-gray-100 dark:hover:bg-white/5 dark:focus:bg-white/10" href="{{ route('settings.account_data') }}">
 
                                     <i class="fa-solid fa-gear"></i>
                                     <span>{{ 'settings' }}</span>
@@ -245,8 +245,8 @@
                             </button>
                         </div>
 
-                        <div class="h-[calc(100%-4rem)] overflow-y-auto xl:h-full xl:pt-6">
-                            <div class="flex flex-col pt-2 px-3 pb-4 space-y-4 text-white xl:text-gray-700 dark:text-gray-400 capitalize">
+                        <div class="h-[calc(100%-4rem)] overflow-y-auto xl:h-full xl:pt-4">
+                            <div class="h-full flex flex-col pt-2 px-3 pb-4 space-y-4 text-white xl:text-gray-700 dark:text-gray-400 capitalize">
 
                                 <div class="space-y-2">
                                     <h2 class="font-semibold text-gray-200 ml-2 xl:text-gray-500 dark:text-gray-200">
@@ -475,7 +475,7 @@
                     {{ $slot }}
                 </main>
 
-                <x-includes.footer-sm />
+                <x-layouts.footer />
             </div>
         </div>
     </div>

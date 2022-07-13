@@ -53,7 +53,7 @@ class Contact extends Model
     }
 
     /**
-     * WARNING
+     * RELATIONSHIP WARNING
      */
     public function pickup()
     {

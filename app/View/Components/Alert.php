@@ -36,6 +36,6 @@ class Alert extends Component
      */
     public function render()
     {
-        return view('components.includes.alert');
+        return view('components.layouts.alert');
     }
 }

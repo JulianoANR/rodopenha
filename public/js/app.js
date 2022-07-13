@@ -5502,12 +5502,12 @@ window.addEventListener('DOMContentLoaded', function () {
     'global': document.getElementById('wrapper_global')
   };
   /* const navigation = document.getElementById('navigation');
-   if (navigation) {
+    if (navigation) {
       let overlay = document.getElementById('overlay-navigation');
-       document.querySelector('#checkbox-navigation').addEventListener('change', function () {
+        document.querySelector('#checkbox-navigation').addEventListener('change', function () {
           navigation.classList.toggle('is-navigation-show');
           overlay.classList.toggle('is-visible');
-           this.checked
+            this.checked
               ? document.body.classList.add('!overflow-hidden')
               : document.body.classList.remove('!overflow-hidden');
       });

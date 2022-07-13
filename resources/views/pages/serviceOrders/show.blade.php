@@ -1,18 +1,15 @@
 <x-app title="ORDER #14234" :active="['item' => 'service']">
 
-    <!-- Header page -->
     <div class="my-6 px-4 md:px-6">
         <div class="flex flex-wrap gap-2 justify-between items-center">
             <div class="w-full md:w-max">
                 <h1 class="w-full truncate text-2xl mb-1 font-bold text-gray-400 md:text-3xl flex items-center dark:text-white">
                     ORDER #14234
 
-                    <span class="badge-info ml-4">
-                        Assigned
-                    </span>
+                    <span class="badge-info ml-4">Assigned</span>
                 </h1>
 
-                <x-breadcrumb :path="['Service Orders' => route('service-orders.index'), '#14234' => route('service-orders.show')]" />
+                <x-breadcrumb :path="['Service Orders' => route('service-orders.index'), '#14234' => route('service-orders.show', $serviceOrder->id)]" />
             </div>
 
             <button class="button button-primary capitalize hidden md:flex">
@@ -21,11 +18,10 @@
         </div>
     </div>
 
-    <!-- Grid Cards -->
     <div class="px-4 md:px-6">
-
         <h3 class="font-semibold mb-3">
-            <i class="text-warning mr-1 fa-solid fa-triangle-exclamation"></i> Pickup date was today. <span class="text-warning"><a href="">Update status?</a></span>
+            <i class="text-warning mr-1 fa-solid fa-triangle-exclamation"></i>
+            Pickup date was today. <span class="text-warning"><a href="">Update status?</a></span>
         </h3>
 
         <div class="flex flex-wrap -mx-2 md:-mx-3">
@@ -33,7 +29,7 @@
                 <!-- Start Detail -->
                 <x-card class="mb-6">
                     <x-slot name="body">
-                        <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center justify-between mb-6">
                             <h2 class="text-lg text-gray-700 font-semibold dark:text-gray-300">
                                 <i class="ml-1 fa-solid fa-clipboard-list"></i> {{ __('Basic details') }}
                             </h2>
@@ -97,80 +93,68 @@
                 <!-- Start Driver -->
                 <x-card class="mb-6">
                     <x-slot name="body">
-                        <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center justify-between mb-6">
                             <h2 class="text-lg text-gray-700 font-semibold dark:text-gray-300">
                                 <i class="mr-1 fa-solid fa-user"></i> {{ __('Driver') }}
                             </h2>
-
-                            <span class="flex items-center justify-center font-semibold">
-                                <i class="fa-solid fa-eye mr-1"></i>
-                                a day ago
-                            </span>
                         </div>
 
-                        <div class="flex items-center">
+                        <div class="flex items-center pb-6 border-b border-gray-200 dark:border-zinc-700">
+                            <x-avatar-user class="!w-14 !h-14 !rounded" :user="Auth::user()" />
 
-                            <div class="shrink">
-                                <x-avatar-user class="w-24 h-24 min-w-[3rem] !rounded" :user="Auth::user()" />
-                            </div>
-
-                            <div class="grow ml-4">
-                                <div class="relative overflow-x-auto">
-                                    <table id="table_shipper_order">
-                                        <tbody>
-                                            <tr>
-                                                <td class="p-1">
-                                                    <i class="fa-solid fa-user"></i>
-                                                </td>
-
-                                                <td class="p-1 whitespace-nowrap">
-                                                    Adilson Silva
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td class="p-1">
-                                                    <i class="fa-solid fa-phone"></i>
-                                                </td>
-
-                                                <td class="p-1">
-                                                    (561) 866-1518
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td class="p-1">
-                                                    <i class="fa-solid fa-envelope"></i>
-                                                </td>
-
-                                                <td class="p-1 whitespace-nowrap">
-                                                    f1autotransport@hotmail.com
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td class="p-1">
-                                                    <i class="fa-solid fa-trailer"></i>
-                                                </td>
-
-                                                <td class="p-1">
-                                                    Open trailer
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td class="p-1">
-                                                    <i class="fa-solid fa-truck-front"></i>
-                                                </td>
-
-                                                <td class="p-1">
-                                                    7 vehicles
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                            <div class="flex items-start justify-between w-full">
+                                <div class="pl-3 w-full">
+                                    <p tabindex="0" class="text-xl font-medium leading-5 text-gray-700 dark:text-gray-300">Dogecoin nerds</p>
+                                    <p tabindex="0" class="text-sm pt-2 ">Admin | Driver | Dispatcher</p>
                                 </div>
+
+                                <button class="button-icon button-icon-xs button-primary-soft rounded">
+                                    <i class="fa-solid fa-pen"></i>
+                                </button>
                             </div>
+                        </div>
+
+                        <div class="relative overflow-x-auto mt-4">
+                            <table class="w-full text-sm text-left" id="table_order_driver">
+                                <thead class="text-gray-700 uppercase bg-gray-50 dark:text-gray-300 dark:bg-white/5 dark:text-white">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3">
+                                            Email
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Phone
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Truck
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Trailer
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Capacity
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="dark:bg-transparent dark:border-zinc-700 odd:bg-transparent even:bg-gray-50 odd:dark:bg-transparent even:dark:bg-white/5">
+                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                                            dogecoin.nerds@gmail.com
+                                        </th>
+                                        <td class="px-6 py-4">
+                                            (555) 2854-25685
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            2022 nissan rogue
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            Open
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            7
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </x-slot>
                 </x-card>
@@ -179,7 +163,7 @@
                 <!-- Start Vehicle -->
                 <x-card class="mb-6">
                     <x-slot name="body">
-                        <h2 class="text-lg text-gray-700 font-semibold dark:text-gray-300 mb-4">
+                        <h2 class="text-lg text-gray-700 font-semibold dark:text-gray-300 mb-6">
                             <i class="fa-solid fa-car"></i> {{ __('Vehicle') }}
                         </h2>
 
@@ -310,7 +294,7 @@
                 <!-- Start Pickup -->
                 <x-card class="mb-6">
                     <x-slot name="body">
-                        <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center justify-between mb-6">
                             <h2 class="text-lg text-gray-700 font-semibold dark:text-gray-300">
                                 <i class="fa-solid fa-map-location-dot"></i> {{ __('Pickup') }}
                             </h2>
@@ -379,7 +363,7 @@
                 <!-- Start Delivery -->
                 <x-card>
                     <x-slot name="body">
-                        <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center justify-between mb-6">
                             <h2 class="text-lg text-gray-700 font-semibold dark:text-gray-300">
                                 <i class="fa-solid fa-map-location-dot"></i> {{ __('Delivery') }}
                             </h2>
@@ -436,7 +420,7 @@
                 <x-card class="mb-6">
                     <x-slot name="body">
                         <!-- Payment -->
-                        <div class="flex items-center justify-between mb-1">
+                        <div class="flex items-center justify-between mb-2">
                             <h2 class="text-lg text-gray-700 font-semibold dark:text-gray-300">
                                 <i class="fa-solid fa-dollar-sign"></i> {{ __('Payment') }}
                             </h2>
@@ -475,7 +459,7 @@
                         </div>
 
                         <!-- Shipper -->
-                        <div class="flex items-center justify-between mb-1">
+                        <div class="flex items-center justify-between mb-2">
                             <h2 class="text-lg text-gray-700 font-semibold dark:text-gray-300">
                                 <i class="fa-solid fa-user-group"></i> {{ __('Shipper') }}
                             </h2>
@@ -526,56 +510,11 @@
                 </x-card>
                 <!-- End Payment/Shipper -->
 
-                <!-- Start Activity -->
-                <!--
-                <x-card class="mb-6">
-                    <x-slot name="body" class="p-0">
-                        <div class="flex items-center justify-between mb-3 px-5 py-4">
-                            <h2 class="text-lg text-gray-700 font-semibold dark:text-gray-300">
-                                <i class="fa-solid fa-clock-rotate-left"></i> {{ __('Activity') }}
-                            </h2>
-                        </div>
-
-
-                        <div class="flex flex-col space-y-6 overflow-y-auto max-h-94 pb-4 px-5">
-
-                            <div class="flex">
-                                <div class="shrink mt-1">
-                                    <x-avatar-user class="w-9 h-9 min-w-[2.25rem]" :user="Auth::user()" />
-                                </div>
-
-                                <div class="grow ml-4">
-                                    Order <strong>#H4446818</strong> was picked up from 2700 W Dallas St, houston, TX, 77019
-
-                                    <span class="flex justify-end text-xs font-medium mt-2">
-                                        Friday, June 17, 2022 at 10:27 AM
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="flex">
-                                <div class="shrink mt-1">
-                                    <x-avatar-user class="w-9 h-9 min-w-[2.25rem]" :user="Auth::user()" />
-                                </div>
-
-                                <div class="grow ml-4">
-                                    <strong>LEONARDO FROEDER</strong> assigned Gil Antonio Apolinario to Order <strong>#6629</strong>
-
-                                    <span class="flex justify-end text-xs font-medium mt-2">
-                                        Thursday, June 16, 2022 at 10:51 AM
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </x-slot>
-                </x-card> -->
-                <!-- End Activity -->
-
                 <!-- Start Damages -->
                 <x-card class="mb-6">
                     <x-slot name="body">
                         <!-- Payment -->
-                        <div class="flex items-center justify-between mb-1">
+                        <div class="flex items-center justify-between mb-2">
                             <h2 class="text-lg text-gray-700 font-semibold dark:text-gray-300">
                                 <i class="fa-solid fa-car-burst"></i> {{ __('Damages') }}
                             </h2>
@@ -597,7 +536,10 @@
 
     <x-slide-over class="!p-0" title="Basic details" initialState="false" id="edit-basic">
 
-        <form class="h-full" action="#" method="POST">
+        <form class="h-full" action="{{ route('service-orders.update', 1) }}" method="POST">
+            @csrf
+            @method('patch')
+
             <div class="min-h-[calc(100%-4rem)] p-4 md:px-6">
                 <div class="flex flex-wrap -mx-2">
                     <div class="w-full px-2 mb-4 md:w-full">
