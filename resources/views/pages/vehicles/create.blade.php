@@ -11,7 +11,7 @@
                 <x-breadcrumb :path="['Vehicles' => route('vehicles.index'), 'Create vehicle' => route('vehicles.create')]" />
             </div>
 
-            <a class="button button-primary capitalize hidden md:flex" href="{{ route('vehicles.index') }}">
+            <a class="button button-primary uppercase hidden md:flex" href="{{ route('vehicles.index') }}">
                 <x-icon name="arrow-undo" class="w-5 h-5 text-xl" library="ion-icon" />
                 {{ __('return') }}
             </a>

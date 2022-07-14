@@ -3,14 +3,14 @@
     <div class="my-6 px-4 md:px-6">
         <div class="flex flex-wrap gap-2 justify-between items-center">
             <div class="w-full md:w-max">
-                <h1 class="w-full truncate text-2xl mb-1 font-bold text-gray-400 md:text-3xl dark:text-white">
-                    Create New Service Order
+                <h1 class="w-full truncate text-2xl mb-1 font-bold text-gray-400 md:text-2xl dark:text-white uppercase">
+                    Create Service Order
                 </h1>
 
-                <x-breadcrumb :path="['Service Orders' => route('service-orders.index'), 'New Service Order' => route('service-orders.create')]" />
+                <x-breadcrumb :path="['Service Orders' => route('service-orders.index'), 'Create Service Order' => route('service-orders.create')]" />
             </div>
 
-            <a href="{{ route('service-orders.index') }}" class="button button-primary capitalize hidden md:flex">
+            <a href="{{ route('service-orders.index') }}" class="button button-primary uppercase hidden md:flex">
                 <x-icon name="arrow-undo" class="w-5 h-5 text-xl" library="ion-icon" />
                 {{ __('return') }}
             </a>
@@ -61,8 +61,9 @@
 
                             <div class="w-full px-2 mb-4 md:w-1/3">
                                 <label class="text-sm font-semibold pl-1 mb-2" for="inspection_type">Inspection Type</label>
+
                                 <select class="input" id="inspection_type" name="basic[inspection_type]">
-                                    <option selected value="standart">Standart</option>
+                                    <option selected value="standard">Standart</option>
                                     <option value="M22">M22</option>
                                 </select>
                             </div>
@@ -126,6 +127,7 @@
                                     <option value="0">No</option>
                                 </select>
                             </div>
+
                             <div class="w-full px-2 mb-4 md:w-3/12">
                                 <label class="text-sm font-semibold pl-1 mb-2" for="vehicle_type">Type</label>
                                 <select class="input" id="vehicle_type" name="vehicle_type">
@@ -137,6 +139,7 @@
                                     <option>SUV</option>
                                 </select>
                             </div>
+
                             <div class="w-full px-2 mb-4 md:w-3/12">
                                 <label class="text-sm font-semibold pl-1 mb-2" for="vehicle_lot">Lot Number</label>
                                 <input class="input" id="vehicle_lot" name="vehicle_lot" type="text">

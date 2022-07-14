@@ -33,6 +33,7 @@ class ServiceOrderController extends Controller
     protected Pickup $pickup;
     protected Delivery $delivery;
     protected Shipper $shipper;
+    protected user $user;
 
     function __construct(
         ServiceOrder $serviceOrder,
@@ -40,7 +41,8 @@ class ServiceOrderController extends Controller
         Contact $contact,
         Pickup $pickup,
         Delivery $delivery,
-        Shipper $shipper
+        Shipper $shipper,
+        User $user,
     ){
         $this->serviceOrder = $serviceOrder;
         $this->vehicle = $vehicle;
@@ -48,6 +50,7 @@ class ServiceOrderController extends Controller
         $this->pickup = $pickup;
         $this->delivery = $delivery;
         $this->shipper = $shipper;
+        $this->user = $user;
     }
 
     public function index()
@@ -67,13 +70,11 @@ class ServiceOrderController extends Controller
 
     public function store(StoreServiceOrderRequest $request)
     {
-        $this->authorize('isAdmin');
         DB::beginTransaction();
+        $data = $request->except('_token');
+        dd($data);
 
         try {
-            $data = $request->except('_token');
-            dd($data);
-
             /**
              * Basic insert
              */
@@ -120,11 +121,13 @@ class ServiceOrderController extends Controller
                 'date'               => $pickup['date'],
                 'notes'              => $pickup['notes'],
                 'address'            => $pickup['address'],
-                'signature_required' => !$pickup['not_signature'],
+                'signature_required' => !isset($pickup['not_signature']),
 
                 'contact_id'         => $contact_pickup->id,
                 'service_order_id'   => $serviceOrder->id
             ]);
+
+            dd($contact_pickup);
 
             DB::commit();
 
@@ -150,7 +153,7 @@ class ServiceOrderController extends Controller
     public function update(UpdateServiceOrderRequest $request, $id)
     {
         /**
-         * Atualizar dados básicos dos serviços
+         * Atualizar dados 'basic' das ordens
          */
         $serviceOrder = $this->serviceOrder->findOrFail($id);
         dd($serviceOrder);

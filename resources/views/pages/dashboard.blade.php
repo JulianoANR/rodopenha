@@ -3,14 +3,14 @@
     <div class="my-6 px-4 md:px-6">
         <div class="flex flex-wrap gap-2 justify-between items-center">
             <div class="w-full md:w-max">
-                <h1 class="w-full truncate text-2xl mb-1 font-bold text-gray-400 md:text-3xl dark:text-white">
+                <h1 class="mb-1 truncate uppercase text-2xl font-bold text-gray-400 dark:text-white">
                     Hello {{ Auth::user()->name }}
                 </h1>
 
                 <x-breadcrumb :path="['Dashboard' => route('dashboard')]" />
             </div>
 
-            <a class="button button-primary capitalize waves-effect hidden md:flex" href="{{ route('service-orders.create') }}">
+            <a class="button button-primary hidden md:flex uppercase" href="{{ route('service-orders.create') }}">
                 {{ __('create order') }} <i class="fa-solid fa-plus"></i>
             </a>
         </div>
@@ -19,7 +19,6 @@
     <div class="px-4 md:px-6">
         <div class="flex flex-wrap -mx-2 md:-mx-3">
 
-            <!-- Cards Status -->
             <div class="w-full px-2 mb-6 md:w-1/3 md:px-3">
                 <div class="card animate-up">
                     <div class="card-body p-5 flex items-center space-x-4">

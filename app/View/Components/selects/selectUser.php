@@ -1,25 +1,16 @@
 <?php
 
-namespace App\View\Components\selects;
+namespace App\View\Components\Selects;
 
 use Illuminate\View\Component;
 
-class selectUser extends Component
+class SelectUser extends Component
 {
-    /**
-     * @var string
-     */
-    public string $api;
 
     /**
      * @var string
      */
-    public string $old;
-
-    /**
-     * @var string
-     */
-    public string $name;
+    public string $name, $api, $old;
 
     /**
      * Create a new component instance.

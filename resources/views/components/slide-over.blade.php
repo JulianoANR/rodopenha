@@ -50,7 +50,7 @@
 
                     @if($label !== "null")
                         <div class="w-full mt-2">
-                            Get started by filling in the information below to create your new project.
+                            {!! $label !!}
                         </div>
                     @endif
                 </div>

@@ -20,7 +20,6 @@ use App\Http\Controllers\{
 */
 
 Route::redirect('/', '/dashboard')->name('index');
-Route::view('/components', 'pages.componentsCSS')->name('components');
 
 Route::middleware(['auth'])->group( function () {
     Route::view('/dashboard', 'pages.dashboard')->name('dashboard');

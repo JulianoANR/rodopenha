@@ -4,15 +4,15 @@
     <div class="my-6 px-4 md:px-6">
         <div class="flex flex-wrap gap-2 justify-between items-center">
             <div class="w-full md:w-max">
-                <h1 class="w-full truncate text-2xl mb-1 font-bold text-gray-400 md:text-3xl dark:text-white">
-                    Vehicles
+                <h1 class="mb-1 truncate uppercase text-2xl font-bold text-gray-400 dark:text-white">
+                    TRUCKS
                 </h1>
 
-                <x-breadcrumb :path="['Vehicles' => route('vehicles.index')]" />
+                <x-breadcrumb :path="['Truck' => route('vehicles.index')]" />
             </div>
 
-            <a class="button button-primary capitalize hidden md:flex " href="{{ route('vehicles.create') }}">
-                {{ __('create vehicle') }} <i class="fa-solid fa-plus"></i>
+            <a class="button button-primary uppercase hidden md:flex " href="{{ route('vehicles.create') }}">
+                {{ __('create truck') }} <i class="fa-solid fa-plus"></i>
             </a>
         </div>
     </div>

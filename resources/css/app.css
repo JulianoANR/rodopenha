@@ -46,7 +46,7 @@
     /* Custom components CSS here */
 
     .button {
-        @apply inline-flex justify-center items-center gap-2 relative px-4 py-2 text-sm text-white shadow font-medium tracking-wider rounded border border-transparent transition cursor-pointer
+        @apply inline-flex justify-center items-center gap-2 relative px-4 py-2 text-sm text-white shadow font-medium tracking-wider rounded-sm border border-transparent transition cursor-pointer
         focus:outline-none focus:ring disabled:cursor-not-allowed disabled:ring-0;
     }
 

@@ -4,7 +4,7 @@
     <div class="my-6 px-5 md:px-7">
         <div class="flex flex-wrap gap-2 justify-between items-center">
             <div class="w-full md:w-max">
-                <h1 class="w-full truncate text-2xl mb-1 font-bold text-gray-400 md:text-3xl dark:text-white">
+                <h1 class="mb-1 truncate uppercase text-2xl font-bold text-gray-400 dark:text-white">
                     Settings account
                 </h1>
 

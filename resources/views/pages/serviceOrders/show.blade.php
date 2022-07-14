@@ -3,17 +3,20 @@
     <div class="my-6 px-4 md:px-6">
         <div class="flex flex-wrap gap-2 justify-between items-center">
             <div class="w-full md:w-max">
-                <h1 class="w-full truncate text-2xl mb-1 font-bold text-gray-400 md:text-3xl flex items-center dark:text-white">
-                    ORDER #14234
+                <div class="w-full inline-flex items-center mb-1 ">
+                    <h1 class="truncate uppercase text-2xl font-bold text-gray-400 dark:text-white">
+                        ORDER #14234
+                    </h1>
 
                     <span class="badge-info ml-4">Assigned</span>
-                </h1>
+                </div>
+
 
                 <x-breadcrumb :path="['Service Orders' => route('service-orders.index'), '#14234' => route('service-orders.show', $serviceOrder->id)]" />
             </div>
 
-            <button class="button button-primary capitalize hidden md:flex">
-                {{ __('Add to a trip') }} <i class="fa-solid fa-plus"></i>
+            <button class="button button-primary uppercase hidden md:flex">
+                {{ __('add to a trip') }} <i class="fa-solid fa-plus"></i>
             </button>
         </div>
     </div>
@@ -21,11 +24,12 @@
     <div class="px-4 md:px-6">
         <h3 class="font-semibold mb-3">
             <i class="text-warning mr-1 fa-solid fa-triangle-exclamation"></i>
-            Pickup date was today. <span class="text-warning"><a href="">Update status?</a></span>
+            Pickup date was today. <span class="text-warning"><a href="#">Update status?</a></span>
         </h3>
 
         <div class="flex flex-wrap -mx-2 md:-mx-3">
             <div class="w-full px-2 mb-6 md:px-3 md:w-8/12">
+
                 <!-- Start Detail -->
                 <x-card class="mb-6">
                     <x-slot name="body">
@@ -35,7 +39,10 @@
                             </h2>
 
                             <div class="inline-flex gap-2">
-                                <button class="button button-primary-soft button-xs text-sm dark:button-primary" x-data @click="$dispatch('slide-over', 'edit-basic')">
+                                <button
+                                    x-data @click="$dispatch('slide-over', 'edit-basic')"
+                                    class="button button-primary-soft button-xs text-sm dark:button-primary"
+                                >
                                     Edit <i class="fa-solid fa-pen"></i>
                                 </button>
                             </div>
@@ -300,7 +307,11 @@
                             </h2>
 
                             <div class="inline-flex gap-2">
-                                <button class="button button-primary-soft button-xs text-sm dark:button-primary" x-data @click="$dispatch('slide-over', 'edit-pickup')">
+                                <button
+                                    x-data @click="$dispatch('slide-over', 'edit-pickup')"
+                                    class="button button-primary-soft button-xs text-sm dark:button-primary"
+                                >
+
                                     Edit <i class="fa-solid fa-pen"></i>
                                 </button>
                             </div>
@@ -369,7 +380,11 @@
                             </h2>
 
                             <div class="inline-flex gap-2">
-                                <button class="button button-primary-soft button-xs text-sm dark:button-primary" x-data @click="$dispatch('slide-over', 'edit-delivery')">
+                                <button
+                                    x-data @click="$dispatch('slide-over', 'edit-delivery')"
+                                    class="button button-primary-soft button-xs text-sm dark:button-primary
+                                ">
+
                                     Edit <i class="fa-solid fa-pen"></i>
                                 </button>
                             </div>
@@ -426,7 +441,11 @@
                             </h2>
 
                             <div class="inline-flex gap-2">
-                                <button class="button button-primary-soft button-xs text-sm dark:button-primary" x-data @click="$dispatch('slide-over', 'edit-payment')">
+                                <button
+                                    x-data @click="$dispatch('slide-over', 'edit-payment')"
+                                    class="button button-primary-soft button-xs text-sm dark:button-primary"
+                                >
+
                                     Edit <i class="fa-solid fa-pen"></i>
                                 </button>
                             </div>
@@ -465,7 +484,11 @@
                             </h2>
 
                             <div class="inline-flex gap-2">
-                                <button class="button button-primary-soft button-xs text-sm dark:button-primary" x-data @click="$dispatch('slide-over', 'edit-shipper')">
+                                <button
+                                    x-data @click="$dispatch('slide-over', 'edit-shipper')"
+                                    class="button button-primary-soft button-xs text-sm dark:button-primary"
+                                >
+
                                     Edit <i class="fa-solid fa-pen"></i>
                                 </button>
                             </div>
@@ -474,35 +497,35 @@
                         <div class="relative overflow-x-auto">
                             <table id="table_shipper_order">
                                 <tbody>
-                                <tr>
-                                    <td class="p-1">
-                                        <i class="fa-solid fa-user"></i>
-                                    </td>
+                                    <tr>
+                                        <td class="p-1">
+                                            <i class="fa-solid fa-user"></i>
+                                        </td>
 
-                                    <td class="p-1 whitespace-nowrap">
-                                        uShip Logistics LLC 1
-                                    </td>
-                                </tr>
+                                        <td class="p-1 whitespace-nowrap">
+                                            uShip Logistics LLC 1
+                                        </td>
+                                    </tr>
 
-                                <tr>
-                                    <td class="p-1">
-                                        <i class="fa-solid fa-location-dot"></i>
-                                    </td>
+                                    <tr>
+                                        <td class="p-1">
+                                            <i class="fa-solid fa-location-dot"></i>
+                                        </td>
 
-                                    <td class="p-1">
-                                        205 Riverside Dr. STE A, austin, TX, 78704
-                                    </td>
-                                </tr>
+                                        <td class="p-1">
+                                            205 Riverside Dr. STE A, austin, TX, 78704
+                                        </td>
+                                    </tr>
 
-                                <tr>
-                                    <td class="p-1">
-                                        <i class="fa-solid fa-phone"></i>
-                                    </td>
+                                    <tr>
+                                        <td class="p-1">
+                                            <i class="fa-solid fa-phone"></i>
+                                        </td>
 
-                                    <td class="p-1">
-                                        N/A
-                                    </td>
-                                </tr>
+                                        <td class="p-1">
+                                            N/A
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -523,7 +546,7 @@
                         <div class="flex items-center justify-between">
                             <span>No damage in that order</span>
 
-                            <button class="button button-icon button-primary-soft button-icon-xs rounded">
+                            <button class="button button-icon button-primary-soft button-icon-xs rounded-sm">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
                         </div>
@@ -534,11 +557,15 @@
         </div>
     </div>
 
-    <x-slide-over class="!p-0" title="Basic details" initialState="false" id="edit-basic">
-
+    <x-slide-over
+        class="!p-0"
+        title="Basic details"
+        initialState="false"
+        id="edit-basic"
+    >
         <form class="h-full" action="{{ route('service-orders.update', 1) }}" method="POST">
             @csrf
-            @method('patch')
+            @method('put')
 
             <div class="min-h-[calc(100%-4rem)] p-4 md:px-6">
                 <div class="flex flex-wrap -mx-2">
@@ -584,8 +611,11 @@
         </form>
     </x-slide-over>
 
-    <x-slide-over class="!p-0" title="Payment" initialState="false" id="edit-payment">
-
+    <x-slide-over class="!p-0"
+        title="Payment"
+        initialState="false"
+        id="edit-payment"
+    >
         <form class="h-full" action="#" method="POST">
             <div class="min-h-[calc(100%-4rem)] p-4 md:px-6">
 

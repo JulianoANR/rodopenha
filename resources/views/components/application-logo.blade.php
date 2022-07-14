@@ -9,7 +9,6 @@
         <img {{ $attributes }} src="{{ asset('images/logo-rodopenha.png') }}" alt="{{ 'Rodopenha Logo' }}">
     @break
 
-
     @default
         <img {{ $attributes }} src="{{ asset('images/rodopenha-name.png') }}" alt="{{ 'Rodopenha Logo' }}">
 

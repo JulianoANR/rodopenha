@@ -1,17 +1,16 @@
 <x-app title="Users" :active="['item' => 'service']">
 
-    <!-- Header page -->
     <div class="my-6 px-4 md:px-6">
         <div class="flex flex-wrap gap-2 justify-between items-center">
             <div class="w-full md:w-max">
-                <h1 class="w-full truncate text-2xl mb-1 font-bold text-gray-400 md:text-3xl dark:text-white">
+                <h1 class="mb-1 truncate uppercase text-2xl font-bold text-gray-400 dark:text-white">
                     Service Orders
                 </h1>
 
                 <x-breadcrumb :path="['Service Orders' => route('service-orders.index')]" />
             </div>
 
-            <a href="{{ route('dashboard') }}" class="button button-primary capitalize hidden md:flex">
+            <a href="{{ route('dashboard') }}" class="button button-primary uppercase hidden md:flex">
                 <x-icon name="arrow-undo" class="w-5 h-5 text-xl" library="ion-icon" />
                 {{ __('return') }}
             </a>
@@ -31,7 +30,7 @@
 
                     <x-slot name="body">
                         <div class="relative overflow-x-auto">
-                            <table class="stripe hover" id="table_all_orders">
+                            <table class="stripe hover responsive" id="table_all_orders">
                                 <thead>
                                     <tr>
                                         <th>{{ __('order') }}</th>
@@ -44,51 +43,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($serviceOrders as $serviceOrder)
-                                        <tr>
-                                            <td class="font-bold text-gray-700 whitespace-nowrap dark:text-gray-300">
-                                                {{ $serviceOrder->load_id }}
-                                            </td>
-
-                                            <td class="align-middle whitespace-nowrap">
-                                                <div class="flex items-center gap-1.5 w-full h-full">
-                                                    <x-avatar-user class="w-9 h-9 min-w-[2.25rem]" :user="Auth::user()" />
-                                                    <span class="ml-3 font-semibold">Giovani Appezzato</span>
-                                                </div>
-                                            </td>
-
-                                            <td class="align-middle">
-                                                <span class="badge badge-primary">
-                                                    Picked Up
-                                                </span>
-                                            </td>
-
-                                            <td class="align-middle min-w-[15rem]">
-                                                {{ $serviceOrder->pickup->address }}
-                                            </td>
-
-                                            <td class="align-middle min-w-[15rem]">
-                                                {{ $serviceOrder->pickup->address }}
-                                            </td>
-
-                                            <td class="align-middle whitespace-nowrap">
-                                                2015 toyota camry
-                                            </td>
-
-                                            <td class="align-middle">
-                                                <div class="inline-flex justify-end items-center gap-x-3">
-                                                    <a class="button-icon button-icon-sm button-primary rounded" href="{{ route('service-orders.show', $serviceOrder->id) }}">
-                                                        <i class="fa-solid fa-gear"></i>
-                                                    </a>
-
-                                                    <button class="button button-icon button-icon-sm button-danger rounded">
-                                                        <i class="fa-solid fa-trash"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-
                                     <tr>
                                         <td class="font-bold text-gray-700 whitespace-nowrap dark:text-gray-300">
                                             #14234
@@ -121,11 +75,11 @@
 
                                         <td class="align-middle">
                                             <div class="inline-flex justify-end items-center gap-x-3">
-                                                <a class="button-icon button-icon-sm button-primary-soft rounded" href="{{ route('service-orders.show', 1) }}">
+                                                <a class="button-icon button-icon-xs button-primary-soft rounded" href="{{ route('service-orders.show', 1) }}">
                                                     <i class="fa-solid fa-gear"></i>
                                                 </a>
 
-                                                <button class="button button-icon button-icon-sm button-danger-soft rounded">
+                                                <button class="button button-icon button-icon-xs button-danger-soft rounded">
                                                     <i class="fa-solid fa-trash"></i>
                                                 </button>
                                             </div>
@@ -164,11 +118,11 @@
 
                                         <td class="align-middle">
                                             <div class="inline-flex justify-end items-center gap-x-3">
-                                                <a class="button-icon button-icon-sm button-primary-soft rounded" href="{{ route('service-orders.show', 1) }}">
+                                                <a class="button-icon button-icon-xs button-primary-soft rounded" href="{{ route('service-orders.show', 1) }}">
                                                     <i class="fa-solid fa-gear"></i>
                                                 </a>
 
-                                                <button class="button button-icon button-icon-sm button-danger-soft rounded">
+                                                <button class="button button-icon button-icon-xs button-danger-soft rounded">
                                                     <i class="fa-solid fa-trash"></i>
                                                 </button>
                                             </div>
