@@ -1,6 +1,6 @@
 
 <nav
-    x-show="open" x-cloak
+    x-show="navigation" x-cloak
     x-transition:enter="transform transition ease-in-out duration-500 sm:duration-700"
     x-transition:enter-start="-translate-x-full"
     x-transition:enter-end="translate-x-0"
@@ -14,7 +14,7 @@
         <div class="w-full h-16 flex items-center justify-between p-4 px-5 xl:hidden">
             <a href="{{  route('index') }}"><x-application-logo type="white" class="h-10" /></a>
 
-            <button class="p-2 text-white rounded-full transition hover:bg-white/10 focus:outline-none focus:ring focus:ring-white/20 focus:bg-white/10" @click="open = !open">
+            <button class="p-2 text-white rounded-full transition hover:bg-white/10 focus:outline-none focus:ring focus:ring-white/20 focus:bg-white/10" @click="navigation = !navigation">
                 <x-icon name="close" library="ion-icon"></x-icon>
             </button>
         </div>
@@ -65,7 +65,7 @@
                     </div>
                     <!-- End Services -->
 
-                    <!-- Start Vehicles -->
+                    <!-- Start Trucks -->
                     <div>
                         <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 capitalize
                                        dark:hover:bg-white/10 dark:focus:bg-white/20 {{ $active['item'] == 'vehicles' ? $activeClasses : '' }}" data-trigger="collapse">
@@ -80,19 +80,19 @@
 
                         <div class="{{ $active['item'] != 'vehicles' ? 'is-collapsed' : '' }} collapsible mt-2 capitalize space-y-1">
                             <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                      before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('vehicles.index') }}">
+                                      before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('trucks.index') }}">
 
                                 {{ __('all trucks') }}
                             </a>
 
                             <a class="py-2 px-12 block relative text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10
-                                      before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('vehicles.create') }}">
+                                      before-marker before:absolute before:left-5 before:top-1/2 before:-translate-y-1/2" href="{{ route('trucks.create') }}">
 
                                 {{ __('create truck') }}
                             </a>
                         </div>
                     </div>
-                    <!-- End Vehicles -->
+                    <!-- End Trucks -->
 
                     <!-- Start Trips -->
                     <div>
@@ -134,7 +134,7 @@
 
                     <!-- Start Settings -->
                     <div>
-                        <button class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
+                        <button class="flex items-center gap-x-3 relative py-2 px-3 w-full capitalize text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
                                        dark:hover:bg-white/10 dark:focus:bg-white/20 {{ $active['item'] == 'settings' ? $activeClasses : '' }}" data-trigger="collapse">
 
                             <x-icon name="settings{{ $active['item'] != 'settings' ? '-outline' : '-sharp' }}" library="ion-icon"></x-icon>
@@ -222,12 +222,12 @@
 
 <div
     class="fixed  z-20 inset-0 bg-zinc-900/60 transition-opacity xl:!hidden"
-    x-show="open" x-cloak
+    x-show="navigation" x-cloak
     x-transition:enter="ease-in-out duration-500"
     x-transition:enter-start="opacity-0"
     x-transition:enter-end="opacity-100"
     x-transition:leave="ease-in-out duration-500"
     x-transition:leave-start="opacity-100"
     x-transition:leave-end="opacity-0"
-    @click="open = false"
+    @click="navigation = false"
 ><!-- Overlay Navigation --></div>

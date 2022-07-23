@@ -16,10 +16,11 @@ class ShipperSeeder extends Seeder
     public function run()
     {
         Shipper::create([
-            'address' => 'Av.Di Fernandi, Guarulhos',
-            'zip' => '4521241241',
-            'contact_id' => 3,
-            'service_order_id' => 1
+            'address'            => '205 Riverside Dr. STE A, austin, TX, 78704',
+            'zip'                => '25746',
+            'notes'              => null,
+            'contact_id'         => 3,
+            'service_order_id'   => 1
         ]);
     }
 }

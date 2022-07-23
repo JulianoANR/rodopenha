@@ -17,30 +17,39 @@ class ContactSeeder extends Seeder
     public function run()
     {
         Contact::create([
-            'ref' => ReferenceContactsEnum::PICKUP,
-            'name' => 'Giovani Appezzato',
-            'email' => 'giovani.appezzato@gmail.com',
-            'phone' => '19 99494 7867',
-            'type' => 'personal'
+            'ref'   => ReferenceContactsEnum::PICKUP,
+            'type'  => 'business',
+
+            'name'         => 'Pickup Name',
+            'email'        => 'pickup@gmail.com',
+            'phone'        => '(555) 2154-2736',
+            'company'      => 'Pickup company',
+            'working_from' => '9:00',
+            'working_to'   => '18:00'
         ]);
 
         Contact::create([
-            'ref' => ReferenceContactsEnum::DELIVERY,
-            'name' => 'InventDigital',
-            'email' => 'inventDigital@gmail.com',
-            'phone' => '19 12341 2467',
-            'type' => 'business',
-            'company' => 'InventDigital',
-            'working_from' => '09:00',
-            'working_to' => '13:00'
+            'ref'   => ReferenceContactsEnum::DELIVERY,
+            'type'  => 'business',
+
+            'name'         => 'Delivery Name',
+            'email'        => 'delivery@gmail.com',
+            'phone'        => '(555) 2154-2736',
+            'company'      => 'Delivery company',
+            'working_from' => '9:00',
+            'working_to'   => '18:00'
         ]);
 
         Contact::create([
-            'ref' => ReferenceContactsEnum::SHIPPER,
-            'name' => 'Juliano Appezzto',
-            'email' => 'juliano@gmail.com',
-            'phone' => '19 34335 0972',
-            'type' => 'personal',
+            'ref'   => ReferenceContactsEnum::SHIPPER,
+            'type'  => 'personal',
+
+            'name'         => 'Shipper Name',
+            'email'        => 'shipper@gmail.com',
+            'phone'        => '(555) 2154-2736',
+            'company'      => null,
+            'working_from' => null,
+            'working_to'   => null
         ]);
     }
 }

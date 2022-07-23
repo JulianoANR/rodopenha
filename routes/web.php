@@ -1,11 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\{
     UserController,
     ServiceOrderController,
     VehicleController,
-    FinanceController
+    FinanceController,
+    TruckController
 };
 
 /*
@@ -48,10 +50,10 @@ Route::middleware(['auth'])->group( function () {
         Route::view('/terms', 'pages.settings.company_terms')->name('settings.company_terms');
     });
 
-    Route::prefix('/vehicles')->group(function () {
-        Route::get('/', [VehicleController::class, 'index'])->name('vehicles.index');
-        Route::get('/create', [VehicleController::class, 'create'])->name('vehicles.create');
-        Route::post('/store', [VehicleController::class, 'store'])->name('vehicles.store');
+    Route::prefix('/trucks')->group(function () {
+        Route::get('/', [TruckController::class, 'index'])->name('trucks.index');
+        Route::get('/create', [TruckController::class, 'create'])->name('trucks.create');
+        Route::post('/store', [TruckController::class, 'store'])->name('trucks.store');
     });
 
     Route::prefix('/trips')->group(function () {

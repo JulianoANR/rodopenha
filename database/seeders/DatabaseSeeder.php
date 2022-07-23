@@ -17,6 +17,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoleSeeder::class,
             UserSeeder::class,
+
+            /**
+             * Tabelas relacionada as ordens de serviço
+             */
             ServiceOrderSeeder::class,
             VehicleTypeSeeder::class,
             VehicleSeeder::class,

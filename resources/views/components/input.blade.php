@@ -1,12 +1,9 @@
-<input {{ $attributes->merge(['class' => 'input']) }} value="{{ old($name) }}">
+@props(['formatted' => isset($name) ? str_replace(']', '', str_replace('[', '.', $name)) : false])
 
-@error($name)
-    <span class="text-danger text-[13px] ml-2" role="alert">
+<input {{ $attributes->merge(['class' => "input" . ($errors->has($formatted) ? ' is-border-danger' : '')]) }} value="{{ old($formatted) }}">
+
+@error($formatted)
+    <span class="inline-block uppercase text-danger text-[12px] pl-2 mt-1" role="alert">
         <strong>{{ $message }}</strong>
     </span>
 @enderror
-
-
-{{-- @props(['disabled' => false])
-
-<input {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge(['class' => 'rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50']) !!}> --}}

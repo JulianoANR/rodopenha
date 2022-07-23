@@ -16,15 +16,15 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->string('carrier_pay');
-            $table->json('internal_notes')->nullable();
+            $table->text('internal_notes')->nullable();
             /**
              * Enum: PaymentTypesEnum.php
              */
-            $table->string('type')->nullable();
+            $table->string('type');
             /**
              * Enum: PaymentMethodsEnum.php
              */
-            $table->string('method')->nullable();
+            $table->string('method');
             $table->foreignId('service_order_id')->constrained('service_orders')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });

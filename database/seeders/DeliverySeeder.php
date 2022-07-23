@@ -16,12 +16,14 @@ class DeliverySeeder extends Seeder
     public function run()
     {
         Delivery::create([
-            'address' => 'Av.Dom Pedro, Centro São Paulo',
-            'zip' => '2587652',
-            'date' => now(),
-            'signature_required' => true,
-            'contact_id' => 2,
-            'service_order_id' => 1
+            'address'            => '3842 North Highway 95, lake havasu city, AZ, 86404',
+            'zip'                => '86892',
+            'date'               => now(),
+            'notes'              => null,
+            'signature_required' => 0,
+
+            'contact_id'         => 2,
+            'service_order_id'   => 1
         ]);
     }
 }

@@ -1,6 +1,5 @@
 <x-app title="Dashboard" active="dashboard">
 
-    <!-- Header page -->
     <div class="my-6 px-4 md:px-6">
         <div class="flex flex-wrap gap-2 justify-between items-center">
             <div class="w-full md:w-max">

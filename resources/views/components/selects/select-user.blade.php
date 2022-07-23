@@ -1,5 +1,5 @@
 <div class="relative"
-     x-data="selectUser({ api: '{{ $api }}' })"
+     x-data="SelectUser({ api: '{{ $api }}' })"
      @click.outside="open = false"
 >
 
@@ -28,9 +28,9 @@
         class="absolute z-10 w-full mt-2 rounded shadow-md bg-white border border-gray-300 dark:bg-header dark:border-zinc-700 dark:shadow-lg">
 
         <div class="relative mx-2 my-2">
-            <input class="input rounded-sm focus:ring-1 pr-11" x-model="search" type="text" placeholder="Search">
+            <input class="input rounded focus:ring-1 pr-11" x-model="search" type="text" placeholder="Search">
 
-            <button class="absolute inset-y-0 right-0 mx-4 flex items-center pointer-pointer text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400" type="button" @click="search = ''">
+            <button class="absolute inset-y-0 right-0 mx-4 flex items-center pointer-pointer text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400" type="button" \\\>
                 <i class="fa-solid fa-circle-xmark"></i>
             </button>
         </div>
@@ -58,8 +58,8 @@
 
             </template>
 
-            <div class="py-2 px-3 flex items-center" x-show="showing === 0">
-                <i class="mr-1 fa-solid fa-ban"></i> No items available
+            <div class="py-2 px-3 flex items-center text-gray-400" x-show="showing === 0">
+                <i class="mr-2 fa-solid fa-ban"></i> No items available
             </div>
         </ul>
     </div>

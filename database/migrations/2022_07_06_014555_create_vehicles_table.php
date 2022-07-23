@@ -16,13 +16,13 @@ return new class extends Migration
         Schema::create('vehicles', function (Blueprint $table) {
             $table->id();
             $table->string('vin');
-            $table->string('make')->nullable();
-            $table->string('model')->nullable();
-            $table->string('year')->nullable();
-            $table->string('color')->nullable();
-            $table->boolean('operable')->nullable();
-            $table->string('lot_number')->nullable();
-            $table->string('buyer_number')->nullable();
+            $table->string('make');
+            $table->string('model');
+            $table->string('year');
+            $table->string('color');
+            $table->boolean('operable');
+            $table->string('lot_number');
+            $table->string('buyer_number');
             $table->foreignId('vehicle_type_id')->constrained('vehicles_types')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('service_order_id')->constrained('service_orders')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();

@@ -19,7 +19,9 @@ class Shipper extends Model
     protected $fillable = [
         'address',
         'notes',
-        'zip'
+        'zip',
+        'contact_id',
+        'service_order_id'
     ];
 
     public function serviceOrder()

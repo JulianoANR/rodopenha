@@ -75,11 +75,11 @@
 
                                         <td class="align-middle">
                                             <div class="inline-flex justify-end items-center gap-x-3">
-                                                <a class="button-icon button-icon-xs button-primary-soft rounded" href="{{ route('service-orders.show', 1) }}">
-                                                    <i class="fa-solid fa-gear"></i>
+                                                <a class="button button-icon button-icon-xs button-primary rounded" href="{{ route('service-orders.show', 1) }}">
+                                                    <i class="fa-solid fa-pen-clip"></i>
                                                 </a>
 
-                                                <button class="button button-icon button-icon-xs button-danger-soft rounded">
+                                                <button class="button button-icon button-icon-xs button-danger rounded">
                                                     <i class="fa-solid fa-trash"></i>
                                                 </button>
                                             </div>
@@ -118,11 +118,11 @@
 
                                         <td class="align-middle">
                                             <div class="inline-flex justify-end items-center gap-x-3">
-                                                <a class="button-icon button-icon-xs button-primary-soft rounded" href="{{ route('service-orders.show', 1) }}">
-                                                    <i class="fa-solid fa-gear"></i>
+                                                <a class="button button-icon button-icon-xs button-primary rounded" href="{{ route('service-orders.show', 1) }}">
+                                                    <i class="fa-solid fa-pen-clip"></i>
                                                 </a>
 
-                                                <button class="button button-icon button-icon-xs button-danger-soft rounded">
+                                                <button class="button button-icon button-icon-xs button-danger rounded">
                                                     <i class="fa-solid fa-trash"></i>
                                                 </button>
                                             </div>
@@ -140,13 +140,9 @@
     @push('scripts')
         <script>
             var table = $('#table_all_orders').DataTable({
-                "responsive": true,
+                dom: 'Bfrtip',
                 "scrollCollapse": true,
-
-                "lengthMenu": [
-                    [10, 25, 50, 75, 100 - 1],
-                    ["10", "25", "50", "75", "100", "Tudo"]
-                ]
+                "searching": false
             });
         </script>
     @endpush

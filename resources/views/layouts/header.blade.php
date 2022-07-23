@@ -4,7 +4,7 @@
     <div class="h-16 flex items-center pl-4 md:pl-6 xl:w-72">
         <div class="flex items-center gap-1">
 
-            <button class="-translate-x-2 p-2 text-white rounded-full cursor-pointer hover:transition hover:ease-out hover:bg-white/10 focus:outline-none focus:ring focus:ring-white/20 focus:bg-white/10 xl:hidden" @click="open = !open">
+            <button class="-translate-x-2 p-2 text-white rounded-full cursor-pointer hover:transition hover:ease-out hover:bg-white/10 focus:outline-none focus:ring focus:ring-white/20 focus:bg-white/10 xl:hidden" @click="navigation = !navigation">
                 <svg class="w-6 h-6 stroke-current" fill="none" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
@@ -45,7 +45,7 @@
         <div class="flex items-center gap-2">
 
             <!-- Start FullScreen -->
-            <button x-data="toggleFullScreen" @click="toggle()"
+            <button x-data="ToggleFullScreen" @click="toggle()"
                 class="hidden lg:block p-2 text-white rounded-full relative transition ease-out hover:bg-white/10 focus:outline-none focus:ring focus:ring-white/20 focus:bg-white/10"
             >
 
@@ -71,7 +71,6 @@
                             dark:bg-header dark:border-zinc-800 dark:shadow-lg">
 
                     <form class="flex" action="#" method="GET" data-trigger="collapse">
-
                         <input class="grow bg-gray-100 text-sm rounded-l-sm border-0 focus:ring-0 dark:bg-white/5 dark:placeholder-gray-200 dark:text-gray-200"
                                placeholder="{{  __('Search') }}" id="search-mobile" name="search" type="text" spellcheck="false" autocomplete="off">
 
@@ -92,7 +91,7 @@
                         <span class="-bottom-0.5 -right-0.5 absolute w-3.5 h-3.5 bg-green-400 border-2 border-theme rounded-full dark:border-zinc-800"></span>
                     </div>
 
-                    <span class="hidden text-sm text-current font-medium sm:block lg:text-base">
+                    <span class="hidden truncate text-base text-current font-medium max-w-[140px] sm:block">
                         {{ Auth::user()->name }}
                     </span>
 

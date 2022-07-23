@@ -16,6 +16,14 @@ class Payment extends Model
 
     protected $table = 'payments';
 
+    protected $fillable = [
+        'type',
+        'method',
+        'carrier_pay',
+        'internal_notes',
+        'service_order_id'
+    ];
+
     protected $casts = [
         'type' => PaymentTypesEnum::class,
         'method' => PaymentMethodsEnum::class

@@ -53,7 +53,7 @@ class Contact extends Model
     }
 
     /**
-     * RELATIONSHIP WARNING
+     * RELATIONSHIP WARNING - Só usar essa relação se souber exatamento qual a tabela o contato faz referência.
      */
     public function pickup()
     {

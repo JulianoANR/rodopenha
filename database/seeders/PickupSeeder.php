@@ -16,12 +16,14 @@ class PickupSeeder extends Seeder
     public function run()
     {
         Pickup::create([
-            'address' => 'Av.Anchieta, Centro Caraguatatuba',
-            'zip' => '2587652',
-            'date' => now(),
-            'signature_required' => true,
-            'contact_id' => 1,
-            'service_order_id' => 1
+            'address'            => '9217 Apollo Heights Ave, Las Vegas, NV, 89110',
+            'zip'                => '90210',
+            'date'               => now(),
+            'notes'              => null,
+            'signature_required' => 1,
+
+            'contact_id'         => 1,
+            'service_order_id'   => 1
         ]);
     }
 }

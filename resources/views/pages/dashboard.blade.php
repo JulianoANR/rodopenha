@@ -20,17 +20,17 @@
         <div class="flex flex-wrap -mx-2 md:-mx-3">
 
             <div class="w-full px-2 mb-6 md:w-1/3 md:px-3">
-                <div class="card animate-up">
+                <div class="card card-primary animate-up">
                     <div class="card-body p-5 flex items-center space-x-4">
 
                         <div class="grow">
-                            <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">{{ __('0 Orders') }}</h3>
+                            <h3 class="text-2xl font-semibold text-white">{{ __('0 Orders') }}</h3>
 
-                            <div class="font-semibold">
+                            <div class="font-semibold text-gray-100">
                                 {{ __('Pickup') }}
                             </div>
 
-                            <div class="mt-4 text-xs text-gray-400">
+                            <div class="mt-4 text-xs text-gray-200">
                                 <span class="font-bold mr-2">
                                     <i class="fa-solid fa-arrow-trend-up"></i>
                                     {{ '0%' }}
@@ -40,25 +40,27 @@
                             </div>
                         </div>
 
-                        <div class="w-12 h-12 bg-primary-soft text-primary flex items-center justify-center rounded dark:text-white">
+                        <div class="w-12 h-12 bg-white/20 text-white flex items-center justify-center rounded-sm">
                             <i class="fa-solid fa-user-group"></i>
                         </div>
                     </div>
                 </div>
             </div>
 
+
+
             <div class="w-full px-2 mb-6 md:w-1/3 md:px-3">
-                <div class="card animate-up">
+                <div class="card card-danger animate-up">
                     <div class="card-body p-5 flex items-center space-x-4">
 
                         <div class="grow">
-                            <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">{{ __('0 Orders') }}</h3>
+                            <h3 class="text-2xl font-semibold text-white">{{ __('0 Orders') }}</h3>
 
-                            <div class="font-semibold">
+                            <div class="font-semibold text-gray-100">
                                 {{ __('Delivery') }}
                             </div>
 
-                            <div class="mt-4 text-xs text-gray-400">
+                            <div class="mt-4 text-xs text-gray-200">
                                 <span class="font-bold mr-2">
                                     <i class="fa-solid fa-ban"></i>
                                     {{ '--' }}
@@ -68,35 +70,35 @@
                             </div>
                         </div>
 
-                        <div class="w-12 h-12 bg-success-soft text-success flex items-center justify-center rounded dark:text-white">
-                            <i class="fa-solid fa-money-bill-transfer"></i>
+                        <div class="w-12 h-12 bg-white/20 text-white flex items-center justify-center rounded-sm">
+                            <i class="fa-solid fa-sack-dollar"></i>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="w-full px-2 mb-6 md:w-1/3 md:px-3">
-                <div class="card animate-up">
+                <div class="card card-warning animate-up">
                     <div class="card-body p-5 flex items-center space-x-4">
 
                         <div class="grow">
-                            <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">{{ __('0 Payments') }}</h3>
+                            <h3 class="text-2xl font-semibold text-white">{{ __('0 Payments') }}</h3>
 
-                            <div class="font-semibold">
+                            <div class="font-semibold text-gray-100">
                                 {{ __('Pending') }}
                             </div>
 
-                            <div class="mt-4 text-xs text-gray-400">
-                                <span class="font-bold mr-2">
-                                    <i class="fa-solid fa-arrow-trend-down"></i>
-                                    {{ '0%' }}
-                                </span>
+                            <div class="mt-4 text-xs text-gray-200">
+                            <span class="font-bold mr-2">
+                                <i class="fa-solid fa-arrow-trend-down"></i>
+                                {{ '0%' }}
+                            </span>
 
                                 {{ 'For today' }}
                             </div>
                         </div>
 
-                        <div class="w-12 h-12 bg-warning-soft text-warning flex items-center justify-center rounded dark:text-white">
+                        <div class="w-12 h-12 bg-white/20 text-white flex items-center justify-center rounded-sm">
                             <i class="fa-solid fa-sack-dollar"></i>
                         </div>
                     </div>

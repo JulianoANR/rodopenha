@@ -18,9 +18,10 @@ class ServiceOrderSeeder extends Seeder
     {
         ServiceOrder::create([
             'load_id' => '#76296',
-            'trailer_type' => 'open',
+            'trailer_type' => 'opened',
             'inspection_type' => 'standard',
-            'status' => StatusEnum::DELIVERED
+            'dispatch_instruction' => null,
+            'status' => StatusEnum::NEW
         ]);
     }
 }

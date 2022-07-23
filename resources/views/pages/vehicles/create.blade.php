@@ -4,14 +4,14 @@
     <div class="my-6 px-4 md:px-6">
         <div class="flex flex-wrap gap-2 justify-between items-center">
             <div class="w-full md:w-max">
-                <h1 class="w-full truncate text-2xl mb-1 font-bold text-gray-400 md:text-3xl dark:text-white">
+                <h1 class="mb-1 truncate uppercase text-2xl font-bold text-gray-400 dark:text-white">
                     Create Vehicle
                 </h1>
 
-                <x-breadcrumb :path="['Vehicles' => route('vehicles.index'), 'Create vehicle' => route('vehicles.create')]" />
+                <x-breadcrumb :path="['Vehicles' => route('trucks.index'), 'Create vehicle' => route('trucks.create')]" />
             </div>
 
-            <a class="button button-primary uppercase hidden md:flex" href="{{ route('vehicles.index') }}">
+            <a class="button button-primary uppercase hidden md:flex" href="{{ route('trucks.index') }}">
                 <x-icon name="arrow-undo" class="w-5 h-5 text-xl" library="ion-icon" />
                 {{ __('return') }}
             </a>
@@ -20,7 +20,7 @@
 
     <!-- Grid cards -->
     <div class="px-4 md:px-6">
-        <form action="{{ route('vehicles.store') }}" method="POST">
+        <form action="{{ route('trucks.store') }}" method="POST">
             @csrf
 
             <div class="flex flex-wrap -mx-2 md:-mx-3">
@@ -29,7 +29,7 @@
                     <!-- Start Vehicle -->
                     <x-card class="mb-6">
                         <x-slot name="header">
-                            <span>{{ __('Vehicle') }} <i class="ml-1 fa-solid fa-truck-front"></i></span>
+                            <span>{{ __('truck') }} <i class="ml-1 fa-solid fa-truck-front"></i></span>
                         </x-slot>
 
                         <x-slot name="body">
@@ -115,7 +115,7 @@
 
                             <div class="flex justify-end mt-5">
                                 <button class="button button-primary uppercase" type="submit">
-                                    {{ __('save vehicle') }} <i class="fa-solid fa-box-archive"></i>
+                                    {{ __('save truck') }} <i class="fa-solid fa-box-archive"></i>
                                 </button>
                             </div>
                         </x-slot>
@@ -125,5 +125,4 @@
             </div>
         </form>
     </div>
-
 </x-app>

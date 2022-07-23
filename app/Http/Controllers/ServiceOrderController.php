@@ -8,7 +8,6 @@ use App\Http\Requests\UpdateServiceOrderRequest;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 
 use App\Enums\{
     StatusEnum,
@@ -16,6 +15,7 @@ use App\Enums\{
 };
 
 use App\Models\{
+    Payment,
     ServiceOrder,
     Vehicle,
     Contact,
@@ -33,6 +33,7 @@ class ServiceOrderController extends Controller
     protected Pickup $pickup;
     protected Delivery $delivery;
     protected Shipper $shipper;
+    protected Payment $payment;
     protected user $user;
 
     function __construct(
@@ -42,7 +43,8 @@ class ServiceOrderController extends Controller
         Pickup $pickup,
         Delivery $delivery,
         Shipper $shipper,
-        User $user,
+        Payment $payment,
+        User $user
     ){
         $this->serviceOrder = $serviceOrder;
         $this->vehicle = $vehicle;
@@ -50,6 +52,7 @@ class ServiceOrderController extends Controller
         $this->pickup = $pickup;
         $this->delivery = $delivery;
         $this->shipper = $shipper;
+        $this->payment = $payment;
         $this->user = $user;
     }
 
@@ -62,6 +65,19 @@ class ServiceOrderController extends Controller
         return view('pages.serviceOrders.index', ['serviceOrders' => $serviceOrders]);
     }
 
+    public function show($id)
+    {
+        $serviceOrder = $this->serviceOrder->with([
+            'vehicles',
+            'pickup',
+            'delivery',
+            'shipper',
+            'payment'
+        ])->findOrFail($id);
+
+        return view('pages.serviceOrders.show', ['serviceOrder' => $serviceOrder]);
+    }
+
     public function create()
     {
         $this->authorize('isAdmin');
@@ -72,11 +88,10 @@ class ServiceOrderController extends Controller
     {
         DB::beginTransaction();
         $data = $request->except('_token');
-        dd($data);
 
         try {
             /**
-             * Basic insert
+             * BASIC INSERT
              */
             $basic = $data['basic'];
 
@@ -88,9 +103,31 @@ class ServiceOrderController extends Controller
                 'status'               => StatusEnum::NEW,
             ]);
 
-             /**
-              * Pickup insert
-              */
+            /**
+             * VEHICLES INSERT
+             */
+            $vehicles = collect($data['vehicles']);
+
+            $vehicles->each(function ($vehicle, $key) use ($serviceOrder) {
+
+                $this->vehicle->create([
+                    'vin'              => $vehicle['vin'],
+                    'make'             => $vehicle['make'],
+                    'model'            => $vehicle['model'],
+                    'year'             => $vehicle['year'],
+                    'color'            => $vehicle['color'],
+                    'operable'         => $vehicle['operable'],
+                    'lot_number'       => $vehicle['lot_number'],
+                    'buyer_number'     => $vehicle['buyer'],
+
+                    'vehicle_type_id'  => $vehicle['type'],
+                    'service_order_id' => $serviceOrder->id
+                ]);
+            });
+
+            /**
+             * PICKUP INSERT
+             */
             $pickup = $data['pickup'];
 
             if($pickup['type_contact'] === 'business') {
@@ -127,34 +164,117 @@ class ServiceOrderController extends Controller
                 'service_order_id'   => $serviceOrder->id
             ]);
 
-            dd($contact_pickup);
+            /**
+             * DELIVERY INSERT
+             */
+            $delivery = $data['delivery'];
+
+            $insert_contact_delivery = [
+                'name'         => $pickup['name'],
+                'email'        => $pickup['email'],
+                'phone'        => $pickup['phone']
+            ];
+
+            if($delivery['type_contact'] === 'business') {
+                $contact_delivery = $this->contact->create([
+                    'ref'   => ReferenceContactsEnum::DELIVERY,
+                    'type'  => 'business',
+
+                    'company'      => $pickup['company'],
+                    'working_from' => $pickup['working_from'],
+                    'working_to'   => $pickup['working_to'],
+
+                    ...$insert_contact_delivery
+                ]);
+            } else{
+                $contact_delivery = $this->contact->create([
+                    'ref'   => ReferenceContactsEnum::DELIVERY,
+                    'type'  => 'personal',
+
+                    ...$insert_contact_delivery
+                ]);
+            }
+
+            $this->delivery->create([
+                'zip'                => $pickup['zip'],
+                'date'               => $pickup['date'],
+                'notes'              => $pickup['notes'],
+                'address'            => $pickup['address'],
+                'signature_required' => !isset($delivery['not_signature']),
+
+                'contact_id'         => $contact_delivery->id,
+                'service_order_id'   => $serviceOrder->id
+            ]);
+
+            /**
+             * SHIPPER INSERT
+             */
+            $shipper = $data['shipper'];
+
+            $insert_contact_shipper = [
+                'name'         => $shipper['name'],
+                'email'        => $shipper['email'],
+                'phone'        => $shipper['phone']
+            ];
+
+            if($delivery['type_contact'] === 'business') {
+                $contact_shipper = $this->contact->create([
+                    'ref'   => ReferenceContactsEnum::SHIPPER,
+                    'type'  => 'business',
+
+                    'company'      => $pickup['company'],
+                    'working_from' => $pickup['working_from'],
+                    'working_to'   => $pickup['working_to'],
+
+                    ...$insert_contact_shipper
+                ]);
+            } else{
+                $contact_shipper = $this->contact->create([
+                    'ref'   => ReferenceContactsEnum::SHIPPER,
+                    'type'  => 'personal',
+
+                    ...$insert_contact_shipper
+                ]);
+            }
+
+            $this->shipper->create([
+                'zip'                => $pickup['zip'],
+                'notes'              => $pickup['notes'],
+                'address'            => $pickup['address'],
+
+                'contact_id'         => $contact_shipper->id,
+                'service_order_id'   => $serviceOrder->id
+            ]);
+
+            /**
+             * PAYMENT INSERT
+             */
+            $payment = $data['payment'];
+
+            $this->payment->create([
+                'type'               => $payment['type'],
+                'internal_notes'     => $payment['notes'],
+                'method'             => $payment['method'],
+                'carrier_pay'        => $payment['carrier'],
+
+                'service_order_id'   => $serviceOrder->id
+            ]);
 
             DB::commit();
 
-        } catch(\Exception) {
-            // ...
+            // ADD FLASH MESSAGE
+            return redirect()->route('service-orders.show', $serviceOrder->id);
+
+        } catch(\Exception $exception) {
             DB::rollback();
+
+            // ADD FLASH MESSAGE
+            return redirect()->back();
         }
-    }
-
-    public function show($id)
-    {
-        $serviceOrder = $this->serviceOrder->with([
-            'vehicles',
-            'pickup',
-            'delivery',
-            'shipper',
-            'payment'
-        ])->findOrFail($id);
-
-        return view('pages.serviceOrders.show', ['serviceOrder' => $serviceOrder]);
     }
 
     public function update(UpdateServiceOrderRequest $request, $id)
     {
-        /**
-         * Atualizar dados 'basic' das ordens
-         */
         $serviceOrder = $this->serviceOrder->findOrFail($id);
         dd($serviceOrder);
     }

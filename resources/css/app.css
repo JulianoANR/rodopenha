@@ -6,8 +6,6 @@
     /* Base CSS here */
 
     :root {
-        /* 202 31 38 */
-        /* 171 28 34 */
         --color-primary: 23 106 188;
         --color-primary-active: 19 92 164;
         --color-secondary: 35 35 49;
@@ -39,6 +37,9 @@
         @apply text-sm text-gray-600 dark:text-gray-400;
     }
 
+    /**
+     * libraries
+     */
     [x-cloak] { display: none !important; }
 }
 
@@ -176,7 +177,7 @@
     }
 
     .checkbox {
-        @apply text-primary bg-transparent border-gray-300 transition shadow rounded cursor-pointer focus:ring focus:ring-offset-0 focus:ring-primary/30
+        @apply text-primary bg-transparent border-gray-300 transition shadow rounded cursor-pointer scale-110 focus:ring focus:ring-offset-0 focus:ring-primary/30
         dark:border-zinc-700;
     }
 

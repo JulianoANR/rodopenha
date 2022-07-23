@@ -21,7 +21,9 @@ class Delivery extends Model
         'notes',
         'zip',
         'date',
-        'signature_required'
+        'signature_required',
+        'contact_id',
+        'service_order_id'
     ];
 
     protected $casts = [

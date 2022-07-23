@@ -1,20 +1,26 @@
+
+
 require('./bootstrap');
 
 import Alpine from 'alpinejs';
 
 import mask from '@alpinejs/mask'
-import toggleFullScreen from './components/ToggleFullScreen.js'
-import slideOver from './components/SlideOver.js'
 
-import select from './components/selects/Select.js'
-import selectUser from './components/selects/SelectUser.js'
+import App from './components/Layout';
+import ToggleFullScreen from './components/ToggleFullScreen.js'
+import SlideOver from './components/SlideOver.js'
+import SelectUser from './components/selects/SelectUser.js'
+import SelectAsync from './components/selects/SelectAsync';
+import CreateVehicle from "./components/vehicle/CreateVehicle";
 
 window.Alpine = Alpine;
 
 Alpine.plugin(mask);
-Alpine.data('toggleFullScreen', toggleFullScreen);
-Alpine.data('slideOver', slideOver);
-Alpine.data('select', select);
-Alpine.data('selectUser', selectUser);
+Alpine.data('App', App);
+Alpine.data('ToggleFullScreen', ToggleFullScreen);
+Alpine.data('SlideOver', SlideOver);
+Alpine.data('SelectAsync', SelectAsync);
+Alpine.data('SelectUser', SelectUser);
+Alpine.data('CreateVehicle', CreateVehicle);
 
 Alpine.start();

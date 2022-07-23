@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/icon.png') }}">
 
-    <title>{{ $title }} | {{ config('app.name', 'RODOPENHA') }}</title>
+    <title>{{ $title }} | {{ config('app.name', 'Rodopenha') }}</title>
 
     {{-- FlowBite --}}
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.7/dist/flowbite.min.css" />
@@ -39,20 +39,15 @@
     <x-init-preferences />
 </head>
 <body {{ $attributes }}>
-    <div id="app" x-data="{ open: false }">
+    <div id="app" x-data="App()">
 
         <!-- Wrapper App -->
         <div class="flex flex-col w-full h-screen !overflow-y-auto overflow-x-hidden relative" id="wrapper_global">
 
-            <!-- Header -->
             <x-layouts.header />
 
-            <!-- Navbar -->
-            <div>
-                <x-layouts.navbar :active="$active" />
-            </div>
+            <x-layouts.navbar :active="$active" />
 
-            <!-- Page Content -->
             <div class="grow flex flex-col bg-body xl:ml-72">
                 @if(Session::has('flash_message'))
                     <x-alert status="{{ Session::get('flash_message')['class'] }}" msg="{{ Session::get('flash_message')['msg'] }}"/>

@@ -6,6 +6,18 @@ use Illuminate\View\Component;
 
 class SelectUser extends Component
 {
+    /**
+     * JSON esperado do retorno da API:
+     *
+     *  [
+     *      [
+     *          'id'            => "...",
+     *          'name'          => "...",
+     *          'profile_photo' => "..."
+     *      ],x
+     *      ...
+     *  ]
+     */
 
     /**
      * @var string

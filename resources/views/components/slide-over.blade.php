@@ -2,7 +2,7 @@
 @push('outside')
     <div
         class="relative z-20"
-        x-data="slideOver({{ $initialState }}, '{{ $id }}')" x-cloak
+        x-data="SlideOver({{ $initialState }}, '{{ $id }}')" x-cloak
         :class="{ 'pointer-events-none': !open }"
 
         aria-labelledby="slide-over-{{ $id }}"
