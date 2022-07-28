@@ -1,6 +1,117 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./node_modules/@alpinejs/collapse/dist/module.esm.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@alpinejs/collapse/dist/module.esm.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ module_default)
+/* harmony export */ });
+// packages/collapse/src/index.js
+function src_default(Alpine) {
+  Alpine.directive("collapse", collapse);
+  collapse.inline = (el, {modifiers}) => {
+    if (!modifiers.includes("min"))
+      return;
+    el._x_doShow = () => {
+    };
+    el._x_doHide = () => {
+    };
+  };
+  function collapse(el, {modifiers}) {
+    let duration = modifierValue(modifiers, "duration", 250) / 1e3;
+    let floor = modifierValue(modifiers, "min", 0);
+    let fullyHide = !modifiers.includes("min");
+    if (!el._x_isShown)
+      el.style.height = `${floor}px`;
+    if (!el._x_isShown && fullyHide)
+      el.hidden = true;
+    if (!el._x_isShown)
+      el.style.overflow = "hidden";
+    let setFunction = (el2, styles) => {
+      let revertFunction = Alpine.setStyles(el2, styles);
+      return styles.height ? () => {
+      } : revertFunction;
+    };
+    let transitionStyles = {
+      transitionProperty: "height",
+      transitionDuration: `${duration}s`,
+      transitionTimingFunction: "cubic-bezier(0.4, 0.0, 0.2, 1)"
+    };
+    el._x_transition = {
+      in(before = () => {
+      }, after = () => {
+      }) {
+        if (fullyHide)
+          el.hidden = false;
+        if (fullyHide)
+          el.style.display = null;
+        let current = el.getBoundingClientRect().height;
+        el.style.height = "auto";
+        let full = el.getBoundingClientRect().height;
+        if (current === full) {
+          current = floor;
+        }
+        Alpine.transition(el, Alpine.setStyles, {
+          during: transitionStyles,
+          start: {height: current + "px"},
+          end: {height: full + "px"}
+        }, () => el._x_isShown = true, () => {
+          if (el.style.height == `${full}px`) {
+            el.style.overflow = null;
+          }
+        });
+      },
+      out(before = () => {
+      }, after = () => {
+      }) {
+        let full = el.getBoundingClientRect().height;
+        Alpine.transition(el, setFunction, {
+          during: transitionStyles,
+          start: {height: full + "px"},
+          end: {height: floor + "px"}
+        }, () => el.style.overflow = "hidden", () => {
+          el._x_isShown = false;
+          if (el.style.height == `${floor}px` && fullyHide) {
+            el.style.display = "none";
+            el.hidden = true;
+          }
+        });
+      }
+    };
+  }
+}
+function modifierValue(modifiers, key, fallback) {
+  if (modifiers.indexOf(key) === -1)
+    return fallback;
+  const rawValue = modifiers[modifiers.indexOf(key) + 1];
+  if (!rawValue)
+    return fallback;
+  if (key === "duration") {
+    let match = rawValue.match(/([0-9]+)ms/);
+    if (match)
+      return match[1];
+  }
+  if (key === "min") {
+    let match = rawValue.match(/([0-9]+)px/);
+    if (match)
+      return match[1];
+  }
+  return rawValue;
+}
+
+// packages/collapse/builds/module.js
+var module_default = src_default;
+
+
+
+/***/ }),
+
 /***/ "./node_modules/@alpinejs/mask/dist/module.esm.js":
 /*!********************************************************!*\
   !*** ./node_modules/@alpinejs/mask/dist/module.esm.js ***!
@@ -5240,16 +5351,20 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
 /* harmony import */ var _alpinejs_mask__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @alpinejs/mask */ "./node_modules/@alpinejs/mask/dist/module.esm.js");
-/* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Layout */ "./resources/js/components/Layout.js");
-/* harmony import */ var _components_ToggleFullScreen_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/ToggleFullScreen.js */ "./resources/js/components/ToggleFullScreen.js");
-/* harmony import */ var _components_SlideOver_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/SlideOver.js */ "./resources/js/components/SlideOver.js");
-/* harmony import */ var _components_selects_SelectUser_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/selects/SelectUser.js */ "./resources/js/components/selects/SelectUser.js");
-/* harmony import */ var _components_selects_SelectAsync__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/selects/SelectAsync */ "./resources/js/components/selects/SelectAsync.js");
-/* harmony import */ var _components_vehicle_CreateVehicle__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/vehicle/CreateVehicle */ "./resources/js/components/vehicle/CreateVehicle.js");
+/* harmony import */ var _alpinejs_collapse__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @alpinejs/collapse */ "./node_modules/@alpinejs/collapse/dist/module.esm.js");
+/* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Layout */ "./resources/js/components/Layout.js");
+/* harmony import */ var _components_ToggleFullScreen_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/ToggleFullScreen.js */ "./resources/js/components/ToggleFullScreen.js");
+/* harmony import */ var _components_SlideOver_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/SlideOver.js */ "./resources/js/components/SlideOver.js");
+/* harmony import */ var _components_selects_SelectUser_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/selects/SelectUser.js */ "./resources/js/components/selects/SelectUser.js");
+/* harmony import */ var _components_selects_SelectAsync__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/selects/SelectAsync */ "./resources/js/components/selects/SelectAsync.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
+
+/**
+ * Components alpine
+ */
 
 
 
@@ -5258,12 +5373,12 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
 alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].plugin(_alpinejs_mask__WEBPACK_IMPORTED_MODULE_1__["default"]);
-alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].data('App', _components_Layout__WEBPACK_IMPORTED_MODULE_2__["default"]);
-alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].data('ToggleFullScreen', _components_ToggleFullScreen_js__WEBPACK_IMPORTED_MODULE_3__["default"]);
-alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].data('SlideOver', _components_SlideOver_js__WEBPACK_IMPORTED_MODULE_4__["default"]);
-alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].data('SelectAsync', _components_selects_SelectAsync__WEBPACK_IMPORTED_MODULE_6__["default"]);
-alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].data('SelectUser', _components_selects_SelectUser_js__WEBPACK_IMPORTED_MODULE_5__["default"]);
-alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].data('CreateVehicle', _components_vehicle_CreateVehicle__WEBPACK_IMPORTED_MODULE_7__["default"]);
+alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].plugin(_alpinejs_collapse__WEBPACK_IMPORTED_MODULE_2__["default"]);
+alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].data('App', _components_Layout__WEBPACK_IMPORTED_MODULE_3__["default"]);
+alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].data('ToggleFullScreen', _components_ToggleFullScreen_js__WEBPACK_IMPORTED_MODULE_4__["default"]);
+alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].data('SlideOver', _components_SlideOver_js__WEBPACK_IMPORTED_MODULE_5__["default"]);
+alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].data('SelectAsync', _components_selects_SelectAsync__WEBPACK_IMPORTED_MODULE_7__["default"]);
+alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].data('SelectUser', _components_selects_SelectUser_js__WEBPACK_IMPORTED_MODULE_6__["default"]);
 alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
 
 /***/ }),
@@ -5485,9 +5600,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     open: false,
     label: '',
     value: null,
+    photo: null,
     items: [],
     showing: 0,
     search: '',
+    loading: true,
     init: function init() {
       var _this = this;
 
@@ -5506,16 +5623,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 4:
                 _this.items = _context.sent;
+                _this.loading = false;
 
-                if (old !== undefined) {
+                if (old !== 'null' && old !== '') {
                   tmp = _this.items.filter(function (i) {
                     return i.id == old;
                   });
                   _this.value = tmp[0].id;
                   _this.label = tmp[0].name;
+                  _this.photo = 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80';
                 }
 
-              case 6:
+              case 7:
               case "end":
                 return _context.stop();
             }
@@ -5530,6 +5649,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var label = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : value;
       this.value = value;
       this.label = label;
+      this.photo = 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80';
       this.open = false;
     },
 
@@ -5543,49 +5663,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return tmp;
     }
 
-  };
-});
-
-/***/ }),
-
-/***/ "./resources/js/components/vehicle/CreateVehicle.js":
-/*!**********************************************************!*\
-  !*** ./resources/js/components/vehicle/CreateVehicle.js ***!
-  \**********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function () {
-  var initialVehicles = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-  return {
-    vehicles: initialVehicles,
-    init: function init() {
-      if (this.vehicles.length === 0) {
-        this.add();
-      }
-    },
-    add: function add() {
-      console.log("ADD VEHICLE");
-      this.vehicles.push({
-        vin: '',
-        make: '',
-        model: '',
-        year: '',
-        color: '',
-        operable: '',
-        type: '',
-        lot_number: '',
-        buyer: ''
-      });
-    },
-    remove: function remove(index) {
-      var deleted = this.vehicles.splice(index, 1);
-      console.log("REMOVE VEHICLE", deleted);
-    }
   };
 });
 

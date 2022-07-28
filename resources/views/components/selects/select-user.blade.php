@@ -1,12 +1,24 @@
-<div class="relative"
-     x-data="SelectUser({ api: '{{ $api }}' })"
-     @click.outside="open = false"
+<div
+    x-data="SelectUser({ api: '{{ $api }}', old: '{{ $value }}' })"
+    @click.outside="open = false"
+    class="relative"
 >
 
     <!-- Button -->
-    <button class="input pl-3 pr-10 py-2" type="button" @click="toggle()">
+    <button class="input pl-3 pr-10 py-2 @error($formatted) is-border-danger @enderror" type="button" @click="toggle()">
         <span class="flex items-center justify-start min-h-[1.5rem]">
-            <span class="text-base block truncate" x-text="label"></span>
+
+            <template x-if="photo === null">
+                <div class="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center dark:bg-white/5">
+                    <i class="text-[10px] text-gray-700 dark:text-gray-300 fas fa-user"></i>
+                </div>
+            </template>
+
+            <template x-if="photo !== null">
+                <img :src="photo" :alt="`photo-${value}`" class="flex-shrink-0 h-6 w-6 rounded-full">
+            </template>
+
+            <span class="text-base block truncate ml-3" x-text="label"></span>
             <input class="hidden" name="{{ $name }}" type="text" x-model="value">
         </span>
 
@@ -18,49 +30,77 @@
     </button>
 
     <!-- Wrapper items -->
-    <div x-show="open" x-cloak
+    <div
+        x-show="open" x-cloak
         x-transition:enter="transition ease-in-out duration-300"
         x-transition:enter-start="opacity-0 translate-y-5"
         x-transition:enter-end="opacity-100 translate-y-0"
         x-transition:leave="transition ease-in-out duration-300"
         x-transition:leave-start="opacity-100 translate-y-0"
         x-transition:leave-end="opacity-0 translate-y-5"
-        class="absolute z-10 w-full mt-2 rounded shadow-md bg-white border border-gray-300 dark:bg-header dark:border-zinc-700 dark:shadow-lg">
+        class="absolute z-10 w-full mt-2 rounded shadow-md bg-white border border-gray-300 dark:bg-header dark:border-zinc-700 dark:shadow-lg"
+    >
 
         <div class="relative mx-2 my-2">
-            <input class="input rounded focus:ring-1 pr-11" x-model="search" type="text" placeholder="Search">
+            <input class="input rounded-md focus:ring-1 pr-11" x-model="search" type="text" placeholder="Search">
 
-            <button class="absolute inset-y-0 right-0 mx-4 flex items-center pointer-pointer text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400" type="button" \\\>
+            <button
+                x-show="!loading"
+                @click="search = ''"
+                type="button"
+                class="absolute inset-y-0 right-0 px-4 flex items-center pointer-pointer text-gray-400 hover:text-gray-500"
+            >
                 <i class="fa-solid fa-circle-xmark"></i>
             </button>
+
+            <span x-show="loading" class="animate-spin absolute inset-y-0 right-0 px-4 flex items-center pointer-pointer text-gray-400">
+                <i class="fa-solid fa-spinner"></i>
+            </span>
         </div>
 
-        <ul class="max-h-56 overflow-y-auto pb-2">
-            <template x-for="item in filteredItems" :key="item.id">
+        <div class="max-h-56 overflow-y-auto pb-2">
+            <template x-for="user in filteredItems" :key="user.id">
 
-                <!-- Start Item -->
-                <li @click="selectItem(item.id, item.name)" tabindex="1"
-                    :class="{ 'bg-gray-50 dark:bg-white/5': value === item.id }"
-                    class="relative cursor-pointer select-none py-2 pl-3 pr-10 transition hover:bg-gray-100 focus:bg-gray-200 dark:hover:bg-white/5 dark:focus:bg-white/10">
+                <div
+                    @click="selectItem(user.id, user.name)" tabindex="1"
+                    :class="{ 'bg-gray-50 dark:bg-white/5': value === user.id }"
+                    class="relative cursor-pointer select-none py-2 pl-3 pr-10 hover:bg-gray-100 dark:hover:bg-white/5"
+                >
+                    <div class="flex items-center space-x-3">
+                        <x-avatar-user
+                            :user="Auth::user()"
+                            class="!h-6 !w-6"
+                        ></x-avatar-user>
 
-                    <div class="flex items-center">
-                        <x-avatar-user :user="Auth::user()" class="!h-6 !w-6" />
-                        <span class="text-base ml-3 block truncate text-gray-700 dark:text-gray-300" x-text="item.name"></span>
+                        <span
+                            x-text="user.name"
+                            class="text-base block truncate text-gray-700 dark:text-gray-300"
+                        ></span>
+
+                        <!-- Checked -->
+                        <div
+                            x-show="value === user.id" x-transition.opacity
+                            class="text-primary absolute inset-y-0 right-0 px-3 flex items-center pointer-events-none">
+
+                            <x-icon
+                                class="w-5 h-5 text-xl"
+                                name="checkmark-done-outline"
+                                library="ion-icon"
+                            ></x-icon>
+                        </div>
                     </div>
-
-                    <span x-show="value === item.id" x-transition.opacity
-                          class="text-primary absolute inset-y-0 right-0 px-3 flex items-center pointer-events-none" >
-
-                        <x-icon class="w-5 h-5 text-xl" name="checkmark-done-outline" library="ion-icon" />
-                    </span>
-                </li>
-                <!-- End Item -->
-
+                </div>
             </template>
 
             <div class="py-2 px-3 flex items-center text-gray-400" x-show="showing === 0">
                 <i class="mr-2 fa-solid fa-ban"></i> No items available
             </div>
-        </ul>
+        </div>
     </div>
 </div>
+
+@error($formatted)
+    <span class="inline-block uppercase text-danger text-[12px] pl-2 mt-1" role="alert">
+        <strong>{{ $message }}</strong>
+    </span>
+@enderror

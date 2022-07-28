@@ -2,84 +2,124 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\RolesEnum;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreUpdateVehicleRequest;
 
-use App\Models\{Payment, ServiceOrder, Vehicle, VehicleType};
+use App\Models\{
+    ServiceOrder,
+    Vehicle
+};
 
 class VehicleController extends Controller
 {
+    protected Vehicle $vehicle;
+    protected ServiceOrder $serviceOrder;
+
+    function __construct(Vehicle $vehicle, ServiceOrder $serviceOrder){
+        $this->vehicle = $vehicle;
+        $this->serviceOrder = $serviceOrder;
+    }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Create new vehicle for a service order
      */
-    public function index()
+    public function store(StoreUpdateVehicleRequest $request, $idServiceOrder)
     {
-        return view('pages.vehicles.index');
+        DB::beginTransaction();
+
+        try {
+            $data = $request['vehicle']['new'];
+
+            $serviceOrder = $this->serviceOrder->findOrFail($idServiceOrder);
+
+            $this->vehicle->create([
+                'vin'              => $data['vin'],
+                'make'             => $data['make'],
+                'model'            => $data['model'],
+                'year'             => $data['year'],
+                'color'            => $data['color'],
+                'operable'         => $data['operable'],
+                'lot_number'       => $data['lot_number'],
+                'buyer_number'     => $data['buyer'],
+
+                'vehicle_type_id'  => $data['type'],
+                'service_order_id' => $serviceOrder->id
+            ]);
+
+            DB::commit();
+
+            // ADD FLASH MESSAGE
+            return redirect()->back();
+
+        } catch(\Exception $exception) {
+            DB::rollback();
+
+            // ADD FLASH MESSAGE
+            return redirect()->back();
+        }
+    }
+
+    public function update(StoreUpdateVehicleRequest $request, $id)
+    {
+        DB::beginTransaction();
+
+        try {
+            $data = $request['vehicle'][$id];
+
+            $this->vehicle->findOrFail($id)->update([
+                'vin'              => $data['vin'],
+                'make'             => $data['make'],
+                'model'            => $data['model'],
+                'year'             => $data['year'],
+                'color'            => $data['color'],
+                'operable'         => $data['operable'],
+                'lot_number'       => $data['lot_number'],
+                'buyer_number'     => $data['buyer'],
+                'vehicle_type_id'  => $data['type'],
+            ]);
+
+            DB::commit();
+
+            // ADD FLASH MESSAGE
+            return redirect()->back();
+
+        } catch(\Exception $exception) {
+            DB::rollback();
+
+            // ADD FLASH MESSAGE
+            return redirect()->back();
+        }
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('pages.vehicles.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        dd($request->all());
-    }
-
-
-
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Force delete vehicle from a service Order
      */
     public function destroy($id)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $vehicle = $this->vehicle->with([
+                'serviceOrder.vehicles'
+            ])->findOrFail($id);
+
+            if (count($vehicle->serviceOrder->vehicles) <= 1) {
+                // FLASH MESSAGE ERROR - MINIMUM 1 VEHICLE
+                return redirect()->back();
+            }
+
+            $vehicle->forceDelete();
+
+            DB::commit();
+
+            // ADD FLASH MESSAGE
+            return redirect()->back();
+
+        } catch(\Exception $exception) {
+            DB::rollback();
+
+            // ADD FLASH MESSAGE
+            return redirect()->back();
+        }
     }
 }

@@ -26,7 +26,7 @@ class VehicleSeeder extends Seeder
             'color'            => 'silver',
             'operable'         => 1,
             'lot_number'       => 1,
-            'buyer_number'     => '(555) 2854-25685',
+            'buyer_number'     => '(555) 254-2568',
 
             'vehicle_type_id'  => 1,
             'service_order_id' => 1
@@ -40,7 +40,7 @@ class VehicleSeeder extends Seeder
             'color'            => 'black',
             'operable'         => 0,
             'lot_number'       => 2,
-            'buyer_number'     => '(555) 2369-28971',
+            'buyer_number'     => '(555) 369-2971',
 
             'vehicle_type_id'  => 2,
             'service_order_id' => 1

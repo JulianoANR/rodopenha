@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('company')->nullable();
             $table->string('working_from')->nullable();
             $table->string('working_to')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

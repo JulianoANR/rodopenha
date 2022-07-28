@@ -64,12 +64,12 @@
 
     @stack('outside')
 
+    @stack('scripts-before')
     <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('assets/datatables-1.12.1/datatables.min.js') }}"></script>
     <!-- <script src="{{ asset('assets/datatables-1.12.1/responsive-plugin/js/dataTables.responsive.min.js') }}"></script> -->
-
     @stack('scripts')
 </body>
 </html>

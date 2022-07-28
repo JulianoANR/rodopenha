@@ -20,114 +20,84 @@
     <div class="px-4 md:px-6">
         <div class="flex flex-wrap -mx-2 md:-mx-3">
 
-            <!-- List all -->
             <div class="w-full px-2 mb-6 md:px-3">
-
                 <x-card>
-                    <x-slot name="header">
-                        {{ __('manage orders') }}
-                    </x-slot>
+                    <x-slot name="header">{{ __('manage orders') }}</x-slot>
 
                     <x-slot name="body">
                         <div class="relative overflow-x-auto">
                             <table class="stripe hover responsive" id="table_all_orders">
                                 <thead>
                                     <tr>
-                                        <th>{{ __('order') }}</th>
-                                        <th>{{ __('driver') }}</th>
-                                        <th>{{ __('status') }}</th>
-                                        <th>{{ __('picked up') }}</th>
-                                        <th>{{ __('delivered') }}</th>
-                                        <th>{{ __('vehicles') }}</th>
-                                        <th>{{ __('actions') }}</th>
+                                        <th scope="col">
+                                            {{ __('order') }}
+                                        </th>
+                                        <th scope="col">
+                                            {{ __('driver') }}
+                                        </th>
+                                        <th scope="col">
+                                            {{ __('status') }}
+                                        </th>
+                                        <th scope="col">
+                                            {{ __('picked up') }}
+                                        </th>
+                                        <th scope="col">
+                                            {{ __('delivered') }}
+                                        </th>
+                                        <th scope="col">
+                                            {{ __('actions') }}
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="font-bold text-gray-700 whitespace-nowrap dark:text-gray-300">
-                                            #14234
-                                        </td>
+                                    @foreach($serviceOrders as $serviceOrder)
+                                        <tr>
+                                            <td class="text-gray-700 whitespace-nowrap dark:text-gray-300">
+                                                {{ $serviceOrder->load_id }}
+                                            </td>
 
-                                        <td class="align-middle whitespace-nowrap">
-                                            <div class="flex items-center gap-1.5 w-full h-full">
-                                                <x-avatar-user class="w-9 h-9 min-w-[2.25rem]" :user="Auth::user()" />
-                                                <span class="ml-3 font-semibold">Giovani Appezzato</span>
-                                            </div>
-                                        </td>
+                                            <td class="align-middle whitespace-nowrap">
+                                                <div class="flex items-center gap-1.5 w-full h-full">
+                                                    <x-avatar-user class="w-9 h-9 min-h-[2.25rem] min-w-[2.25rem]" :user="Auth::user()" />
+                                                    <span class="ml-3 font-semibold">Giovani Appezzato</span>
+                                                </div>
+                                            </td>
 
-                                        <td class="align-middle">
-                                            <span class="badge badge-primary">
-                                                Picked Up
-                                            </span>
-                                        </td>
+                                            <td class="align-middle">
+                                                <x-status-badge :type="$serviceOrder->status"></x-status-badge>
+                                            </td>
 
-                                        <td class="align-middle min-w-[15rem]">
-                                            9217 Apollo Heights Ave, Las Vegas, NV, 89110
-                                        </td>
+                                            <td class="align-middle min-w-[15rem]">
+                                                {{ $serviceOrder->pickup->address }}
+                                            </td>
 
-                                        <td class="align-middle min-w-[15rem]">
-                                            3842 North Highway 95, lake havasu city, AZ, 86404
-                                        </td>
+                                            <td class="align-middle min-w-[15rem]">
+                                                {{ $serviceOrder->delivery->address }}
+                                            </td>
 
-                                        <td class="align-middle whitespace-nowrap">
-                                            2015 toyota camry
-                                        </td>
+                                            <td class="align-middle">
+                                                <div class="flex justify-center items-center gap-x-3">
+                                                    @can('isAdmin')
+                                                        <a class="button button-icon button-icon-xs button-primary rounded" href="{{ route('service-orders.show', $serviceOrder->id) }}">
+                                                            <i class="fa-solid fa-pen-clip"></i>
+                                                        </a>
 
-                                        <td class="align-middle">
-                                            <div class="inline-flex justify-end items-center gap-x-3">
-                                                <a class="button button-icon button-icon-xs button-primary rounded" href="{{ route('service-orders.show', 1) }}">
-                                                    <i class="fa-solid fa-pen-clip"></i>
-                                                </a>
+                                                        <form action="{{ route('service-orders.destroy', $serviceOrder->id) }}" method="POST">
+                                                            @csrf @method('DELETE')
 
-                                                <button class="button button-icon button-icon-xs button-danger rounded">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="font-bold text-gray-700 whitespace-nowrap dark:text-gray-300">
-                                            #23423
-                                        </td>
-
-                                        <td class="align-middle whitespace-nowrap">
-                                            <div class="flex items-center gap-1.5 w-full h-full">
-                                                <x-avatar-user class="w-9 h-9 min-w-[2.25rem]" :user="Auth::user()" />
-                                                <span class="ml-3 font-semibold">Admin</span>
-                                            </div>
-                                        </td>
-
-                                        <td class="align-middle">
-                                            <span class="badge badge-info">
-                                                Delivery
-                                            </span>
-                                        </td>
-
-                                        <td class="align-middle min-w-[15rem]">
-                                            2371 Southwest 36th Street, Fort Lauderdale, FL, Fort Lauderdale, FL, 33312
-                                        </td>
-
-                                        <td class="align-middle min-w-[15rem]">
-                                            31205 Interstate 10, Boerne, TX, Boerne, TX, 78006
-                                        </td>
-
-                                        <td class="align-middle whitespace-nowrap">
-                                            2021 Toyota Corolla
-                                        </td>
-
-                                        <td class="align-middle">
-                                            <div class="inline-flex justify-end items-center gap-x-3">
-                                                <a class="button button-icon button-icon-xs button-primary rounded" href="{{ route('service-orders.show', 1) }}">
-                                                    <i class="fa-solid fa-pen-clip"></i>
-                                                </a>
-
-                                                <button class="button button-icon button-icon-xs button-danger rounded">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                                            <button class="button button-icon button-icon-xs button-danger rounded">
+                                                                <i class="fa-solid fa-trash"></i>
+                                                            </button>
+                                                        </form>
+                                                    @else
+                                                        <a class="button button-icon button-icon-xs button-primary rounded" href="{{ route('service-orders.show', $serviceOrder->id) }}">
+                                                            <i class="fa-solid fa-eye"></i>
+                                                        </a>
+                                                    @endcan
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -139,14 +109,13 @@
 
     @push('scripts')
         <script>
-            var table = $('#table_all_orders').DataTable({
+            const tableAllOrders = $('#table_all_orders').DataTable({
                 dom: 'Bfrtip',
                 "scrollCollapse": true,
                 "searching": false
             });
         </script>
     @endpush
-
 </x-app>
 
 

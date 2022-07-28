@@ -18,14 +18,15 @@ class SlideOver extends Component
      */
     public function __construct(
         $id,
-        $title = 'Slide over', $initialState = "false",
-        $label = "null"
+        $label = "null",
+        $title = 'Slide over',
+        $initialState = false
     )
     {
         $this->id = $id;
         $this->label = $label;
         $this->title = $title;
-        $this->initialState = $initialState;
+        $this->initialState = $initialState === true ? 'true' : 'false';
     }
 
     /**

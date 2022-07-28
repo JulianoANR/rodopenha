@@ -18,8 +18,8 @@ class PaymentSeeder extends Seeder
     public function run()
     {
         Payment::create([
+            'notes'            => null,
             'carrier_pay'      => '500',
-            'internal_notes'   => null,
             'type'             => PaymentTypesEnum::COD,
             'method'           => PaymentMethodsEnum::BUSINESS_CHECK,
 

@@ -16,13 +16,14 @@ return new class extends Migration
         Schema::create('service_orders', function (Blueprint $table) {
             $table->id();
             $table->string('load_id');
-            $table->text('dispatch_instruction')->nullable();
+            $table->text('dispatch_instructions')->nullable();
             $table->enum('trailer_type', ['opened', 'closed']);
             $table->enum('inspection_type', ['standard', 'M22']);
             /**
              * Enum: StatusEnum.php
              */
             $table->string('status');
+            $table->foreignId('driver_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

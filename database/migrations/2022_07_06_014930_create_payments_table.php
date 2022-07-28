@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->string('carrier_pay');
-            $table->text('internal_notes')->nullable();
+            $table->text('notes')->nullable();
             /**
              * Enum: PaymentTypesEnum.php
              */
@@ -26,6 +26,7 @@ return new class extends Migration
              */
             $table->string('method');
             $table->foreignId('service_order_id')->constrained('service_orders')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

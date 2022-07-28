@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Role::class, 'role_user', 'user_id');
     }
+
+    public function serviceOrders()
+    {
+        return $this->hasMany(ServiceOrder::class, 'driver_id', 'id');
+    }
 }

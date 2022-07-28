@@ -103,11 +103,17 @@
                 <!-- Start Vehicles -->
                 <x-card>
                     <x-slot name="header">
-                        <span>{{ __('Vehicles') }} <i class="ml-1 fa-solid fa-truck-front"></i></span>
+                        <span>{{ __('Vehicles') }} <i class="ml-1 fa-solid fa-car"></i></span>
                     </x-slot>
 
                     <x-slot name="body">
                         <div x-data="CreateVehicle({{ old('vehicles') ? json_encode(old('vehicles')) : "[]" }})">
+
+                            @error('vehicles.*')
+                                <div class="text-danger uppercase mb-6" role="alert">
+                                    <strong>{{ __('Whoops! Check that all vehicle fields are correct.') }}</strong>
+                                </div>
+                            @enderror
 
                             <template x-for="(vehicle, index) in vehicles" :key="index">
                                 <div class="flex flex-wrap -mx-2 md:flex-nowrap" :class="{'mb-8': index !== (vehicles.length - 1)}">
@@ -202,14 +208,17 @@
                                                     type="text"
                                                 ></x-input>
                                             </div>
+
                                             <div class="w-full px-2 mb-4 md:w-3/12">
-                                                <label class="text-sm font-semibold pl-1 mb-2" :for="`vehicles_${index}_buyer`">Buyer</label>
+                                                <label class="text-sm font-semibold pl-1 mb-2" :for="`vehicles_${index}_buyer`">Buyer Number</label>
 
                                                 <x-input
                                                     x-model="vehicle.buyer"
                                                     x-bind:name="`vehicles[${index}][buyer]`"
                                                     x-bind:id="`vehicles_${index}_buyer`"
                                                     type="text"
+                                                    x-data x-mask="(999) 999-9999"
+                                                    placeholder="(___) ___-____"
                                                 ></x-input>
                                             </div>
                                         </div>
@@ -439,6 +448,7 @@
                                         type="date"
                                     ></x-input>
                                 </div>
+
                                 <div class="w-full px-2 mb-4 md:w-1/2">
                                     <label class="text-sm font-semibold pl-1 mb-2" for="pickup_restrictions">Restrictions</label>
 
@@ -642,6 +652,8 @@
                                     id="payment_carrier"
                                     name="payment[carrier]"
                                     type="text"
+                                    x-mask:dynamic="$money($input)"
+                                    placeholder="0.00"
                                 ></x-input>
                             </div>
 
@@ -832,5 +844,61 @@
             </div>
         </form>
     </div>
+
+    @push('scripts-before')
+        <script>
+            /**
+             *  Component Alpine - Create vehicle
+             */
+            function CreateVehicle(initial = []) {
+                return {
+                    vehicles: initial,
+
+                    init() {
+                        if(this.vehicles.length === 0) {
+                            this.add();
+                        }
+                    },
+
+                    add() {
+                        this.vehicles.push({
+                            vin: '',
+                            make: '',
+                            model: '',
+                            year: '',
+                            color: '',
+                            operable: '',
+                            type: '',
+                            lot_number: '',
+                            buyer: ''
+                        });
+                    },
+
+                    remove(index) {
+                        const deleted = this.vehicles.splice(index, 1);
+                        console.log("🚗 deleted: ", deleted);
+                    }
+                }
+            }
+
+            /**
+             * Component Alpine - Select Make and Model
+             */
+            function SelectMakeAndModel() {
+                return {
+                    openMake: false,
+                    openModel: false,
+
+                    toggleMake() {
+                        this.openMake = !this.openMake;
+                    },
+
+                    toggleModel() {
+                        this.openModel = !this.openModel;
+                    }
+                }
+            }
+        </script>
+    @endpush
 </x-app>
 

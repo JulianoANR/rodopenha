@@ -306,8 +306,6 @@
                 });
             });
         </script>
-
     @endpush
-
 </x-app>
 

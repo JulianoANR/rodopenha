@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Enums\{
     PaymentTypesEnum,
@@ -12,15 +13,15 @@ use App\Enums\{
 
 class Payment extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'payments';
 
     protected $fillable = [
         'type',
+        'notes',
         'method',
         'carrier_pay',
-        'internal_notes',
         'service_order_id'
     ];
 

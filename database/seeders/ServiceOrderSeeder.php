@@ -17,11 +17,12 @@ class ServiceOrderSeeder extends Seeder
     public function run()
     {
         ServiceOrder::create([
-            'load_id' => '#76296',
-            'trailer_type' => 'opened',
-            'inspection_type' => 'standard',
-            'dispatch_instruction' => null,
-            'status' => StatusEnum::NEW
+            'load_id'               => '#76296',
+            'trailer_type'          => 'opened',
+            'inspection_type'       => 'standard',
+            'dispatch_instructions' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+            'status'                => StatusEnum::NEW,
+            'driver_id'             => null
         ]);
     }
 }

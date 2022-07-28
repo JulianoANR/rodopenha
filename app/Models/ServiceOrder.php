@@ -19,18 +19,24 @@ class ServiceOrder extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'status',
         'load_id',
-        'dispatch_instruction',
         'trailer_type',
         'inspection_type',
-        'status',
+        'dispatch_instructions',
+        'driver_id'
     ];
 
     protected $casts = [
         'status' => StatusEnum::class,
     ];
 
-    public  function vehicles()
+    public function driver()
+    {
+        return $this->belongsTo(User::class, 'driver_id', 'id');
+    }
+
+    public function vehicles()
     {
         return $this->hasMany(Vehicle::class, 'service_order_id', 'id');
     }

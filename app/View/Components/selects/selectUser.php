@@ -14,7 +14,7 @@ class SelectUser extends Component
      *          'id'            => "...",
      *          'name'          => "...",
      *          'profile_photo' => "..."
-     *      ],x
+     *      ],
      *      ...
      *  ]
      */
@@ -22,18 +22,20 @@ class SelectUser extends Component
     /**
      * @var string
      */
-    public string $name, $api, $old;
+    public string $name, $api, $value, $formatted;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($api, $name, $old = '0')
+    public function __construct($api, $name, $value = 'null')
     {
         $this->api = $api;
         $this->name = $name;
-        $this->old = $old;
+        $this->value = $value !== '' ? $value : 'null';
+
+        $this->formatted = isset($name) ? str_replace(']', '', str_replace('[', '.', $name)) : false;
     }
 
     /**

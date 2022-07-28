@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreServiceOrderRequest;
 use App\Http\Requests\UpdateServiceOrderRequest;
 
 use Exception;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
+use Illuminate\Validation\Rule;
 use App\Enums\{
     StatusEnum,
     ReferenceContactsEnum
@@ -96,11 +98,11 @@ class ServiceOrderController extends Controller
             $basic = $data['basic'];
 
             $serviceOrder = $this->serviceOrder->create([
-                'load_id'              => $basic['load_id'],
-                'trailer_type'         => $basic['trailer_type'],
-                'inspection_type'      => $basic['inspection_type'],
-                'dispatch_instruction' => $basic['dispatch_instructions'],
-                'status'               => StatusEnum::NEW,
+                'load_id'               => $basic['load_id'],
+                'trailer_type'          => $basic['trailer_type'],
+                'inspection_type'       => $basic['inspection_type'],
+                'dispatch_instructions' => $basic['dispatch_instructions'],
+                'status'                => StatusEnum::NEW,
             ]);
 
             /**
@@ -170,9 +172,9 @@ class ServiceOrderController extends Controller
             $delivery = $data['delivery'];
 
             $insert_contact_delivery = [
-                'name'         => $pickup['name'],
-                'email'        => $pickup['email'],
-                'phone'        => $pickup['phone']
+                'name'         => $delivery['name'],
+                'email'        => $delivery['email'],
+                'phone'        => $delivery['phone']
             ];
 
             if($delivery['type_contact'] === 'business') {
@@ -180,9 +182,9 @@ class ServiceOrderController extends Controller
                     'ref'   => ReferenceContactsEnum::DELIVERY,
                     'type'  => 'business',
 
-                    'company'      => $pickup['company'],
-                    'working_from' => $pickup['working_from'],
-                    'working_to'   => $pickup['working_to'],
+                    'company'      => $delivery['company'],
+                    'working_from' => $delivery['working_from'],
+                    'working_to'   => $delivery['working_to'],
 
                     ...$insert_contact_delivery
                 ]);
@@ -196,10 +198,10 @@ class ServiceOrderController extends Controller
             }
 
             $this->delivery->create([
-                'zip'                => $pickup['zip'],
-                'date'               => $pickup['date'],
-                'notes'              => $pickup['notes'],
-                'address'            => $pickup['address'],
+                'zip'                => $delivery['zip'],
+                'date'               => $delivery['date'],
+                'notes'              => $delivery['notes'],
+                'address'            => $delivery['address'],
                 'signature_required' => !isset($delivery['not_signature']),
 
                 'contact_id'         => $contact_delivery->id,
@@ -222,9 +224,9 @@ class ServiceOrderController extends Controller
                     'ref'   => ReferenceContactsEnum::SHIPPER,
                     'type'  => 'business',
 
-                    'company'      => $pickup['company'],
-                    'working_from' => $pickup['working_from'],
-                    'working_to'   => $pickup['working_to'],
+                    'company'      => $shipper['company'],
+                    'working_from' => $shipper['working_from'],
+                    'working_to'   => $shipper['working_to'],
 
                     ...$insert_contact_shipper
                 ]);
@@ -238,9 +240,9 @@ class ServiceOrderController extends Controller
             }
 
             $this->shipper->create([
-                'zip'                => $pickup['zip'],
-                'notes'              => $pickup['notes'],
-                'address'            => $pickup['address'],
+                'zip'                => $shipper['zip'],
+                'notes'              => $shipper['notes'],
+                'address'            => $shipper['address'],
 
                 'contact_id'         => $contact_shipper->id,
                 'service_order_id'   => $serviceOrder->id
@@ -253,7 +255,7 @@ class ServiceOrderController extends Controller
 
             $this->payment->create([
                 'type'               => $payment['type'],
-                'internal_notes'     => $payment['notes'],
+                'notes'              => $payment['notes'],
                 'method'             => $payment['method'],
                 'carrier_pay'        => $payment['carrier'],
 
@@ -273,21 +275,123 @@ class ServiceOrderController extends Controller
         }
     }
 
+    /**
+     * Update ONLY service orders table
+     */
     public function update(UpdateServiceOrderRequest $request, $id)
     {
-        $serviceOrder = $this->serviceOrder->findOrFail($id);
-        dd($serviceOrder);
+        DB::beginTransaction();
+
+        try {
+            $data = $request['basic'];
+
+            $serviceOrder = $this->serviceOrder->findOrFail($id);
+
+            $serviceOrder->update([
+                'load_id'               => $data['load_id'],
+                'trailer_type'          => $data['trailer_type'],
+                'inspection_type'       => $data['inspection_type'],
+                'dispatch_instructions' => $data['dispatch_instructions'],
+            ]);
+
+            DB::commit();
+
+            // ADD FLASH MESSAGE
+            return redirect()->back();
+
+        } catch(\Exception $exception) {
+            DB::rollback();
+
+            // ADD FLASH MESSAGE
+            return redirect()->back();
+        }
     }
 
+    /**
+     * Delete with "SOFT DELETE" a service and ALL YOUR RELATIONS
+     */
     public function destroy($id)
     {
-        $serviceOrder = $this->serviceOrder->findOrFail($id);
-        dd($serviceOrder);
+        DB::beginTransaction();
+
+        try {
+            $serviceOrder = $this->serviceOrder->with([
+                'vehicles',
+                'pickup',
+                'delivery',
+                'shipper',
+                'payment'
+            ])->findOrFail($id);
+
+            $serviceOrder->delete();
+            $serviceOrder->pickup->delete();
+            $serviceOrder->delivery->delete();
+            $serviceOrder->shipper->delete();
+            $serviceOrder->pickup->contact->delete();
+            $serviceOrder->delivery->contact->delete();
+            $serviceOrder->shipper->contact->delete();
+            $serviceOrder->payment->delete();
+
+            $serviceOrder->vehicles->each(function ($vehicle) {
+                $vehicle->delete();
+            });
+
+            DB::commit();
+
+            // ADD FLASH MESSAGE
+            return redirect()->back();
+
+        } catch(\Exception $exception) {
+            DB::rollback();
+
+            // ADD FLASH MESSAGE
+            return redirect()->back();
+        }
     }
 
-    public function restore($id)
+    /**
+     * Assign a driver to service order
+     */
+    public function assign(Request $request, $id)
     {
-        $serviceOrder = $this->serviceOrder->withTrashed()->findOrFail($id);
-        dd($serviceOrder);
+        Validator::make($request->all(), [
+            'driver' => ['required', Rule::exists('users', 'id')]
+        ])->validated();
+
+        try {
+            $serviceOrder = $this->serviceOrder->findOrFail($id);
+
+            $serviceOrder->update([
+                'driver_id' => $this->user->findOrFail($request['driver'])->id,
+                'status'    => StatusEnum::ASSIGNED
+            ]);
+
+            return redirect()->back();
+
+        } catch(\Exception $exception) {
+
+            return redirect()->back();
+        }
+    }
+
+    /**
+     * Unassign a driver from service order
+     */
+    public function unassign($id)
+    {
+        try {
+            $serviceOrder = $this->serviceOrder->findOrFail($id);
+
+            $serviceOrder->update([
+                'driver_id' => null,
+                'status'    => StatusEnum::NEW
+            ]);
+
+            return redirect()->back();
+
+        } catch(\Exception $exception) {
+
+            return redirect()->back();
+        }
     }
 }

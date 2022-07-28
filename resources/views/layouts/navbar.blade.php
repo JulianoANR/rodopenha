@@ -19,11 +19,11 @@
             </button>
         </div>
 
-        <div class="h-[calc(100%-4rem)] overflow-y-auto xl:h-full xl:pt-4">
-            <div class="h-full flex flex-col pt-2 px-3 pb-4 space-y-4 text-white xl:text-gray-700 dark:text-gray-400 capitalize">
+        <div class="h-[calc(100%-4rem)] overflow-y-auto xl:h-full">
+            <div class="h-full flex flex-col px-3 py-4 space-y-4 text-white capitalize xl:text-gray-700 xl:pt-6 dark:text-gray-400">
 
                 <div class="space-y-2">
-                    <h2 class="font-semibold text-gray-200 ml-2 xl:text-gray-500 dark:text-gray-200">
+                    <h2 class="font-bold text-xs text-gray-200 ml-2 xl:text-gray-400 dark:text-gray-400 uppercase">
                         {{ __('home') }}
                     </h2>
 
@@ -192,7 +192,7 @@
                     <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
                               dark:hover:bg-white/10 dark:focus:bg-white/20" href="{{ route('finance.dashboard') }}">
 
-                        <x-icon name="arrow-back" library="ion-icon"></x-icon>
+                        <x-icon name="arrow-down-circle-outline" library="ion-icon"></x-icon>
                         {{ __('incomes') }}
                     </a>
                     <!-- End Incomes -->
@@ -201,7 +201,7 @@
                     <a class="flex items-center gap-x-3 relative py-2 px-3 w-full text-current cursor-pointer rounded-sm transition hover:bg-white/10 focus:outline-none xl:hover:bg-gray-100 xl:focus:bg-gray-200
                               dark:hover:bg-white/10 dark:focus:bg-white/20" href="{{ route('finance.dashboard') }}">
 
-                        <x-icon name="arrow-forward" library="ion-icon"></x-icon>
+                        <x-icon name="arrow-up-circle-outline" library="ion-icon"></x-icon>
                         {{ __('expenses') }}
                     </a>
                     <!-- End Expenses -->

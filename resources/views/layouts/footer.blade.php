@@ -5,6 +5,7 @@
             © {{ now()->year }} <a href="http://www.rodopenha.com.br/" target="_blank">Rodopenha</a>. {{ __('all rights reserved') }}.
         </span>
 
+        {{--
         <ul class="inline-flex items-center text-sm gap-4">
             <li>
                 <a href="#" class="hover:text-primary">Privacy Policy</a>
@@ -18,6 +19,7 @@
                 <a href="#" class="hover:text-primary">About</a>
             </li>
         </ul>
+        --}}
     </div>
 </footer>
 

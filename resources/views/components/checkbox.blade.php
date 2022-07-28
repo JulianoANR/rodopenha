@@ -1,3 +1,6 @@
-@props(['formatted' => str_replace(']', '', str_replace('[', '.', $name))])
+@php
+    $formatted = str_replace(']', '', str_replace('[', '.', $name));
+    $value = $value ?? old($formatted)
+@endphp
 
-<input {{ $attributes->merge(['class' => 'checkbox']) }} type="checkbox" @checked(old($formatted))>
+<input {{ $attributes->merge(['class' => 'checkbox']) }} type="checkbox" @checked($value ?? old($formatted))>

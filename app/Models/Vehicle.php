@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Vehicle extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'vehicles';
 
@@ -33,7 +34,7 @@ class Vehicle extends Model
         'operable' => 'boolean',
     ];
 
-    public function servideOrder()
+    public function serviceOrder()
     {
         return $this->belongsTo(ServiceOrder::class, 'service_order_id', 'id');
     }

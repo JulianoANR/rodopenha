@@ -22,9 +22,9 @@ class ContactSeeder extends Seeder
 
             'name'         => 'Pickup Name',
             'email'        => 'pickup@gmail.com',
-            'phone'        => '(555) 2154-2736',
+            'phone'        => '(555) 254-2736',
             'company'      => 'Pickup company',
-            'working_from' => '9:00',
+            'working_from' => '09:00',
             'working_to'   => '18:00'
         ]);
 
@@ -34,9 +34,9 @@ class ContactSeeder extends Seeder
 
             'name'         => 'Delivery Name',
             'email'        => 'delivery@gmail.com',
-            'phone'        => '(555) 2154-2736',
+            'phone'        => '(555) 254-2736',
             'company'      => 'Delivery company',
-            'working_from' => '9:00',
+            'working_from' => '09:00',
             'working_to'   => '18:00'
         ]);
 
@@ -46,7 +46,7 @@ class ContactSeeder extends Seeder
 
             'name'         => 'Shipper Name',
             'email'        => 'shipper@gmail.com',
-            'phone'        => '(555) 2154-2736',
+            'phone'        => '(555) 254-2736',
             'company'      => null,
             'working_from' => null,
             'working_to'   => null
