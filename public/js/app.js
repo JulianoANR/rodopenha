@@ -5601,7 +5601,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     label: '',
     value: null,
     photo: null,
-    items: [],
+    users: [],
     showing: 0,
     search: '',
     loading: true,
@@ -5622,7 +5622,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.sent.json();
 
               case 4:
-                _this.items = _context.sent;
+                _this.users = _context.sent;
                 _this.loading = false;
 
                 if (old !== 'null' && old !== '') {
@@ -5656,7 +5656,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     get filteredItems() {
       var _this2 = this;
 
-      var tmp = this.items.filter(function (i) {
+      var tmp = this.users.filter(function (i) {
         return i.name.toLowerCase().startsWith(_this2.search.toLowerCase());
       });
       this.showing = tmp.length;
@@ -5684,12 +5684,12 @@ window.addEventListener('DOMContentLoaded', function () {
     'global': document.getElementById('wrapper_global')
   };
   /* const navigation = document.getElementById('navigation');
-   if (navigation) {
+    if (navigation) {
       let overlay = document.getElementById('overlay-navigation');
-       document.querySelector('#checkbox-navigation').addEventListener('change', function () {
+        document.querySelector('#checkbox-navigation').addEventListener('change', function () {
           navigation.classList.toggle('is-navigation-show');
           overlay.classList.toggle('is-visible');
-           this.checked
+            this.checked
               ? document.body.classList.add('!overflow-hidden')
               : document.body.classList.remove('!overflow-hidden');
       });

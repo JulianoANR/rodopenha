@@ -35,7 +35,6 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-    {{-- Init preferences --}}
     <x-init-preferences />
 </head>
 <body {{ $attributes }}>
@@ -43,16 +42,11 @@
 
         <!-- Wrapper App -->
         <div class="flex flex-col w-full h-screen !overflow-y-auto overflow-x-hidden relative" id="wrapper_global">
-
             <x-layouts.header />
 
             <x-layouts.navbar :active="$active" />
 
             <div class="grow flex flex-col bg-body xl:ml-72">
-                @if(Session::has('flash_message'))
-                    <x-alert status="{{ Session::get('flash_message')['class'] }}" msg="{{ Session::get('flash_message')['msg'] }}"/>
-                @endif
-
                 <main class="grow pb-12">
                     {{ $slot }}
                 </main>
@@ -61,6 +55,10 @@
             </div>
         </div>
     </div>
+
+    {{-- @if(Session::has('flash_message'))
+        <x-alert status="{{ Session::get('flash_message')['class'] }}" msg="{{ Session::get('flash_message')['msg'] }}"/>
+    @endif --}}
 
     @stack('outside')
 

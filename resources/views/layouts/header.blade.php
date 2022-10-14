@@ -13,7 +13,7 @@
             <div>
                 <!-- Brand -->
                 <a href="{{ route('index') }}">
-                    <x-application-logo type="white" class="h-8 md:h-10" />
+                    <x-application-logo type="white" class="h-8" />
                 </a>
             </div>
         </div>

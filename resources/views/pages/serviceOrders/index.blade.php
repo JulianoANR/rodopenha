@@ -11,8 +11,7 @@
             </div>
 
             <a href="{{ route('dashboard') }}" class="button button-primary uppercase hidden md:flex">
-                <x-icon name="arrow-undo" class="w-5 h-5 text-xl" library="ion-icon" />
-                {{ __('return') }}
+                {{ __('create order') }} <i class="fa-solid fa-plus"></i>
             </a>
         </div>
     </div>
