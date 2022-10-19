@@ -14,7 +14,7 @@
     </div>
 
     <section class="px-4 md:px-6">
-        <x-settings active="company_data">
+        <x-layouts.settings active="company_data">
             <h2 class="text-xl font-semibold mb-4">
                 {{ __('Company data') }}
             </h2>
@@ -95,7 +95,7 @@
                 </div>
             </form>
 
-        </x-settings>
+        </x-layouts.settings>
     </section>
 
 </x-app>

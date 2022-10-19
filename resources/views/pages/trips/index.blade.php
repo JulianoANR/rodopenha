@@ -8,7 +8,7 @@
                     {{ __('trips') }}
                 </h1>
 
-                <x-breadcrumb :path="['Trips' => route('vehicles.index')]" />
+                <x-breadcrumb :path="['Trips' => route('trucks.index')]" />
             </div>
 
             <a class="button button-primary uppercase hidden md:flex " href="#">

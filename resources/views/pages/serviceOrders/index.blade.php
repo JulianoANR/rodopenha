@@ -10,7 +10,7 @@
                 <x-breadcrumb :path="['Service Orders' => route('service-orders.index')]" />
             </div>
 
-            <a href="{{ route('dashboard') }}" class="button button-primary uppercase hidden md:flex">
+            <a href="{{ route('service-orders.create') }}" class="button button-primary uppercase hidden md:flex">
                 {{ __('create order') }} <i class="fa-solid fa-plus"></i>
             </a>
         </div>

@@ -74,7 +74,7 @@
 
                         <x-slot name="body">
                             <div x-data="{ active: 'new' }">
-                                <div class="flex items-center space-x-2 mb-5">
+                                {{-- <div class="flex items-center space-x-2 mb-5">
                                     <div class="inline-flex gap-2 p-1 bg-gray-100 rounded dark:bg-white/5">
                                         <button class="button button-sm button-primary" @click="active = 'new'" :class="active === 'new' ? 'button-primary' : 'button-primary-outline'" type="button">
                                             New trailer
@@ -88,7 +88,7 @@
                                     <div class="text-xs capitalize font-bold hidden md:block">
                                         Active: <span x-text="active"></span> Trailer
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <div x-show="active === 'new'">
                                     <div class="flex flex-wrap -mx-2">

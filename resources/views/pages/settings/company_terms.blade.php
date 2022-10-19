@@ -14,7 +14,7 @@
     </div>
 
     <section class="px-4 md:px-6">
-        <x-settings active="terms">
+        <x-layouts.settings active="terms">
             <h2 class="text-xl font-semibold mb-4">
                 {{ 'Terms & Conditions' }}
             </h2>
@@ -83,7 +83,7 @@
 
             </textarea>
 
-        </x-settings>
+        </x-layouts.settings>
     </section>
 
 </x-app>

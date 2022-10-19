@@ -621,13 +621,13 @@
                                             </div>
                                         </div>
 
-                                        <form action="#" method="POST">
+                                        {{-- <form action="#" method="POST">
                                             @csrf @method('DELETE')
 
                                             <button class="button-icon button-danger-soft button-icon-xs">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
-                                        </form>
+                                        </form> --}}
                                     </div>
                                 </div>
                             @else

@@ -14,13 +14,13 @@
     </div>
 
     <section class="px-4 md:px-6">
-        <x-settings active="preferences">
+        <x-layouts.settings active="preferences">
             <h2 class="text-xl font-semibold mb-4">
                 {{ 'Preferences system' }}
             </h2>
 
             {{ 'Select from the available themes the one that best suits you:' }}
-        </x-settings>
+        </x-layouts.settings>
     </section>
 
 </x-app>
